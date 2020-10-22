@@ -727,6 +727,28 @@
         </Group>
         <Group>
           <GroupName>peripherals</GroupName>
+          <Files>
+            <File>
+              <FileName>geofence.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\src\peripherals\geofence.c</FilePath>
+            </File>
+            <File>
+              <FileName>SparkFun_Ublox_Arduino_Library.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\src\peripherals\SparkFun_Ublox_Arduino_Library.c</FilePath>
+            </File>
+            <File>
+              <FileName>ublox.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\src\peripherals\ublox.c</FilePath>
+            </File>
+            <File>
+              <FileName>ublox_ubx_messages.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\src\peripherals\ublox_ubx_messages.c</FilePath>
+            </File>
+          </Files>
         </Group>
         <Group>
           <GroupName>peripherals\soft-se</GroupName>
@@ -805,6 +827,16 @@
               <FileName>uart.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\..\..\src\system\uart.c</FilePath>
+            </File>
+            <File>
+              <FileName>i2c.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\src\system\i2c.c</FilePath>
+            </File>
+            <File>
+              <FileName>i2c_middleware.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\src\system\i2c_middleware.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -1531,6 +1563,28 @@
         </Group>
         <Group>
           <GroupName>peripherals</GroupName>
+          <Files>
+            <File>
+              <FileName>geofence.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\src\peripherals\geofence.c</FilePath>
+            </File>
+            <File>
+              <FileName>SparkFun_Ublox_Arduino_Library.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\src\peripherals\SparkFun_Ublox_Arduino_Library.c</FilePath>
+            </File>
+            <File>
+              <FileName>ublox.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\src\peripherals\ublox.c</FilePath>
+            </File>
+            <File>
+              <FileName>ublox_ubx_messages.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\src\peripherals\ublox_ubx_messages.c</FilePath>
+            </File>
+          </Files>
         </Group>
         <Group>
           <GroupName>peripherals\soft-se</GroupName>
@@ -1609,6 +1663,16 @@
               <FileName>uart.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\..\..\src\system\uart.c</FilePath>
+            </File>
+            <File>
+              <FileName>i2c.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\src\system\i2c.c</FilePath>
+            </File>
+            <File>
+              <FileName>i2c_middleware.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\src\system\i2c_middleware.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -2335,6 +2399,28 @@
         </Group>
         <Group>
           <GroupName>peripherals</GroupName>
+          <Files>
+            <File>
+              <FileName>geofence.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\src\peripherals\geofence.c</FilePath>
+            </File>
+            <File>
+              <FileName>SparkFun_Ublox_Arduino_Library.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\src\peripherals\SparkFun_Ublox_Arduino_Library.c</FilePath>
+            </File>
+            <File>
+              <FileName>ublox.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\src\peripherals\ublox.c</FilePath>
+            </File>
+            <File>
+              <FileName>ublox_ubx_messages.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\src\peripherals\ublox_ubx_messages.c</FilePath>
+            </File>
+          </Files>
         </Group>
         <Group>
           <GroupName>peripherals\soft-se</GroupName>
@@ -2413,6 +2499,16 @@
               <FileName>uart.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\..\..\src\system\uart.c</FilePath>
+            </File>
+            <File>
+              <FileName>i2c.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\src\system\i2c.c</FilePath>
+            </File>
+            <File>
+              <FileName>i2c_middleware.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\src\system\i2c_middleware.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -3139,6 +3235,28 @@
         </Group>
         <Group>
           <GroupName>peripherals</GroupName>
+          <Files>
+            <File>
+              <FileName>geofence.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\src\peripherals\geofence.c</FilePath>
+            </File>
+            <File>
+              <FileName>SparkFun_Ublox_Arduino_Library.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\src\peripherals\SparkFun_Ublox_Arduino_Library.c</FilePath>
+            </File>
+            <File>
+              <FileName>ublox.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\src\peripherals\ublox.c</FilePath>
+            </File>
+            <File>
+              <FileName>ublox_ubx_messages.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\src\peripherals\ublox_ubx_messages.c</FilePath>
+            </File>
+          </Files>
         </Group>
         <Group>
           <GroupName>peripherals\soft-se</GroupName>
@@ -3217,6 +3335,16 @@
               <FileName>uart.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\..\..\src\system\uart.c</FilePath>
+            </File>
+            <File>
+              <FileName>i2c.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\src\system\i2c.c</FilePath>
+            </File>
+            <File>
+              <FileName>i2c_middleware.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\src\system\i2c_middleware.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -3943,6 +4071,28 @@
         </Group>
         <Group>
           <GroupName>peripherals</GroupName>
+          <Files>
+            <File>
+              <FileName>geofence.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\src\peripherals\geofence.c</FilePath>
+            </File>
+            <File>
+              <FileName>SparkFun_Ublox_Arduino_Library.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\src\peripherals\SparkFun_Ublox_Arduino_Library.c</FilePath>
+            </File>
+            <File>
+              <FileName>ublox.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\src\peripherals\ublox.c</FilePath>
+            </File>
+            <File>
+              <FileName>ublox_ubx_messages.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\src\peripherals\ublox_ubx_messages.c</FilePath>
+            </File>
+          </Files>
         </Group>
         <Group>
           <GroupName>peripherals\soft-se</GroupName>
@@ -4021,6 +4171,16 @@
               <FileName>uart.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\..\..\src\system\uart.c</FilePath>
+            </File>
+            <File>
+              <FileName>i2c.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\src\system\i2c.c</FilePath>
+            </File>
+            <File>
+              <FileName>i2c_middleware.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\src\system\i2c_middleware.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -4158,7 +4318,7 @@
           </Flash1>
           <bUseTDR>1</bUseTDR>
           <Flash2>BIN\UL2CM3.DLL</Flash2>
-          <Flash3></Flash3>
+          <Flash3>"" ()</Flash3>
           <Flash4></Flash4>
           <pFcarmOut></pFcarmOut>
           <pFcarmGrp></pFcarmGrp>
@@ -4747,6 +4907,28 @@
         </Group>
         <Group>
           <GroupName>peripherals</GroupName>
+          <Files>
+            <File>
+              <FileName>geofence.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\src\peripherals\geofence.c</FilePath>
+            </File>
+            <File>
+              <FileName>SparkFun_Ublox_Arduino_Library.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\src\peripherals\SparkFun_Ublox_Arduino_Library.c</FilePath>
+            </File>
+            <File>
+              <FileName>ublox.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\src\peripherals\ublox.c</FilePath>
+            </File>
+            <File>
+              <FileName>ublox_ubx_messages.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\src\peripherals\ublox_ubx_messages.c</FilePath>
+            </File>
+          </Files>
         </Group>
         <Group>
           <GroupName>peripherals\soft-se</GroupName>
@@ -4825,6 +5007,16 @@
               <FileName>uart.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\..\..\src\system\uart.c</FilePath>
+            </File>
+            <File>
+              <FileName>i2c.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\src\system\i2c.c</FilePath>
+            </File>
+            <File>
+              <FileName>i2c_middleware.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\src\system\i2c_middleware.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -5551,6 +5743,28 @@
         </Group>
         <Group>
           <GroupName>peripherals</GroupName>
+          <Files>
+            <File>
+              <FileName>geofence.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\src\peripherals\geofence.c</FilePath>
+            </File>
+            <File>
+              <FileName>SparkFun_Ublox_Arduino_Library.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\src\peripherals\SparkFun_Ublox_Arduino_Library.c</FilePath>
+            </File>
+            <File>
+              <FileName>ublox.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\src\peripherals\ublox.c</FilePath>
+            </File>
+            <File>
+              <FileName>ublox_ubx_messages.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\src\peripherals\ublox_ubx_messages.c</FilePath>
+            </File>
+          </Files>
         </Group>
         <Group>
           <GroupName>peripherals\soft-se</GroupName>
@@ -5629,6 +5843,16 @@
               <FileName>uart.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\..\..\src\system\uart.c</FilePath>
+            </File>
+            <File>
+              <FileName>i2c.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\src\system\i2c.c</FilePath>
+            </File>
+            <File>
+              <FileName>i2c_middleware.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\src\system\i2c_middleware.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -6355,6 +6579,28 @@
         </Group>
         <Group>
           <GroupName>peripherals</GroupName>
+          <Files>
+            <File>
+              <FileName>geofence.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\src\peripherals\geofence.c</FilePath>
+            </File>
+            <File>
+              <FileName>SparkFun_Ublox_Arduino_Library.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\src\peripherals\SparkFun_Ublox_Arduino_Library.c</FilePath>
+            </File>
+            <File>
+              <FileName>ublox.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\src\peripherals\ublox.c</FilePath>
+            </File>
+            <File>
+              <FileName>ublox_ubx_messages.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\src\peripherals\ublox_ubx_messages.c</FilePath>
+            </File>
+          </Files>
         </Group>
         <Group>
           <GroupName>peripherals\soft-se</GroupName>
@@ -6433,6 +6679,16 @@
               <FileName>uart.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\..\..\src\system\uart.c</FilePath>
+            </File>
+            <File>
+              <FileName>i2c.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\src\system\i2c.c</FilePath>
+            </File>
+            <File>
+              <FileName>i2c_middleware.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\src\system\i2c_middleware.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -7159,6 +7415,28 @@
         </Group>
         <Group>
           <GroupName>peripherals</GroupName>
+          <Files>
+            <File>
+              <FileName>geofence.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\src\peripherals\geofence.c</FilePath>
+            </File>
+            <File>
+              <FileName>SparkFun_Ublox_Arduino_Library.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\src\peripherals\SparkFun_Ublox_Arduino_Library.c</FilePath>
+            </File>
+            <File>
+              <FileName>ublox.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\src\peripherals\ublox.c</FilePath>
+            </File>
+            <File>
+              <FileName>ublox_ubx_messages.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\src\peripherals\ublox_ubx_messages.c</FilePath>
+            </File>
+          </Files>
         </Group>
         <Group>
           <GroupName>peripherals\soft-se</GroupName>
@@ -7237,6 +7515,16 @@
               <FileName>uart.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\..\..\src\system\uart.c</FilePath>
+            </File>
+            <File>
+              <FileName>i2c.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\src\system\i2c.c</FilePath>
+            </File>
+            <File>
+              <FileName>i2c_middleware.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\src\system\i2c_middleware.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -7963,6 +8251,28 @@
         </Group>
         <Group>
           <GroupName>peripherals</GroupName>
+          <Files>
+            <File>
+              <FileName>geofence.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\src\peripherals\geofence.c</FilePath>
+            </File>
+            <File>
+              <FileName>SparkFun_Ublox_Arduino_Library.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\src\peripherals\SparkFun_Ublox_Arduino_Library.c</FilePath>
+            </File>
+            <File>
+              <FileName>ublox.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\src\peripherals\ublox.c</FilePath>
+            </File>
+            <File>
+              <FileName>ublox_ubx_messages.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\src\peripherals\ublox_ubx_messages.c</FilePath>
+            </File>
+          </Files>
         </Group>
         <Group>
           <GroupName>peripherals\soft-se</GroupName>
@@ -8041,6 +8351,16 @@
               <FileName>uart.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\..\..\src\system\uart.c</FilePath>
+            </File>
+            <File>
+              <FileName>i2c.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\src\system\i2c.c</FilePath>
+            </File>
+            <File>
+              <FileName>i2c_middleware.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\src\system\i2c_middleware.c</FilePath>
             </File>
           </Files>
         </Group>
