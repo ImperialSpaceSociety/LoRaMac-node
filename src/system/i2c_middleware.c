@@ -209,20 +209,20 @@ I2C_MIDDLEWARE_STATUS_t reinit_i2c(I2C_HandleTypeDef* hi2c)
 	if ((pinstate_scl == GPIO_PIN_RESET) || (pinstate_sda == GPIO_PIN_RESET))
 	{
 			// only the error handler fixes it. carry out a software reset
-			PRINTF("SCL OR SDA STUCK LOW. calling Error_Handler().\n");
+			printf("SCL OR SDA STUCK LOW. calling Error_Handler().\n");
 	}
 	else
 	{
-			PRINTF("I2C not stuck low, carry on.\n");	
+			printf("I2C not stuck low, carry on.\n");	
 	}
 
 	
 	/* Re-Initiaize the I2C comunication bus */
 	HAL_I2C_MspInit(hi2c);
 	
-	PRINTF("I2C not stuck low, carry on.\n");	
+	printf("I2C not stuck low, carry on.\n");	
 	
-	PRINTF("Deinit i2c\n");	
+	printf("Deinit i2c\n");	
 
 	HAL_StatusTypeDef status = HAL_I2C_DeInit(hi2c);
 	
@@ -230,16 +230,16 @@ I2C_MIDDLEWARE_STATUS_t reinit_i2c(I2C_HandleTypeDef* hi2c)
 	switch(status) {
 		
 		case HAL_ERROR:
-		PRINTF("HAL_ERROR deinit i2c error\n");	
+		printf("HAL_ERROR deinit i2c error\n");	
 		break; 
 
 		case HAL_OK:
-		PRINTF("HAL_OK deinit\n");	
+		printf("HAL_OK deinit\n");	
 		break; 
 
 		/* you can have any number of case statements */
 		default: 
-		PRINTF("unknown deinit i2c error\n");	
+		printf("unknown deinit i2c error\n");	
 	}
 	
 	HAL_Delay(20);
@@ -250,16 +250,16 @@ I2C_MIDDLEWARE_STATUS_t reinit_i2c(I2C_HandleTypeDef* hi2c)
 	switch(status) {
 		
 		case HAL_ERROR:
-		PRINTF("HAL_ERROR init i2c error\n");	
+		printf("HAL_ERROR init i2c error\n");	
 		break; 
 
 		case HAL_OK:
-		PRINTF("HAL_OK init\n");	
+		printf("HAL_OK init\n");	
 		break; 
 
 		/* you can have any number of case statements */
 		default: 
-		PRINTF("unknown init i2c error\n");	
+		printf("unknown init i2c error\n");	
 	}
 	
 	
