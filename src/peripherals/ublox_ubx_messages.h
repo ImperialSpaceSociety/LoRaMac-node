@@ -69,9 +69,6 @@ extern uint8_t request0A04[8];
 extern uint8_t resetReceiver[12];
 
 
-/* SAVE CURRENT CONFIGURATION CFG-CFG			no response */
-extern uint8_t saveConfiguration[21];
-
 
 
 /*
