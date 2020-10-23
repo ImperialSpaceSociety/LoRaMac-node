@@ -24,7 +24,8 @@
 #include "main.h"
 #include "hw.h"
 #include "i2c_middleware.h"
-
+#include <i2c.h>
+#include <utilities.h>
 
 /* ==================================================================== */
 /* ============================ constants ============================= */
@@ -68,6 +69,7 @@ static double SENS; // sensitivity at actual temperature
 double PRESSURE_Value; // compensated pressure value
 double TEMPERATURE_Value; // compensated temperature value
 
+extern I2c_t I2c;
 
 /* ==================================================================== */
 /* ========================== private data ============================ */
@@ -253,33 +255,12 @@ unsigned long cmd_adc(char cmd)
 
 uint8_t ms5607_transmit( uint8_t *message, uint16_t len)
 {
-	
-		I2C_MIDDLEWARE_STATUS_t status = I2C_transmit(&hi2c1, (uint16_t)ADDR_W, message, len, MS5607_I2C_TIMEOUT);
-		
-		if (status == I2C_SUCCSS)
-		{
-			return 1;
-		}else
-		{
-			return 0;	
-		}
-
+		return I2cWriteBuffer(&I2c, (uint16_t)ADDR_W,(uint16_t)0xFF, message, len);
 }
 
 uint8_t ms5607_receive(uint8_t *message, uint16_t len)
 {
-	
-
-	I2C_MIDDLEWARE_STATUS_t status = I2C_receive(&hi2c1, (uint16_t)ADDR_R, message, len, MS5607_I2C_TIMEOUT);
-	
-	if (status == I2C_SUCCSS)
-	{
-		return 1;
-	}else
-	{
-		return 0;	
-	}
-
+		return I2cReadBuffer(&I2c, (uint16_t)ADDR_R,(uint16_t)0xFF, message, len);
 }
 
 void ms5607_Read_T(void)
