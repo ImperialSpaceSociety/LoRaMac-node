@@ -498,6 +498,11 @@
               <FileType>1</FileType>
               <FilePath>..\..\..\..\src\boards\B-L072Z-LRWAN1\uart-board.c</FilePath>
             </File>
+            <File>
+              <FileName>i2c-board.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\src\boards\B-L072Z-LRWAN1\i2c-board.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -592,6 +597,16 @@
               <FileName>stm32l0xx_hal_uart_ex.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\..\..\src\boards\mcu\stm32\STM32L0xx_HAL_Driver\Src\stm32l0xx_hal_uart_ex.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32l0xx_hal_i2c.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\src\boards\mcu\stm32\STM32L0xx_HAL_Driver\Src\stm32l0xx_hal_i2c.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32l0xx_hal_i2c_ex.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\src\boards\mcu\stm32\STM32L0xx_HAL_Driver\Src\stm32l0xx_hal_i2c_ex.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -833,11 +848,6 @@
               <FileType>1</FileType>
               <FilePath>..\..\..\..\src\system\i2c.c</FilePath>
             </File>
-            <File>
-              <FileName>i2c_middleware.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\src\system\i2c_middleware.c</FilePath>
-            </File>
           </Files>
         </Group>
       </Groups>
@@ -852,7 +862,7 @@
         <TargetCommonOption>
           <Device>STM32L072CZYx</Device>
           <Vendor>STMicroelectronics</Vendor>
-          <PackID>Keil.STM32L0xx_DFP.2.0.1</PackID>
+          <PackID>Keil.STM32L0xx_DFP.2.1.0</PackID>
           <PackURL>http://www.keil.com/pack/</PackURL>
           <Cpu>IRAM(0x20000000,0x00005000) IROM(0x08000000,0x00030000) CPUTYPE("Cortex-M0+") CLOCK(12000000) ELITTLE</Cpu>
           <FlashUtilSpec></FlashUtilSpec>
@@ -1334,6 +1344,11 @@
               <FileType>1</FileType>
               <FilePath>..\..\..\..\src\boards\B-L072Z-LRWAN1\uart-board.c</FilePath>
             </File>
+            <File>
+              <FileName>i2c-board.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\src\boards\B-L072Z-LRWAN1\i2c-board.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -1428,6 +1443,16 @@
               <FileName>stm32l0xx_hal_uart_ex.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\..\..\src\boards\mcu\stm32\STM32L0xx_HAL_Driver\Src\stm32l0xx_hal_uart_ex.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32l0xx_hal_i2c.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\src\boards\mcu\stm32\STM32L0xx_HAL_Driver\Src\stm32l0xx_hal_i2c.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32l0xx_hal_i2c_ex.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\src\boards\mcu\stm32\STM32L0xx_HAL_Driver\Src\stm32l0xx_hal_i2c_ex.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -1669,11 +1694,6 @@
               <FileType>1</FileType>
               <FilePath>..\..\..\..\src\system\i2c.c</FilePath>
             </File>
-            <File>
-              <FileName>i2c_middleware.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\src\system\i2c_middleware.c</FilePath>
-            </File>
           </Files>
         </Group>
       </Groups>
@@ -1688,7 +1708,7 @@
         <TargetCommonOption>
           <Device>STM32L072CZYx</Device>
           <Vendor>STMicroelectronics</Vendor>
-          <PackID>Keil.STM32L0xx_DFP.2.0.1</PackID>
+          <PackID>Keil.STM32L0xx_DFP.2.1.0</PackID>
           <PackURL>http://www.keil.com/pack/</PackURL>
           <Cpu>IRAM(0x20000000,0x00005000) IROM(0x08000000,0x00030000) CPUTYPE("Cortex-M0+") CLOCK(12000000) ELITTLE</Cpu>
           <FlashUtilSpec></FlashUtilSpec>
@@ -2170,6 +2190,11 @@
               <FileType>1</FileType>
               <FilePath>..\..\..\..\src\boards\B-L072Z-LRWAN1\uart-board.c</FilePath>
             </File>
+            <File>
+              <FileName>i2c-board.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\src\boards\B-L072Z-LRWAN1\i2c-board.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -2264,6 +2289,16 @@
               <FileName>stm32l0xx_hal_uart_ex.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\..\..\src\boards\mcu\stm32\STM32L0xx_HAL_Driver\Src\stm32l0xx_hal_uart_ex.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32l0xx_hal_i2c.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\src\boards\mcu\stm32\STM32L0xx_HAL_Driver\Src\stm32l0xx_hal_i2c.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32l0xx_hal_i2c_ex.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\src\boards\mcu\stm32\STM32L0xx_HAL_Driver\Src\stm32l0xx_hal_i2c_ex.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -2505,11 +2540,6 @@
               <FileType>1</FileType>
               <FilePath>..\..\..\..\src\system\i2c.c</FilePath>
             </File>
-            <File>
-              <FileName>i2c_middleware.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\src\system\i2c_middleware.c</FilePath>
-            </File>
           </Files>
         </Group>
       </Groups>
@@ -2524,7 +2554,7 @@
         <TargetCommonOption>
           <Device>STM32L072CZYx</Device>
           <Vendor>STMicroelectronics</Vendor>
-          <PackID>Keil.STM32L0xx_DFP.2.0.1</PackID>
+          <PackID>Keil.STM32L0xx_DFP.2.1.0</PackID>
           <PackURL>http://www.keil.com/pack/</PackURL>
           <Cpu>IRAM(0x20000000,0x00005000) IROM(0x08000000,0x00030000) CPUTYPE("Cortex-M0+") CLOCK(12000000) ELITTLE</Cpu>
           <FlashUtilSpec></FlashUtilSpec>
@@ -3006,6 +3036,11 @@
               <FileType>1</FileType>
               <FilePath>..\..\..\..\src\boards\B-L072Z-LRWAN1\uart-board.c</FilePath>
             </File>
+            <File>
+              <FileName>i2c-board.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\src\boards\B-L072Z-LRWAN1\i2c-board.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -3100,6 +3135,16 @@
               <FileName>stm32l0xx_hal_uart_ex.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\..\..\src\boards\mcu\stm32\STM32L0xx_HAL_Driver\Src\stm32l0xx_hal_uart_ex.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32l0xx_hal_i2c.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\src\boards\mcu\stm32\STM32L0xx_HAL_Driver\Src\stm32l0xx_hal_i2c.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32l0xx_hal_i2c_ex.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\src\boards\mcu\stm32\STM32L0xx_HAL_Driver\Src\stm32l0xx_hal_i2c_ex.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -3341,11 +3386,6 @@
               <FileType>1</FileType>
               <FilePath>..\..\..\..\src\system\i2c.c</FilePath>
             </File>
-            <File>
-              <FileName>i2c_middleware.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\src\system\i2c_middleware.c</FilePath>
-            </File>
           </Files>
         </Group>
       </Groups>
@@ -3360,7 +3400,7 @@
         <TargetCommonOption>
           <Device>STM32L072CZYx</Device>
           <Vendor>STMicroelectronics</Vendor>
-          <PackID>Keil.STM32L0xx_DFP.2.0.1</PackID>
+          <PackID>Keil.STM32L0xx_DFP.2.1.0</PackID>
           <PackURL>http://www.keil.com/pack/</PackURL>
           <Cpu>IRAM(0x20000000,0x00005000) IROM(0x08000000,0x00030000) CPUTYPE("Cortex-M0+") CLOCK(12000000) ELITTLE</Cpu>
           <FlashUtilSpec></FlashUtilSpec>
@@ -3842,6 +3882,11 @@
               <FileType>1</FileType>
               <FilePath>..\..\..\..\src\boards\B-L072Z-LRWAN1\uart-board.c</FilePath>
             </File>
+            <File>
+              <FileName>i2c-board.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\src\boards\B-L072Z-LRWAN1\i2c-board.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -3936,6 +3981,16 @@
               <FileName>stm32l0xx_hal_uart_ex.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\..\..\src\boards\mcu\stm32\STM32L0xx_HAL_Driver\Src\stm32l0xx_hal_uart_ex.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32l0xx_hal_i2c.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\src\boards\mcu\stm32\STM32L0xx_HAL_Driver\Src\stm32l0xx_hal_i2c.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32l0xx_hal_i2c_ex.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\src\boards\mcu\stm32\STM32L0xx_HAL_Driver\Src\stm32l0xx_hal_i2c_ex.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -4176,11 +4231,6 @@
               <FileName>i2c.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\..\..\src\system\i2c.c</FilePath>
-            </File>
-            <File>
-              <FileName>i2c_middleware.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\src\system\i2c_middleware.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -4678,6 +4728,11 @@
               <FileType>1</FileType>
               <FilePath>..\..\..\..\src\boards\B-L072Z-LRWAN1\uart-board.c</FilePath>
             </File>
+            <File>
+              <FileName>i2c-board.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\src\boards\B-L072Z-LRWAN1\i2c-board.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -4772,6 +4827,16 @@
               <FileName>stm32l0xx_hal_uart_ex.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\..\..\src\boards\mcu\stm32\STM32L0xx_HAL_Driver\Src\stm32l0xx_hal_uart_ex.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32l0xx_hal_i2c.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\src\boards\mcu\stm32\STM32L0xx_HAL_Driver\Src\stm32l0xx_hal_i2c.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32l0xx_hal_i2c_ex.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\src\boards\mcu\stm32\STM32L0xx_HAL_Driver\Src\stm32l0xx_hal_i2c_ex.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -5013,11 +5078,6 @@
               <FileType>1</FileType>
               <FilePath>..\..\..\..\src\system\i2c.c</FilePath>
             </File>
-            <File>
-              <FileName>i2c_middleware.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\src\system\i2c_middleware.c</FilePath>
-            </File>
           </Files>
         </Group>
       </Groups>
@@ -5032,7 +5092,7 @@
         <TargetCommonOption>
           <Device>STM32L072CZYx</Device>
           <Vendor>STMicroelectronics</Vendor>
-          <PackID>Keil.STM32L0xx_DFP.2.0.1</PackID>
+          <PackID>Keil.STM32L0xx_DFP.2.1.0</PackID>
           <PackURL>http://www.keil.com/pack/</PackURL>
           <Cpu>IRAM(0x20000000,0x00005000) IROM(0x08000000,0x00030000) CPUTYPE("Cortex-M0+") CLOCK(12000000) ELITTLE</Cpu>
           <FlashUtilSpec></FlashUtilSpec>
@@ -5514,6 +5574,11 @@
               <FileType>1</FileType>
               <FilePath>..\..\..\..\src\boards\B-L072Z-LRWAN1\uart-board.c</FilePath>
             </File>
+            <File>
+              <FileName>i2c-board.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\src\boards\B-L072Z-LRWAN1\i2c-board.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -5608,6 +5673,16 @@
               <FileName>stm32l0xx_hal_uart_ex.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\..\..\src\boards\mcu\stm32\STM32L0xx_HAL_Driver\Src\stm32l0xx_hal_uart_ex.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32l0xx_hal_i2c.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\src\boards\mcu\stm32\STM32L0xx_HAL_Driver\Src\stm32l0xx_hal_i2c.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32l0xx_hal_i2c_ex.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\src\boards\mcu\stm32\STM32L0xx_HAL_Driver\Src\stm32l0xx_hal_i2c_ex.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -5849,11 +5924,6 @@
               <FileType>1</FileType>
               <FilePath>..\..\..\..\src\system\i2c.c</FilePath>
             </File>
-            <File>
-              <FileName>i2c_middleware.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\src\system\i2c_middleware.c</FilePath>
-            </File>
           </Files>
         </Group>
       </Groups>
@@ -5868,7 +5938,7 @@
         <TargetCommonOption>
           <Device>STM32L072CZYx</Device>
           <Vendor>STMicroelectronics</Vendor>
-          <PackID>Keil.STM32L0xx_DFP.2.0.1</PackID>
+          <PackID>Keil.STM32L0xx_DFP.2.1.0</PackID>
           <PackURL>http://www.keil.com/pack/</PackURL>
           <Cpu>IRAM(0x20000000,0x00005000) IROM(0x08000000,0x00030000) CPUTYPE("Cortex-M0+") CLOCK(12000000) ELITTLE</Cpu>
           <FlashUtilSpec></FlashUtilSpec>
@@ -6350,6 +6420,11 @@
               <FileType>1</FileType>
               <FilePath>..\..\..\..\src\boards\B-L072Z-LRWAN1\uart-board.c</FilePath>
             </File>
+            <File>
+              <FileName>i2c-board.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\src\boards\B-L072Z-LRWAN1\i2c-board.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -6444,6 +6519,16 @@
               <FileName>stm32l0xx_hal_uart_ex.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\..\..\src\boards\mcu\stm32\STM32L0xx_HAL_Driver\Src\stm32l0xx_hal_uart_ex.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32l0xx_hal_i2c.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\src\boards\mcu\stm32\STM32L0xx_HAL_Driver\Src\stm32l0xx_hal_i2c.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32l0xx_hal_i2c_ex.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\src\boards\mcu\stm32\STM32L0xx_HAL_Driver\Src\stm32l0xx_hal_i2c_ex.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -6685,11 +6770,6 @@
               <FileType>1</FileType>
               <FilePath>..\..\..\..\src\system\i2c.c</FilePath>
             </File>
-            <File>
-              <FileName>i2c_middleware.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\src\system\i2c_middleware.c</FilePath>
-            </File>
           </Files>
         </Group>
       </Groups>
@@ -6704,7 +6784,7 @@
         <TargetCommonOption>
           <Device>STM32L072CZYx</Device>
           <Vendor>STMicroelectronics</Vendor>
-          <PackID>Keil.STM32L0xx_DFP.2.0.1</PackID>
+          <PackID>Keil.STM32L0xx_DFP.2.1.0</PackID>
           <PackURL>http://www.keil.com/pack/</PackURL>
           <Cpu>IRAM(0x20000000,0x00005000) IROM(0x08000000,0x00030000) CPUTYPE("Cortex-M0+") CLOCK(12000000) ELITTLE</Cpu>
           <FlashUtilSpec></FlashUtilSpec>
@@ -7186,6 +7266,11 @@
               <FileType>1</FileType>
               <FilePath>..\..\..\..\src\boards\B-L072Z-LRWAN1\uart-board.c</FilePath>
             </File>
+            <File>
+              <FileName>i2c-board.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\src\boards\B-L072Z-LRWAN1\i2c-board.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -7280,6 +7365,16 @@
               <FileName>stm32l0xx_hal_uart_ex.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\..\..\src\boards\mcu\stm32\STM32L0xx_HAL_Driver\Src\stm32l0xx_hal_uart_ex.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32l0xx_hal_i2c.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\src\boards\mcu\stm32\STM32L0xx_HAL_Driver\Src\stm32l0xx_hal_i2c.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32l0xx_hal_i2c_ex.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\src\boards\mcu\stm32\STM32L0xx_HAL_Driver\Src\stm32l0xx_hal_i2c_ex.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -7521,11 +7616,6 @@
               <FileType>1</FileType>
               <FilePath>..\..\..\..\src\system\i2c.c</FilePath>
             </File>
-            <File>
-              <FileName>i2c_middleware.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\src\system\i2c_middleware.c</FilePath>
-            </File>
           </Files>
         </Group>
       </Groups>
@@ -7540,7 +7630,7 @@
         <TargetCommonOption>
           <Device>STM32L072CZYx</Device>
           <Vendor>STMicroelectronics</Vendor>
-          <PackID>Keil.STM32L0xx_DFP.2.0.1</PackID>
+          <PackID>Keil.STM32L0xx_DFP.2.1.0</PackID>
           <PackURL>http://www.keil.com/pack/</PackURL>
           <Cpu>IRAM(0x20000000,0x00005000) IROM(0x08000000,0x00030000) CPUTYPE("Cortex-M0+") CLOCK(12000000) ELITTLE</Cpu>
           <FlashUtilSpec></FlashUtilSpec>
@@ -8022,6 +8112,11 @@
               <FileType>1</FileType>
               <FilePath>..\..\..\..\src\boards\B-L072Z-LRWAN1\uart-board.c</FilePath>
             </File>
+            <File>
+              <FileName>i2c-board.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\src\boards\B-L072Z-LRWAN1\i2c-board.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -8116,6 +8211,16 @@
               <FileName>stm32l0xx_hal_uart_ex.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\..\..\src\boards\mcu\stm32\STM32L0xx_HAL_Driver\Src\stm32l0xx_hal_uart_ex.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32l0xx_hal_i2c.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\src\boards\mcu\stm32\STM32L0xx_HAL_Driver\Src\stm32l0xx_hal_i2c.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32l0xx_hal_i2c_ex.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\src\boards\mcu\stm32\STM32L0xx_HAL_Driver\Src\stm32l0xx_hal_i2c_ex.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -8356,11 +8461,6 @@
               <FileName>i2c.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\..\..\src\system\i2c.c</FilePath>
-            </File>
-            <File>
-              <FileName>i2c_middleware.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\src\system\i2c_middleware.c</FilePath>
             </File>
           </Files>
         </Group>
