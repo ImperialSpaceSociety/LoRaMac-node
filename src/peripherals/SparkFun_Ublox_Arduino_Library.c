@@ -173,10 +173,10 @@ bool checkUbloxI2C(ubxPacket *incomingUBX, uint8_t requestedClass, uint8_t reque
 //      return (false);                          //Sensor did not ACK
 
 		
-		if (HAL_I2C_IsDeviceReady(&hi2c1,(uint16_t) _gpsI2Caddress << 1,5,defaultMaxWait) != HAL_OK)
-		{
-			return (false);                          //Sensor did not ACK
-		}
+		//if (HAL_I2C_IsDeviceReady(&hi2c1,(uint16_t) _gpsI2Caddress << 1,5,defaultMaxWait) != HAL_OK)
+		//{
+		//	return (false);                          //Sensor did not ACK
+		//}
 		
 		uint8_t buff_rx[2] = {0};
 		
