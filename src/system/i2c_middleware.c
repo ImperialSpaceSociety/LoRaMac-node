@@ -19,8 +19,9 @@
 /* Inclusion of system and local header files goes here */
 
 #include <i2c_middleware.h>
-#include "hw_i2c.h"
-#include "hw.h" // for PRINTF
+#include <i2c.h>
+#include <stdio.h>
+#include <main.h>
 
 
 /* ==================================================================== */
