@@ -763,6 +763,11 @@
               <FileType>1</FileType>
               <FilePath>..\..\..\..\src\peripherals\ublox_ubx_messages.c</FilePath>
             </File>
+            <File>
+              <FileName>ms5607.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\src\peripherals\ms5607.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -1608,6 +1613,11 @@
               <FileName>ublox_ubx_messages.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\..\..\src\peripherals\ublox_ubx_messages.c</FilePath>
+            </File>
+            <File>
+              <FileName>ms5607.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\src\peripherals\ms5607.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -2455,6 +2465,11 @@
               <FileType>1</FileType>
               <FilePath>..\..\..\..\src\peripherals\ublox_ubx_messages.c</FilePath>
             </File>
+            <File>
+              <FileName>ms5607.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\src\peripherals\ms5607.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -3300,6 +3315,11 @@
               <FileName>ublox_ubx_messages.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\..\..\src\peripherals\ublox_ubx_messages.c</FilePath>
+            </File>
+            <File>
+              <FileName>ms5607.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\src\peripherals\ms5607.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -4147,6 +4167,11 @@
               <FileType>1</FileType>
               <FilePath>..\..\..\..\src\peripherals\ublox_ubx_messages.c</FilePath>
             </File>
+            <File>
+              <FileName>ms5607.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\src\peripherals\ms5607.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -4992,6 +5017,11 @@
               <FileName>ublox_ubx_messages.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\..\..\src\peripherals\ublox_ubx_messages.c</FilePath>
+            </File>
+            <File>
+              <FileName>ms5607.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\src\peripherals\ms5607.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -5839,6 +5869,11 @@
               <FileType>1</FileType>
               <FilePath>..\..\..\..\src\peripherals\ublox_ubx_messages.c</FilePath>
             </File>
+            <File>
+              <FileName>ms5607.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\src\peripherals\ms5607.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -6684,6 +6719,11 @@
               <FileName>ublox_ubx_messages.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\..\..\src\peripherals\ublox_ubx_messages.c</FilePath>
+            </File>
+            <File>
+              <FileName>ms5607.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\src\peripherals\ms5607.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -7531,6 +7571,11 @@
               <FileType>1</FileType>
               <FilePath>..\..\..\..\src\peripherals\ublox_ubx_messages.c</FilePath>
             </File>
+            <File>
+              <FileName>ms5607.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\src\peripherals\ms5607.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -8376,6 +8421,11 @@
               <FileName>ublox_ubx_messages.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\..\..\src\peripherals\ublox_ubx_messages.c</FilePath>
+            </File>
+            <File>
+              <FileName>ms5607.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\src\peripherals\ms5607.c</FilePath>
             </File>
           </Files>
         </Group>
