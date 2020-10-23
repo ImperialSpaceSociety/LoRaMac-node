@@ -108,32 +108,32 @@ uint8_t ms5607_Init(void)
 
     for (i = 0; i<8; i++) {
         C[i] = cmd_prom(i);   // read coefficients
-	//			PRINTF("c:%d\n\r",C[i]);
+	//			printf("c:%d\n\r",C[i]);
 
     }
 				
 		/* Check if the received values are all zero. if they are, communication error */
 		if (!(C[0] && C[1] && C[2] && C[3] && C[4] && C[5] && C[6] && C[7])){
-				PRINTF("SELFTEST: ms5607 not returning values. ms5607 NOT OK...\n\r");
+				printf("SELFTEST: ms5607 not returning values. ms5607 NOT OK...\n\r");
         return 1;
 		} 
 		
 		
 		factory_crc = 0x000F & (C[7]); // the factory calculated crc
-		//PRINTF("factory crc:%d\n\r",factory_crc);
+		//printf("factory crc:%d\n\r",factory_crc);
 				
     calculated_crc = crc4(C);
 		
-		//PRINTF("calculated crc:%d\n\r",calculated_crc);
+		//printf("calculated crc:%d\n\r",calculated_crc);
 
     
 		if(calculated_crc==factory_crc){
-			  PRINTF("SELFTEST: ms5607 checksum matches. ms5607 OK...\n\r");
+			  printf("SELFTEST: ms5607 checksum matches. ms5607 OK...\n\r");
 
         return 0;
 		}
     else{
-			  PRINTF("SELFTEST: ms5607 checksum not matching. Device NOT OK...\n\r");
+			  printf("SELFTEST: ms5607 checksum not matching. Device NOT OK...\n\r");
         return 1;
 		}
 
