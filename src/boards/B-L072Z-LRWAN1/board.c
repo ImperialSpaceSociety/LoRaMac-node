@@ -53,6 +53,7 @@ Gpio_t Led4;
  * MCU objects
  */
 Uart_t Uart1;
+I2c_t I2c;
 
 /*!
  * Initializes the unused GPIO to a know status
