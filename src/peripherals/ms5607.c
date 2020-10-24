@@ -142,12 +142,9 @@ uint8_t ms5607_Init(void)
 uint16_t cmd_prom(uint8_t coef_num){
     uint8_t  temp_date[2] = {0};
     uint16_t rC = 0;
-    uint8_t i2c_buffer[2] = {0};
     
-		i2c_buffer[0] = CMD_PROM_RD+coef_num*2;           
+		I2cReadBuffer(&I2c, (uint16_t)ADDR_R,(uint16_t)CMD_PROM_RD+coef_num*2, temp_date, 2);
 
-    ms5607_transmit(i2c_buffer,1); // send PROM READ command
-    ms5607_receive(temp_date,2);
     rC = 256*temp_date[0]+temp_date[1];
 
     return rC;
@@ -157,8 +154,7 @@ void cmd_reset(void)
 {
 	HAL_Delay(20); // may have to give it a short time to start up if it had been previously powered off
 	uint8_t i2c_buffer[2] = {0};
-	i2c_buffer[0] = CMD_RESET;
-	ms5607_transmit(i2c_buffer,1);
+	I2cWriteBuffer(&I2c, (uint16_t)ADDR_W,(uint16_t)CMD_RESET, i2c_buffer, 0);
 }
 
 uint8_t crc4(uint16_t n_prom[]) // n_prom defined as 8x unsigned int (n_prom[8])
@@ -208,9 +204,8 @@ unsigned long cmd_adc(char cmd)
     uint32_t temp = 0;
 
     uint8_t i2c_buffer[2] = {0};
-    i2c_buffer[0] = CMD_ADC_CONV+cmd;
+		I2cWriteBuffer(&I2c, (uint16_t)ADDR_W,(uint16_t)CMD_ADC_CONV+cmd, i2c_buffer, 0); // send conversion command
 
-    ms5607_transmit(i2c_buffer,1); // send conversion command
 
     switch (cmd & 0x0f) // wait necessary conversion time
     {
@@ -241,10 +236,7 @@ unsigned long cmd_adc(char cmd)
 
     }
 
-    i2c_buffer[0] = CMD_ADC_READ;
-
-    ms5607_transmit(i2c_buffer,1);
-    ms5607_receive(temp_date,3);
+		I2cReadBuffer(&I2c, (uint16_t)ADDR_R,(uint16_t)CMD_ADC_READ, temp_date, 3);
 
     temp = 65536*temp_date[0]+256*temp_date[1]+temp_date[2];
 		
