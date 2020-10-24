@@ -33,6 +33,8 @@
 #include "rtc-board.h"
 #include "sx1276-board.h"
 #include "board.h"
+#include "ublox.h"
+#include "ms5607.h"
 
 /*!
  * Unique Devices IDs register set ( STM32L0xxx )
@@ -127,7 +129,13 @@ void BoardCriticalSectionEnd( uint32_t *mask )
 
 void BoardInitPeriph( void )
 {
-
+		/* Initialize pressure temperature sensor */	
+		printf("SELFTEST: Initialisng ms5607\n\r");
+		ms5607_Init();
+		
+		/* GPS SETUP */
+		printf("SELFTEST: Initialising GPS\n\r");
+		setup_GPS();
 }
 
 void BoardInitMcu( void )
