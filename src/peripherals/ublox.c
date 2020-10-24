@@ -305,7 +305,7 @@ gps_status_t get_location_fix(uint32_t timeout){
 		printf(" GPS time: %02d/%02d/%04d, %02d:%02d:%02d.%04d ",temp_GPSday, temp_GPSmonth, temp_GPSyear,temp_GPShour, temp_GPSminute, temp_GPSsecond,temp_GPSmillisecond);
 		printf(" GPS Search time: %.3f seconds \r\n", current_time_F);
 		
-		load_solar_voltage = BoardGetBatteryLevel();
+		load_solar_voltage = BoardGetBatteryVoltage();
 
 		
 		if(temp_GPSfix_type == 3 && temp_GPSsats >= SATS && temp_GPSfix_OK == 1)           // check if we have a good fix
