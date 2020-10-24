@@ -25,6 +25,9 @@
 #include "utilities.h"
 #include "board.h"
 #include "gpio.h"
+#include "ublox.h"
+#include "ms5607.h"
+#include "config.h"
 
 #include "Commissioning.h"
 #include "LmHandler.h"
@@ -438,6 +441,43 @@ static void PrepareTxFrame( void )
     {
         return;
     }
+		
+		
+		MS5607_get_temp_pressure();
+		get_location_fix(GPS_LOCATION_FIX_TIMEOUT);
+		
+		uint16_t no_load_solar_voltage = BoardGetBatteryVoltage();
+		uint16_t load_solar_voltage = get_load_solar_voltage();
+
+
+	
+		printf("================================================================\r\n");
+		printf("SENSOR AND GPS VALUES");
+		printf("\r\n"); 
+		printf("================================================================\r\n");
+
+		printf("Temperature degrees C: "); 
+		printf("%lf", TEMPERATURE_Value); 
+		printf("\r\n"); 
+		printf("Pressure mBar: "); 
+		printf("%lf", PRESSURE_Value); 
+		printf("\r\n");
+		printf("Longitude: "); 
+		printf("%lf ", GPS_UBX_longitude_Float); 
+		printf("Latitude: "); 
+		printf("%lf ", GPS_UBX_latitude_Float); 
+		printf("altitude: "); 
+		printf("%ld", GPSaltitude	); 
+		printf("\r\n");
+		printf("Solar voltage no load: "); 
+		printf("%ld", no_load_solar_voltage	); 
+		printf("\r\n");
+		printf("Solar voltage with GPS load: "); 
+		printf("%ld", load_solar_voltage); 
+		printf("\r\n");
+		printf("================================================================\r\n");
+
+
 
     uint8_t channel = 0;
 
