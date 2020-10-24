@@ -22,8 +22,6 @@
 #include "stm32l0xx_hal.h"
 #include "ms5607.h"
 #include "main.h"
-#include "hw.h"
-#include "i2c_middleware.h"
 #include <i2c.h>
 #include <utilities.h>
 
