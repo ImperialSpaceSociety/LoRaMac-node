@@ -17,17 +17,15 @@
 
 /* Inclusion of system and local header files goes here */
 
-#include <stdlib.h>
 #include "ublox.h"
+#include <stdlib.h>
 #include <stdio.h>
-#include "stm32l0xx_hal.h"
 #include "main.h"
 #include <string.h>
 #include <systime.h>
 
 #include "SparkFun_Ublox_Arduino_Library.h"
 
-#include "i2c_middleware.h"
 #include <i2c.h>
 #include <board.h>
 
