@@ -130,12 +130,16 @@ void BoardCriticalSectionEnd( uint32_t *mask )
 void BoardInitPeriph( void )
 {
 		/* Initialize pressure temperature sensor */	
+		#ifdef SENSOR_ENABLED   
 		printf("SELFTEST: Initialisng ms5607\n\r");
 		ms5607_Init();
+		#endif
 		
 		/* GPS SETUP */
+		#ifdef GPS_ENABLED
 		printf("SELFTEST: Initialising GPS\n\r");
 		setup_GPS();
+		#endif
 }
 
 void BoardInitMcu( void )

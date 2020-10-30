@@ -442,9 +442,13 @@ static void PrepareTxFrame( void )
         return;
     }
 		
-		
+		#ifdef SENSOR_ENABLED
 		MS5607_get_temp_pressure();
+		#endif
+		
+		#ifdef GPS_ENABLED
 		get_location_fix(GPS_LOCATION_FIX_TIMEOUT);
+		#endif
 		
 		uint16_t no_load_solar_voltage = BoardGetBatteryVoltage();
 		uint16_t load_solar_voltage = get_load_solar_voltage();
