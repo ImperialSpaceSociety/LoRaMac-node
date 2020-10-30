@@ -442,11 +442,11 @@ static void PrepareTxFrame( void )
         return;
     }
 		
-		#ifdef SENSOR_ENABLED
+		#if SENSOR_ENABLED
 		MS5607_get_temp_pressure();
 		#endif
 		
-		#ifdef GPS_ENABLED
+		#if GPS_ENABLED
 		get_location_fix(GPS_LOCATION_FIX_TIMEOUT);
 		#endif
 		
