@@ -467,13 +467,13 @@ static void PrepareTxFrame( void )
 		printf("Latitude: "); 
 		printf("%lf ", GPS_UBX_latitude_Float); 
 		printf("altitude: "); 
-		printf("%ld", GPSaltitude	); 
+		printf("%d", GPSaltitude	); 
 		printf("\r\n");
 		printf("Solar voltage no load: "); 
-		printf("%ld", no_load_solar_voltage	); 
+		printf("%d", no_load_solar_voltage	); 
 		printf("\r\n");
 		printf("Solar voltage with GPS load: "); 
-		printf("%ld", load_solar_voltage); 
+		printf("%d", load_solar_voltage); 
 		printf("\r\n");
 		printf("================================================================\r\n");
 
