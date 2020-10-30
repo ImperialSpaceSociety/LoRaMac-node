@@ -83,8 +83,6 @@ extern I2c_t I2c;
 
 /* Function prototypes for private (static) functions go here */
 
-static uint8_t ms5607_transmit(uint8_t *pBuffer, uint16_t Length);
-static uint8_t ms5607_receive(uint8_t *pBuffer, uint16_t Length);
 static void cmd_reset(void);
 static uint8_t crc4(uint16_t n_prom[]); // n_prom defined as 8x unsigned int (n_prom[8])
 static uint16_t cmd_prom(uint8_t coef_num);
@@ -242,15 +240,6 @@ unsigned long cmd_adc(char cmd)
     return temp;
 }
 
-uint8_t ms5607_transmit( uint8_t *message, uint16_t len)
-{
-		return I2cWriteBuffer(&I2c, (uint16_t)ADDR_W,(uint8_t)0xFF, message, len);
-}
-
-uint8_t ms5607_receive(uint8_t *message, uint16_t len)
-{
-		return I2cReadBuffer(&I2c, (uint16_t)ADDR_R,(uint8_t)0xFF, message, len);
-}
 
 void ms5607_Read_T(void)
 {
