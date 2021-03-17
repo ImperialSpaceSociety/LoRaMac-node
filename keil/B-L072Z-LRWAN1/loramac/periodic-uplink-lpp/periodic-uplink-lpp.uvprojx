@@ -4667,7 +4667,7 @@
             <v6Rtti>0</v6Rtti>
             <VariousControls>
               <MiscControls></MiscControls>
-              <Define>USE_HAL_DRIVER STM32L072xx REGION_EU868 ACTIVE_REGION=LORAMAC_REGION_EU868 LORAMAC_CLASSB_ENABLED USE_RADIO_DEBUG REGION_US915 REGION_CN470 REGION_AU915 SOFT_SE</Define>
+              <Define>USE_HAL_DRIVER STM32L072xx CLASSB_ENABLED="ON" ACTIVE_REGION="LORAMAC_REGION_EU868" REGION_EU868="ON" REGION_US915="OFF" REGION_CN779="OFF" REGION_EU433="OFF" REGION_AU915="OFF" REGION_AS923="OFF" REGION_CN470="OFF" REGION_KR920="OFF" REGION_IN865="OFF" REGION_RU864="OFF" SECURE_ELEMENT_PRE_PROVISIONED="OFF" USE_RADIO_DEBUG="ON" SOFT_SE</Define>
               <Undefine></Undefine>
               <IncludePath>..\..\..\..\src;..\..\..\..\src\apps\LoRaMac\periodic-uplink-lpp\B-L072Z-LRWAN1;..\..\..\..\src\apps\LoRaMac\common;..\..\..\..\src\apps\LoRaMac\common\LmHandler;..\..\..\..\src\apps\LoRaMac\common\LmHandler\packages;..\..\..\..\src\boards;..\..\..\..\src\boards\B-L072Z-LRWAN1;..\..\..\..\src\boards\B-L072Z-LRWAN1\cmsis;..\..\..\..\src\boards\mcu\stm32;..\..\..\..\src\boards\mcu\stm32\cmsis;..\..\..\..\src\boards\mcu\stm32\STM32L0xx_HAL_Driver\inc;..\..\..\..\src\apps\LoRaMac\common;..\..\..\..\src\mac;..\..\..\..\src\mac\region;..\..\..\..\src\peripherals;..\..\..\..\src\peripherals\soft-se;..\..\..\..\src\radio;..\..\..\..\src\system;..\..\..\..\src\system\crypto</IncludePath>
             </VariousControls>
