@@ -181,7 +181,7 @@ bool checkUbloxI2C(ubxPacket *incomingUBX, uint8_t requestedClass, uint8_t reque
 		uint8_t buff_rx[2] = {0};
 		
 		//uint16_t return_value = 0;
-		if (I2cReadBuffer(&I2c,(uint16_t) _gpsI2Caddress << 1,(uint16_t)0xFD,buff_rx,2 ) != SUCCESS)
+		if (I2cReadMemBuffer(&I2c,(uint16_t) _gpsI2Caddress << 1,(uint16_t)0xFD,buff_rx,2 ) != SUCCESS)
 		{
 			return (false);                          //Sensor did not ACK
 		}
@@ -251,7 +251,7 @@ bool checkUbloxI2C(ubxPacket *incomingUBX, uint8_t requestedClass, uint8_t reque
 		
 
 
-		if (I2cReadBuffer(&I2c,(uint16_t) _gpsI2Caddress << 1,(uint16_t)0xFF,ubx_packet_buff,bytesAvailable ) != SUCCESS)
+		if (I2cReadMemBuffer(&I2c,(uint16_t) _gpsI2Caddress << 1,(uint16_t)0xFF,ubx_packet_buff,bytesAvailable ) != SUCCESS)
 		{
 			return (false);  //Sensor did not ACK
 		}
@@ -903,7 +903,7 @@ sfe_ublox_status_e sendI2cCommand(ubxPacket *outgoingUBX, uint16_t maxWait)
 	GPS_buffer[cnt++] = outgoingUBX->checksumB;
 	
 	
-	return ((I2cWriteBuffer(&I2c, _gpsI2Caddress << 1,(uint16_t)0xFF, GPS_buffer, cnt) == SUCCESS)
+	return ((I2cWriteMemBuffer(&I2c, _gpsI2Caddress << 1,(uint16_t)0xFF, GPS_buffer, cnt) == SUCCESS)
 		       ? SFE_UBLOX_STATUS_SUCCESS : SFE_UBLOX_STATUS_I2C_COMM_FAILURE);
 }
 

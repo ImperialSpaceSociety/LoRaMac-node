@@ -140,7 +140,7 @@ uint16_t cmd_prom(uint8_t coef_num){
     uint8_t  temp_date[2] = {0};
     uint16_t rC = 0;
     
-		I2cReadBuffer(&I2c, (uint16_t)ADDR_R,(uint8_t)CMD_PROM_RD+coef_num*2, temp_date, 2);
+		I2cReadMemBuffer(&I2c, (uint16_t)ADDR_R,(uint8_t)CMD_PROM_RD+coef_num*2, temp_date, 2);
 
     rC = 256*temp_date[0]+temp_date[1];
 
@@ -151,7 +151,7 @@ void cmd_reset(void)
 {
 	HAL_Delay(20); // may have to give it a short time to start up if it had been previously powered off
 	uint8_t i2c_buffer[2] = {0};
-	I2cWriteBuffer(&I2c, (uint16_t)ADDR_W,(uint8_t)CMD_RESET, i2c_buffer, 1);
+	I2cWriteMemBuffer(&I2c, (uint16_t)ADDR_W,(uint8_t)CMD_RESET, i2c_buffer, 1);
 }
 
 uint8_t crc4(uint16_t n_prom[]) // n_prom defined as 8x unsigned int (n_prom[8])
@@ -201,7 +201,7 @@ unsigned long cmd_adc(char cmd)
     uint32_t temp = 0;
 
     uint8_t i2c_buffer[2] = {0};
-		I2cWriteBuffer(&I2c, (uint16_t)ADDR_W,(uint8_t)CMD_ADC_CONV+cmd, i2c_buffer, 1); // send conversion command
+		I2cWriteMemBuffer(&I2c, (uint16_t)ADDR_W,(uint8_t)CMD_ADC_CONV+cmd, i2c_buffer, 1); // send conversion command
 
 
     switch (cmd & 0x0f) // wait necessary conversion time
@@ -233,7 +233,7 @@ unsigned long cmd_adc(char cmd)
 
     }
 
-		I2cReadBuffer(&I2c, (uint16_t)ADDR_R,(uint8_t)CMD_ADC_READ, temp_date, 3);
+		I2cReadMemBuffer(&I2c, (uint16_t)ADDR_R,(uint8_t)CMD_ADC_READ, temp_date, 3);
 
     temp = 65536*temp_date[0]+256*temp_date[1]+temp_date[2];
 		
