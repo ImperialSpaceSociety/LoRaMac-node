@@ -295,18 +295,8 @@ LmHandlerErrorStatus_t LmHandlerInit( LmHandlerCallbacks_t *handlerCallbacks,
     mibReq.Type = MIB_ADR;
     mibReq.Param.AdrEnable = LmHandlerParams->AdrEnable;
     LoRaMacMibSetRequestConfirm( &mibReq );
-		
-		mibReq.Type = MIB_CHANNELS_DEFAULT_DATARATE;
-		mibReq.Param.ChannelsDefaultDatarate = LmHandlerParams->TxDatarate;
-		LoRaMacMibSetRequestConfirm( &mibReq );
-
-		mibReq.Type = MIB_CHANNELS_DATARATE;
-		mibReq.Param.ChannelsDatarate = LmHandlerParams->TxDatarate;
-		LoRaMacMibSetRequestConfirm( &mibReq );
 
     LoRaMacTestSetDutyCycleOn( LmHandlerParams->DutyCycleEnabled );
-		
-
 
     LoRaMacStart( );
 
