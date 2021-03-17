@@ -35,6 +35,7 @@ extern "C"
 #include <stdint.h>
 #include "pinName-board.h"
 #include "pinName-ioe.h"
+#include "utilities.h"
 
 /*!
  * Board GPIO pin names
