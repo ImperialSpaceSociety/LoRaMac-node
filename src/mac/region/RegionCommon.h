@@ -79,20 +79,15 @@ extern "C"
 #define REGION_COMMON_DEFAULT_ADR_ACK_DELAY             32
 
 /*!
- * Maximum frame counter gap
- */
-#define REGION_COMMON_DEFAULT_MAX_FCNT_GAP              16384
-
-/*!
  * Retransmission timeout for ACK in milliseconds.
  */
-#define REGION_COMMON_DEFAULT_ACK_TIMEOUT               2000
+#define REGION_COMMON_DEFAULT_RETRANSMIT_TIMEOUT        2000
 
 /*!
  * Rounding limit for generating random retransmission timeout for ACK.
  * In milliseconds.
  */
-#define REGION_COMMON_DEFAULT_ACK_TIMEOUT_RND           1000
+#define REGION_COMMON_DEFAULT_RETRANSMIT_TIMEOUT_RND    1000
 
 /*!
  * Default Rx1 receive datarate offset
@@ -111,6 +106,16 @@ extern "C"
  * Example: 2^7 = 128 seconds. The end-device will open an Rx slot every 128 seconds.
  */
 #define REGION_COMMON_DEFAULT_PING_SLOT_PERIODICITY     7
+
+/*!
+ * Default reponse timeout for class b and class c confirmed
+ * downlink frames in milli seconds.
+ *
+ * The value shall not be smaller than RETRANSMIT_TIMEOUT plus
+ * the maximum time on air.
+ */
+#define REGION_COMMON_CLASS_B_C_RESP_TIMEOUT            8000
+
 
 typedef struct sRegionCommonLinkAdrParams
 {
@@ -321,6 +326,16 @@ typedef struct sRegionCommonSetDutyCycleParams
      */
     Band_t* Bands;
 }RegionCommonSetDutyCycleParams_t;
+
+typedef struct sRegionCommonGetNextLowerTxDrParams
+{
+    int8_t CurrentDr;
+    int8_t MaxDr;
+    int8_t MinDr;
+    uint8_t NbChannels;
+    uint16_t* ChannelsMask;
+    ChannelParams_t* Channels;
+}RegionCommonGetNextLowerTxDrParams_t;
 
 /*!
  * \brief Verifies, if a value is in a given range.
@@ -573,13 +588,11 @@ LoRaMacStatus_t RegionCommonIdentifyChannels( RegionCommonIdentifyChannelsParam_
 /*!
  * \brief Selects the next lower datarate.
  *
- * \param [IN] dr Current datarate.
- *
- * \param [IN] minDr Minimum possible datarate.
+ * \param [IN] params Data structure providing parameters based on \ref RegionCommonGetNextLowerTxDrParams_t
  *
  * \retval The next lower datarate.
  */
-int8_t RegionCommonGetNextLowerTxDr( int8_t dr, int8_t minDr );
+int8_t RegionCommonGetNextLowerTxDr( RegionCommonGetNextLowerTxDrParams_t *params );
 
 /*!
  * \brief Limits the TX power.

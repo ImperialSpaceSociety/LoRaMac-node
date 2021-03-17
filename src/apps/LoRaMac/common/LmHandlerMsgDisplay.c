@@ -74,7 +74,6 @@ const char* EventInfoStatusStrings[] =
     "Join failed",                   // LORAMAC_EVENT_INFO_STATUS_JOIN_FAIL
     "Downlink repeated",             // LORAMAC_EVENT_INFO_STATUS_DOWNLINK_REPEATED
     "Tx DR payload size error",      // LORAMAC_EVENT_INFO_STATUS_TX_DR_PAYLOAD_SIZE_ERROR
-    "Downlink too many frames loss", // LORAMAC_EVENT_INFO_STATUS_DOWNLINK_TOO_MANY_FRAMES_LOSS
     "Address fail",                  // LORAMAC_EVENT_INFO_STATUS_ADDRESS_FAIL
     "MIC fail",                      // LORAMAC_EVENT_INFO_STATUS_MIC_FAIL
     "Multicast fail",                // LORAMAC_EVENT_INFO_STATUS_MULTICAST_FAIL
@@ -111,16 +110,18 @@ void PrintHexBuffer( uint8_t *buffer, uint8_t size )
     printf( "\n" );
 }
 
-void DisplayNvmContextChange( LmHandlerNvmContextStates_t state )
+void DisplayNvmDataChange( LmHandlerNvmContextStates_t state, uint16_t size )
 {
     if( state == LORAMAC_HANDLER_NVM_STORE )
     {
-        printf( "\n###### ============ CTXS STORED ============ ######\n\n" );
+        printf( "\n###### ============ CTXS STORED ============ ######\n" );
+
     }
     else
     {
-        printf( "\n###### =========== CTXS RESTORED =========== ######\n\n" );
+        printf( "\n###### =========== CTXS RESTORED =========== ######\n" );
     }
+    printf( "Size        : %i\n\n", size );
 }
 
 void DisplayNetworkParametersUpdate( CommissioningParams_t *commissioningParams )
@@ -214,13 +215,6 @@ void DisplayMacMlmeRequestUpdate( LoRaMacStatus_t status, MlmeReq_t *mlmeReq, Ti
         {
             printf( "\n###### =========== MLME-Request ============ ######\n" );
             printf( "######               MLME_TXCW               ######\n");
-            printf( "###### ===================================== ######\n");
-            break;
-        }
-        case MLME_TXCW_1:
-        {
-            printf( "\n###### =========== MLME-Request ============ ######\n" );
-            printf( "######               MLME_TXCW_1             ######\n");
             printf( "###### ===================================== ######\n");
             break;
         }
@@ -382,7 +376,7 @@ void DisplayRxUpdate( LmHandlerAppData_t *appData, LmHandlerRxParams_t *params )
     printf( "\n" );
 }
 
-void DisplayBeaconUpdate( LoRaMAcHandlerBeaconParams_t *params )
+void DisplayBeaconUpdate( LoRaMacHandlerBeaconParams_t *params )
 {
     switch( params->State )
     {

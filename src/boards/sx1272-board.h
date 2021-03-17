@@ -50,7 +50,7 @@ extern "C"
     { MODEM_FSK , REG_SYNCVALUE2         , 0x94 },\
     { MODEM_FSK , REG_SYNCVALUE3         , 0xC1 },\
     { MODEM_FSK , REG_PACKETCONFIG1      , 0xD8 },\
-    { MODEM_FSK , REG_FIFOTHRESH         , 0x8F },\
+    { MODEM_FSK , REG_FIFOTHRESH         , 0xBF },\
     { MODEM_FSK , REG_IMAGECAL           , 0x02 },\
     { MODEM_FSK , REG_DIOMAPPING1        , 0x00 },\
     { MODEM_FSK , REG_DIOMAPPING2        , 0x30 },\
@@ -148,6 +148,13 @@ void SX1272SetBoardTcxo( uint8_t state );
  * \retval time Board TCXO wakeup time in ms.
  */
 uint32_t SX1272GetBoardTcxoWakeupTime( void );
+
+/*!
+ * \brief Gets current state of DIO1 pin state (FifoLevel).
+ *
+ * \retval state DIO1 pin current state.
+ */
+uint32_t SX1272GetDio1PinState( void );
 
 /*!
  * \brief Writes new Tx debug pin state

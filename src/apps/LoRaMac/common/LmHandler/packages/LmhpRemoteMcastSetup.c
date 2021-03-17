@@ -59,7 +59,7 @@ typedef enum LmhpRemoteMcastSetupSessionStates_e
 typedef struct LmhpRemoteMcastSetupState_s
 {
     bool Initialized;
-    bool IsRunning;
+    bool IsTxPending;
     LmhpRemoteMcastSetupSessionStates_t SessionState;
     uint8_t DataBufferMaxSize;
     uint8_t *DataBuffer;
@@ -103,12 +103,12 @@ static void LmhpRemoteMcastSetupInit( void *params, uint8_t *dataBuffer, uint8_t
 static bool LmhpRemoteMcastSetupIsInitialized( void );
 
 /*!
- * Returns the package operation status.
+ * Returns if a package transmission is pending or not.
  *
- * \retval status Package operation status
- *                [true: Running, false: Not running]
+ * \retval status Package transmission status
+ *                [true: pending, false: Not pending]
  */
-static bool LmhpRemoteMcastSetupIsRunning( void );
+static bool LmhpRemoteMcastSetupIsTxPending( void );
 
 /*!
  * Processes the internal package events.
@@ -129,7 +129,7 @@ static void OnSessionStopTimer( void *context );
 static LmhpRemoteMcastSetupState_t LmhpRemoteMcastSetupState =
 {
     .Initialized = false,
-    .IsRunning = false,
+    .IsTxPending = false,
     .SessionState = REMOTE_MCAST_SETUP_SESSION_STATE_IDLE,
 };
 
@@ -182,7 +182,7 @@ static LmhPackage_t LmhpRemoteMcastSetupPackage =
     .Port = REMOTE_MCAST_SETUP_PORT,
     .Init = LmhpRemoteMcastSetupInit,
     .IsInitialized = LmhpRemoteMcastSetupIsInitialized,
-    .IsRunning = LmhpRemoteMcastSetupIsRunning,
+    .IsTxPending = LmhpRemoteMcastSetupIsTxPending,
     .Process = LmhpRemoteMcastSetupProcess,
     .OnMcpsConfirmProcess = NULL,                              // Not used in this package
     .OnMcpsIndicationProcess = LmhpRemoteMcastSetupOnMcpsIndication,
@@ -191,7 +191,6 @@ static LmhPackage_t LmhpRemoteMcastSetupPackage =
     .OnMacMcpsRequest = NULL,                                  // To be initialized by LmHandler
     .OnMacMlmeRequest = NULL,                                  // To be initialized by LmHandler
     .OnJoinRequest = NULL,                                     // To be initialized by LmHandler
-    .OnSendRequest = NULL,                                     // To be initialized by LmHandler
     .OnDeviceTimeRequest = NULL,                               // To be initialized by LmHandler
     .OnSysTimeUpdate = NULL,                                   // To be initialized by LmHandler
 };
@@ -208,15 +207,14 @@ static void LmhpRemoteMcastSetupInit( void * params, uint8_t *dataBuffer, uint8_
         LmhpRemoteMcastSetupState.DataBuffer = dataBuffer;
         LmhpRemoteMcastSetupState.DataBufferMaxSize = dataBufferMaxSize;
         LmhpRemoteMcastSetupState.Initialized = true;
-        LmhpRemoteMcastSetupState.IsRunning = true;
         TimerInit( &SessionStartTimer, OnSessionStartTimer );
         TimerInit( &SessionStopTimer, OnSessionStopTimer );
     }
     else
     {
-        LmhpRemoteMcastSetupState.IsRunning = false;
         LmhpRemoteMcastSetupState.Initialized = false;
     }
+    LmhpRemoteMcastSetupState.IsTxPending = false;
 }
 
 static bool LmhpRemoteMcastSetupIsInitialized( void )
@@ -224,14 +222,9 @@ static bool LmhpRemoteMcastSetupIsInitialized( void )
     return LmhpRemoteMcastSetupState.Initialized;
 }
 
-static bool LmhpRemoteMcastSetupIsRunning( void )
+static bool LmhpRemoteMcastSetupIsTxPending( void )
 {
-    if( LmhpRemoteMcastSetupState.Initialized == false )
-    {
-        return false;
-    }
-
-    return LmhpRemoteMcastSetupState.IsRunning;
+    return LmhpRemoteMcastSetupState.IsTxPending;
 }
 
 static void LmhpRemoteMcastSetupProcess( void )
@@ -429,7 +422,7 @@ static void LmhpRemoteMcastSetupOnMcpsIndication( McpsIndication_t *mcpsIndicati
             .BufferSize = dataBufferIndex,
             .Port = REMOTE_MCAST_SETUP_PORT
         };
-        LmhpRemoteMcastSetupPackage.OnSendRequest( &appData, LORAMAC_HANDLER_UNCONFIRMED_MSG );
+        LmHandlerSend( &appData, LORAMAC_HANDLER_UNCONFIRMED_MSG );
 
         DBG( "ID          : %d\n", McSessionData[0].McGroupData.IdHeader.Fields.McGroupId );
         DBG( "McAddr      : %08lX\n", McSessionData[0].McGroupData.McAddr );

@@ -23,6 +23,7 @@
 #include "stm32l1xx.h"
 #include "utilities.h"
 #include "board.h"
+#include "sysIrqHandlers.h"
 #include "uart-board.h"
 
 /*!
@@ -100,7 +101,7 @@ void UartMcuConfig( Uart_t *obj, UartMode_t mode, uint32_t baudrate, WordLength_
         {
             if( obj->FifoTx.Data == NULL )
             {
-                assert_param( FAIL );
+                assert_param( LMN_STATUS_ERROR );
             }
             UartContext[obj->UartId].UartHandle.Init.Mode = UART_MODE_TX;
         }
@@ -108,7 +109,7 @@ void UartMcuConfig( Uart_t *obj, UartMode_t mode, uint32_t baudrate, WordLength_
         {
             if( obj->FifoRx.Data == NULL )
             {
-                assert_param( FAIL );
+                assert_param( LMN_STATUS_ERROR );
             }
             UartContext[obj->UartId].UartHandle.Init.Mode = UART_MODE_RX;
         }
@@ -116,13 +117,13 @@ void UartMcuConfig( Uart_t *obj, UartMode_t mode, uint32_t baudrate, WordLength_
         {
             if( ( obj->FifoTx.Data == NULL ) || ( obj->FifoRx.Data == NULL ) )
             {
-                assert_param( FAIL );
+                assert_param( LMN_STATUS_ERROR );
             }
             UartContext[obj->UartId].UartHandle.Init.Mode = UART_MODE_TX_RX;
         }
         else
         {
-            assert_param( FAIL );
+            assert_param( LMN_STATUS_ERROR );
         }
 
         if( wordLength == UART_8_BIT )
@@ -179,7 +180,7 @@ void UartMcuConfig( Uart_t *obj, UartMode_t mode, uint32_t baudrate, WordLength_
 
         if( HAL_UART_Init( &UartContext[obj->UartId].UartHandle ) != HAL_OK )
         {
-            assert_param( FAIL );
+            assert_param( LMN_STATUS_ERROR );
         }
 
         if( obj->UartId == UART_1 )

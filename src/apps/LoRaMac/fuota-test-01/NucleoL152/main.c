@@ -22,10 +22,15 @@
 /*! \file fuota-test-01/NucleoL152/main.c */
 
 #include <stdio.h>
+#include "../firmwareVersion.h"
+#include "../../common/githubVersion.h"
 #include "utilities.h"
 #include "board.h"
 #include "gpio.h"
+#include "uart.h"
+#include "RegionCommon.h"
 
+#include "cli.h"
 #include "Commissioning.h"
 #include "LmHandler.h"
 #include "LmhpCompliance.h"
@@ -48,7 +53,7 @@
 #define LORAWAN_DEFAULT_CLASS                       CLASS_A
 
 /*!
- * Defines the application data transmission duty cycle. 30s, value in [ms].
+ * Defines the application data transmission duty cycle. 40s, value in [ms].
  */
 #define APP_TX_DUTYCYCLE                            40000
 
@@ -124,7 +129,7 @@ static TimerEvent_t Led2Timer;
 static TimerEvent_t LedBeaconTimer;
 
 static void OnMacProcessNotify( void );
-static void OnNvmContextChange( LmHandlerNvmContextStates_t state );
+static void OnNvmDataChange( LmHandlerNvmContextStates_t state, uint16_t size );
 static void OnNetworkParametersChange( CommissioningParams_t* params );
 static void OnMacMcpsRequest( LoRaMacStatus_t status, McpsReq_t *mcpsReq, TimerTime_t nextTxIn );
 static void OnMacMlmeRequest( LoRaMacStatus_t status, MlmeReq_t *mlmeReq, TimerTime_t nextTxIn );
@@ -132,7 +137,7 @@ static void OnJoinRequest( LmHandlerJoinParams_t* params );
 static void OnTxData( LmHandlerTxParams_t* params );
 static void OnRxData( LmHandlerAppData_t* appData, LmHandlerRxParams_t* params );
 static void OnClassChange( DeviceClass_t deviceClass );
-static void OnBeaconStatusChange( LoRaMAcHandlerBeaconParams_t* params );
+static void OnBeaconStatusChange( LoRaMacHandlerBeaconParams_t* params );
 #if( LMH_SYS_TIME_UPDATE_NEW_API == 1 )
 static void OnSysTimeUpdate( bool isSynchronized, int32_t timeCorrection );
 #else
@@ -151,15 +156,9 @@ static void OnFragDone( int32_t status, uint8_t *file, uint32_t size );
 static void StartTxProcess( LmHandlerTxEvents_t txEvent );
 static void UplinkProcess( void );
 
-/*!
- * Computes a CCITT 32 bits CRC
- *
- * \param [IN] buffer   Data buffer used to compute the CRC
- * \param [IN] length   Data buffer length
- * 
- * \retval crc          The computed buffer of length CRC
- */
-static uint32_t Crc32( uint8_t *buffer, uint16_t length );
+static void OnTxPeriodicityChanged( uint32_t periodicity );
+static void OnTxFrameCtrlChanged( LmHandlerMsgTypes_t isTxConfirmed );
+static void OnPingSlotPeriodicityChanged( uint8_t pingSlotPeriodicity );
 
 /*!
  * Function executed on TxTimer event
@@ -187,7 +186,7 @@ static LmHandlerCallbacks_t LmHandlerCallbacks =
     .GetTemperature = NULL,
     .GetRandomSeed = BoardGetRandomSeed,
     .OnMacProcess = OnMacProcessNotify,
-    .OnNvmContextChange = OnNvmContextChange,
+    .OnNvmDataChange = OnNvmDataChange,
     .OnNetworkParametersChange = OnNetworkParametersChange,
     .OnMacMcpsRequest = OnMacMcpsRequest,
     .OnMacMlmeRequest = OnMacMlmeRequest,
@@ -196,26 +195,28 @@ static LmHandlerCallbacks_t LmHandlerCallbacks =
     .OnRxData = OnRxData,
     .OnClassChange= OnClassChange,
     .OnBeaconStatusChange = OnBeaconStatusChange,
-    .OnSysTimeUpdate = OnSysTimeUpdate
+    .OnSysTimeUpdate = OnSysTimeUpdate,
 };
 
 static LmHandlerParams_t LmHandlerParams =
 {
     .Region = ACTIVE_REGION,
     .AdrEnable = LORAWAN_ADR_STATE,
+    .IsTxConfirmed = LORAWAN_DEFAULT_CONFIRMED_MSG_STATE,
     .TxDatarate = LORAWAN_DEFAULT_DATARATE,
     .PublicNetworkEnable = LORAWAN_PUBLIC_NETWORK,
     .DutyCycleEnabled = LORAWAN_DUTYCYCLE_ON,
     .DataBufferMaxSize = LORAWAN_APP_DATA_BUFFER_MAX_SIZE,
-    .DataBuffer = AppDataBuffer
+    .DataBuffer = AppDataBuffer,
+    .PingSlotPeriodicity = REGION_COMMON_DEFAULT_PING_SLOT_PERIODICITY,
 };
 
 static LmhpComplianceParams_t LmhpComplianceParams =
 {
-    .AdrEnabled = LORAWAN_ADR_STATE,
-    .DutyCycleEnabled = LORAWAN_DUTYCYCLE_ON,
-    .StopPeripherals = NULL,
-    .StartPeripherals = NULL,
+    .FwVersion.Value = FIRMWARE_VERSION,
+    .OnTxPeriodicityChanged = OnTxPeriodicityChanged,
+    .OnTxFrameCtrlChanged = OnTxFrameCtrlChanged,
+    .OnPingSlotPeriodicityChanged = OnPingSlotPeriodicityChanged,
 };
 
 /*!
@@ -262,6 +263,8 @@ static volatile uint8_t IsMacProcessPending = 0;
 
 static volatile uint8_t IsTxFramePending = 0;
 
+static volatile uint32_t TxPeriodicity = 0;
+
 /*
  * Indicates if the system time has been synchronized
  */
@@ -289,6 +292,11 @@ extern Gpio_t Led1; // Tx
 extern Gpio_t Led2; // Rx
 
 /*!
+ * UART object used for command line interface handling
+ */
+extern Uart_t Uart2;
+
+/*!
  * Main application entry point.
  */
 int main( void )
@@ -305,15 +313,18 @@ int main( void )
     TimerInit( &LedBeaconTimer, OnLedBeaconTimerEvent );
     TimerSetValue( &LedBeaconTimer, 5000 );
 
-    const Version_t appVersion = { .Fields.Major = 1, .Fields.Minor = 0, .Fields.Patch = 0 };
-    const Version_t gitHubVersion = { .Fields.Major = 4, .Fields.Minor = 4, .Fields.Patch = 5 };
+    // Initialize transmission periodicity variable
+    TxPeriodicity = APP_TX_DUTYCYCLE + randr( -APP_TX_DUTYCYCLE_RND, APP_TX_DUTYCYCLE_RND );
+
+    const Version_t appVersion = { .Value = FIRMWARE_VERSION };
+    const Version_t gitHubVersion = { .Value = GITHUB_VERSION };
     DisplayAppInfo( "fuota-test-01", 
                     &appVersion,
                     &gitHubVersion );
 
     if ( LmHandlerInit( &LmHandlerCallbacks, &LmHandlerParams ) != LORAMAC_HANDLER_SUCCESS )
     {
-        printf( "LoRaMac wasn't properly initialized" );
+        printf( "LoRaMac wasn't properly initialized\n" );
         // Fatal error, endless loop.
         while ( 1 )
         {
@@ -339,6 +350,9 @@ int main( void )
 
     while( 1 )
     {
+        // Process characters sent over the command line interface
+        CliProcess( &Uart2 );
+
         // Processes the LoRaMac events
         LmHandlerProcess( );
 
@@ -365,9 +379,9 @@ static void OnMacProcessNotify( void )
     IsMacProcessPending = 1;
 }
 
-static void OnNvmContextChange( LmHandlerNvmContextStates_t state )
+static void OnNvmDataChange( LmHandlerNvmContextStates_t state, uint16_t size )
 {
-    DisplayNvmContextChange( state );
+    DisplayNvmDataChange( state, size );
 }
 
 static void OnNetworkParametersChange( CommissioningParams_t* params )
@@ -427,7 +441,7 @@ static void OnClassChange( DeviceClass_t deviceClass )
             {
                 .Buffer = NULL,
                 .BufferSize = 0,
-                .Port = 0
+                .Port = 0,
             };
             LmHandlerSend( &appData, LORAMAC_HANDLER_UNCONFIRMED_MSG );
             IsMcSessionStarted = true;
@@ -443,7 +457,7 @@ static void OnClassChange( DeviceClass_t deviceClass )
     }
 }
 
-static void OnBeaconStatusChange( LoRaMAcHandlerBeaconParams_t* params )
+static void OnBeaconStatusChange( LoRaMacHandlerBeaconParams_t* params )
 {
     switch( params->State )
     {
@@ -561,7 +575,7 @@ static void StartTxProcess( LmHandlerTxEvents_t txEvent )
         {
             // Schedule 1st packet transmission
             TimerInit( &TxTimer, OnTxTimerEvent );
-            TimerSetValue( &TxTimer, APP_TX_DUTYCYCLE  + randr( -APP_TX_DUTYCYCLE_RND, APP_TX_DUTYCYCLE_RND ) );
+            TimerSetValue( &TxTimer, TxPeriodicity );
             OnTxTimerEvent( NULL );
         }
         break;
@@ -604,9 +618,9 @@ static void UplinkProcess( void )
                     {
                         .Buffer = AppDataBuffer,
                         .BufferSize = 1,
-                        .Port = 1
+                        .Port = 1,
                     };
-                    status = LmHandlerSend( &appData, LORAMAC_HANDLER_UNCONFIRMED_MSG );
+                    status = LmHandlerSend( &appData, LmHandlerParams.IsTxConfirmed );
                 }
             }
             else
@@ -622,9 +636,9 @@ static void UplinkProcess( void )
                 {
                     .Buffer = AppDataBuffer,
                     .BufferSize = 5,
-                    .Port = 201
+                    .Port = 201,
                 };
-                status = LmHandlerSend( &appData, LORAMAC_HANDLER_UNCONFIRMED_MSG );
+                status = LmHandlerSend( &appData, LmHandlerParams.IsTxConfirmed );
             }
             if( status == LORAMAC_HANDLER_SUCCESS )
             {
@@ -634,6 +648,26 @@ static void UplinkProcess( void )
             }
         }
     }
+}
+
+static void OnTxPeriodicityChanged( uint32_t periodicity )
+{
+    TxPeriodicity = periodicity;
+
+    if( TxPeriodicity == 0 )
+    { // Revert to application default periodicity
+        TxPeriodicity = APP_TX_DUTYCYCLE + randr( -APP_TX_DUTYCYCLE_RND, APP_TX_DUTYCYCLE_RND );
+    }
+}
+
+static void OnTxFrameCtrlChanged( LmHandlerMsgTypes_t isTxConfirmed )
+{
+    LmHandlerParams.IsTxConfirmed = isTxConfirmed;
+}
+
+static void OnPingSlotPeriodicityChanged( uint8_t pingSlotPeriodicity )
+{
+    LmHandlerParams.PingSlotPeriodicity = pingSlotPeriodicity;
 }
 
 /*!
@@ -646,7 +680,7 @@ static void OnTxTimerEvent( void* context )
     IsTxFramePending = 1;
 
     // Schedule next transmission
-    TimerSetValue( &TxTimer, APP_TX_DUTYCYCLE + randr( -APP_TX_DUTYCYCLE_RND, APP_TX_DUTYCYCLE_RND ) );
+    TimerSetValue( &TxTimer, TxPeriodicity );
     TimerStart( &TxTimer );
 }
 
@@ -679,29 +713,4 @@ static void OnLedBeaconTimerEvent( void* context )
     TimerStart( &Led2Timer );
 
     TimerStart( &LedBeaconTimer );
-}
-
-static uint32_t Crc32( uint8_t *buffer, uint16_t length )
-{
-    // The CRC calculation follows CCITT - 0x04C11DB7
-    const uint32_t reversedPolynom = 0xEDB88320;
-
-    // CRC initial value
-    uint32_t crc = 0xFFFFFFFF;
-
-    if( buffer == NULL )
-    {
-        return 0;
-    }
-
-    for( uint16_t i = 0; i < length; ++i )
-    {
-        crc ^= ( uint32_t )buffer[i];
-        for( uint16_t i = 0; i < 8; i++ )
-        {
-            crc = ( crc >> 1 ) ^ ( reversedPolynom & ~( ( crc & 0x01 ) - 1 ) );
-        }
-    }
-
-    return ~crc;
 }

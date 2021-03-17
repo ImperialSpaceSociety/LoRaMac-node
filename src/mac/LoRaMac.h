@@ -36,87 +36,32 @@
  *            layer and the supported features.
  * \{
  *
- * \example   classA/B-L072Z-LRWAN1/main.c
- *            LoRaWAN class A application example for the B-L072Z-LRWAN1.
+ * \example   periodic-uplink-lpp/B-L072Z-LRWAN1/main.c
+ *            LoRaWAN class A/B/C application example for the B-L072Z-LRWAN1.
  *
- * \example   classB/B-L072Z-LRWAN1/main.c
- *            LoRaWAN class B application example for the B-L072Z-LRWAN1.
+ * \example   periodic-uplink-lpp/NAMote72/main.c
+ *            LoRaWAN class A/B/C application example for the NAMote72.
  *
- * \example   classC/B-L072Z-LRWAN1/main.c
- *            LoRaWAN class C application example for the B-L072Z-LRWAN1.
+ * \example   periodic-uplink-lpp/NucleoL073/main.c
+ *            LoRaWAN class A/B/C application example for the NucleoL073.
  *
- * \example   classA/NAMote72/main.c
- *            LoRaWAN class A application example for the NAMote72.
+ * \example   periodic-uplink-lpp/NucleoL152/main.c
+ *            LoRaWAN class A/B/C application example for the NucleoL152.
  *
- * \example   classB/NAMote72/main.c
- *            LoRaWAN class B application example for the NAMote72.
+ * \example   periodic-uplink-lpp/NucleoL476/main.c
+ *            LoRaWAN class A/B/C application example for the NucleoL476.
  *
- * \example   classC/NAMote72/main.c
- *            LoRaWAN class C application example for the NAMote72.
+ * \example   periodic-uplink-lpp/SAMR34/main.c
+ *            LoRaWAN class A/B/C application example for the SAMR34.
  *
- * \example   classA/NucleoL073/main.c
- *            LoRaWAN class A application example for the NucleoL073.
+ * \example   periodic-uplink-lpp/SKiM880B/main.c
+ *            LoRaWAN class A/B/C application example for the SKiM880B.
  *
- * \example   classB/NucleoL073/main.c
- *            LoRaWAN class B application example for the NucleoL073.
+ * \example   periodic-uplink-lpp/SKiM881AXL/main.c
+ *            LoRaWAN class A/B/C application example for the SKiM881AXL.
  *
- * \example   classC/NucleoL073/main.c
- *            LoRaWAN class C application example for the NucleoL073.
- *
- * \example   classA/NucleoL152/main.c
- *            LoRaWAN class A application example for the NucleoL152.
- *
- * \example   classB/NucleoL152/main.c
- *            LoRaWAN class B application example for the NucleoL152.
- *
- * \example   classC/NucleoL152/main.c
- *            LoRaWAN class C application example for the NucleoL152.
- *
- * \example   classA/NucleoL476/main.c
- *            LoRaWAN class A application example for the NucleoL476.
- *
- * \example   classB/NucleoL476/main.c
- *            LoRaWAN class B application example for the NucleoL476.
- *
- * \example   classC/NucleoL476/main.c
- *            LoRaWAN class C application example for the NucleoL476.
- *
- * \example   classA/SAMR34/main.c
- *            LoRaWAN class A application example for the SAMR34.
- *
- * \example   classB/SAMR34/main.c
- *            LoRaWAN class B application example for the SAMR34.
- *
- * \example   classC/SAMR34/main.c
- *            LoRaWAN class C application example for the SAMR34.
- *
- * \example   classA/SKiM880B/main.c
- *            LoRaWAN class A application example for the SKiM880B.
- *
- * \example   classB/SKiM880B/main.c
- *            LoRaWAN class B application example for the SKiM880B.
- *
- * \example   classC/SKiM880B/main.c
- *            LoRaWAN class C application example for the SKiM880B.
- *
- * \example   classA/SKiM881AXL/main.c
- *            LoRaWAN class A application example for the SKiM881AXL.
- *
- * \example   classB/SKiM881AXL/main.c
- *            LoRaWAN class B application example for the SKiM881AXL.
- *
- * \example   classC/SKiM881AXL/main.c
- *            LoRaWAN class C application example for the SKiM881AXL.
- *
- * \example   classA/SKiM980A/main.c
- *            LoRaWAN class A application example for the SKiM980A.
- *
- * \example   classB/SKiM980A/main.c
- *            LoRaWAN class B application example for the SKiM980A.
- *
- * \example   classC/SKiM980A/main.c
- *            LoRaWAN class C application example for the SKiM980A.
- *
+ * \example   periodic-uplink-lpp/SKiM980A/main.c
+ *            LoRaWAN class A/B/C application example for the SKiM980A.
  */
 #ifndef __LORAMAC_H__
 #define __LORAMAC_H__
@@ -128,11 +73,15 @@ extern "C"
 
 #include <stdint.h>
 #include <stdbool.h>
-#include "utilities.h"
+
 #include "timer.h"
 #include "systime.h"
-#include "radio.h"
 #include "LoRaMacTypes.h"
+
+#include "RegionNvm.h"
+#include "LoRaMacCryptoNvm.h"
+#include "secure-element-nvm.h"
+#include "LoRaMacClassBNvm.h"
 
 /*!
  * Maximum number of times the MAC layer tries to get an acknowledge.
@@ -157,7 +106,60 @@ extern "C"
 /*!
  * Start value for multicast keys enumeration
  */
-#define LORAMAC_CRYPTO_MULTICAST_KEYS   127
+#define LORAMAC_CRYPTO_MULTICAST_KEYS               127
+
+/*!
+ * Maximum MAC commands buffer size
+ */
+#define LORA_MAC_COMMAND_MAX_LENGTH                 128
+
+
+/*!
+ * Bitmap value
+ */
+#define LORAMAC_NVM_NOTIFY_FLAG_NONE                0x00
+
+/*!
+ * Bitmap value for the NVM group crypto.
+ */
+#define LORAMAC_NVM_NOTIFY_FLAG_CRYPTO              0x01
+
+/*!
+ * Bitmap value for the NVM group MAC 1.
+ */
+#define LORAMAC_NVM_NOTIFY_FLAG_MAC_GROUP1          0x02
+
+/*!
+ * Bitmap value for the NVM group MAC 2.
+ */
+#define LORAMAC_NVM_NOTIFY_FLAG_MAC_GROUP2          0x04
+
+/*!
+ * Bitmap value for the NVM group secure element.
+ */
+#define LORAMAC_NVM_NOTIFY_FLAG_SECURE_ELEMENT      0x08
+
+/*!
+ * Bitmap value for the NVM group 1 region.
+ */
+#define LORAMAC_NVM_NOTIFY_FLAG_REGION_GROUP1       0x10
+
+/*!
+ * Bitmap value for the NVM group 2 region.
+ */
+#define LORAMAC_NVM_NOTIFY_FLAG_REGION_GROUP2       0x20
+
+/*!
+ * Bitmap value for the NVM group class b.
+ */
+#define LORAMAC_NVM_NOTIFY_FLAG_CLASS_B             0x40
+
+/*!
+ * LoRaWAN compliance certification protocol port number.
+ *
+ * LoRaWAN Specification V1.x.x, chapter 4.3.2
+ */
+#define LORAMAC_CERT_FPORT 224
 
 /*!
  * End-Device activation type
@@ -177,62 +179,6 @@ typedef enum eActivationType
      */
     ACTIVATION_TYPE_OTAA = 2,
 }ActivationType_t;
-
-/*!
- * LoRaMAC channels parameters definition
- */
-typedef union uDrRange
-{
-    /*!
-     * Byte-access to the bits
-     */
-    int8_t Value;
-    /*!
-     * Structure to store the minimum and the maximum datarate
-     */
-    struct sFields
-    {
-        /*!
-         * Minimum data rate
-         *
-         * LoRaWAN Regional Parameters V1.0.2rB
-         *
-         * The allowed ranges are region specific. Please refer to \ref DR_0 to \ref DR_15 for details.
-         */
-        int8_t Min : 4;
-        /*!
-         * Maximum data rate
-         *
-         * LoRaWAN Regional Parameters V1.0.2rB
-         *
-         * The allowed ranges are region specific. Please refer to \ref DR_0 to \ref DR_15 for details.
-         */
-        int8_t Max : 4;
-    }Fields;
-}DrRange_t;
-
-/*!
- * LoRaMAC channel definition
- */
-typedef struct sChannelParams
-{
-    /*!
-     * Frequency in Hz
-     */
-    uint32_t Frequency;
-    /*!
-     * Alternative frequency for RX window 1
-     */
-    uint32_t Rx1Frequency;
-    /*!
-     * Data rate definition
-     */
-    DrRange_t DrRange;
-    /*!
-     * Band index
-     */
-    uint8_t Band;
-}ChannelParams_t;
 
 /*!
  * LoRaMAC receive window channel parameters
@@ -289,81 +235,10 @@ typedef enum eLoRaMacRxSlot
 }LoRaMacRxSlot_t;
 
 /*!
- * LoRaMAC structure to hold internal context pointers and its lengths
- */
-typedef struct sLoRaMacCtxs
-{
-    /*!
-     * \brief   Pointer to Mac context
-     */
-    void* MacNvmCtx;
-    /*!
-     * \brief   Size of Mac context
-     */
-    size_t MacNvmCtxSize;
-    /*!
-     * \brief   Pointer to region context
-     */
-    void* RegionNvmCtx;
-    /*!
-     * \brief   Size of region context
-     */
-    size_t RegionNvmCtxSize;
-    /*!
-     * \brief   Pointer to crypto module context
-     */
-    void* CryptoNvmCtx;
-    /*!
-     * \brief   Size of crypto module context
-     */
-    size_t CryptoNvmCtxSize;
-    /*!
-     * \brief   Pointer to secure element driver context
-     */
-    void* SecureElementNvmCtx;
-    /*!
-     * \brief   Size of secure element driver context
-     */
-    size_t SecureElementNvmCtxSize;
-    /*!
-     * \brief   Pointer to MAC commands module context
-     */
-    void* CommandsNvmCtx;
-    /*!
-     * \brief   Size of MAC commands module context
-     */
-    size_t CommandsNvmCtxSize;
-    /*!
-     * \brief   Pointer to Class B module context
-     */
-    void* ClassBNvmCtx;
-    /*!
-     * \brief   Size of MAC Class B module context
-     */
-    size_t ClassBNvmCtxSize;
-    /*!
-     * \brief   Pointer to MLME Confirm queue module context
-     */
-    void* ConfirmQueueNvmCtx;
-    /*!
-     * \brief   Size of MLME Confirm queue module context
-     */
-    size_t ConfirmQueueNvmCtxSize;
-}LoRaMacCtxs_t;
-
-/*!
  * Global MAC layer parameters
  */
 typedef struct sLoRaMacParams
 {
-    /*!
-     * Channels TX power
-     */
-    int8_t ChannelsTxPower;
-    /*!
-     * Channels data rate
-     */
-    int8_t ChannelsDatarate;
     /*!
      * System overall timing error in milliseconds.
      * [-SystemMaxRxError : +SystemMaxRxError]
@@ -486,6 +361,17 @@ typedef struct sBeaconInfo
      */
     int8_t Snr;
     /*!
+     * Param
+     * |  Bits | 7:2 |  1:0 |
+     * |-------|-----|------|
+     * | Param | RFU | Prec |
+     *
+     * Prec field is used to interpret the precision of beacon's transmit time
+     * as 10^(-6+prec) and the default value is 0.
+     * RFU will be set to Zero and Prec can take values between 0:3.
+     */
+    uint8_t Param;
+    /*!
      * Data structure for the gateway specific part. The
      * content of the values may differ for each gateway
      */
@@ -550,10 +436,6 @@ typedef enum eLoRaMacEventInfoStatus
      * payload size is not applicable for the datarate.
      */
     LORAMAC_EVENT_INFO_STATUS_TX_DR_PAYLOAD_SIZE_ERROR,
-    /*!
-     * The node has lost MAX_FCNT_GAP or more frames.
-     */
-    LORAMAC_EVENT_INFO_STATUS_DOWNLINK_TOO_MANY_FRAMES_LOSS,
     /*!
      * An address error occurred
      */
@@ -620,6 +502,224 @@ typedef union eLoRaMacFlags_t
         uint8_t MacDone                 : 1;
     }Bits;
 }LoRaMacFlags_t;
+
+/*!
+ * LoRaMAC region enumeration
+ */
+typedef enum eLoRaMacRegion
+{
+    /*!
+     * AS band on 923MHz
+     */
+    LORAMAC_REGION_AS923,
+    /*!
+     * Australian band on 915MHz
+     */
+    LORAMAC_REGION_AU915,
+    /*!
+     * Chinese band on 470MHz
+     */
+    LORAMAC_REGION_CN470,
+    /*!
+     * Chinese band on 779MHz
+     */
+    LORAMAC_REGION_CN779,
+    /*!
+     * European band on 433MHz
+     */
+    LORAMAC_REGION_EU433,
+    /*!
+     * European band on 868MHz
+     */
+    LORAMAC_REGION_EU868,
+    /*!
+     * South korean band on 920MHz
+     */
+    LORAMAC_REGION_KR920,
+    /*!
+     * India band on 865MHz
+     */
+    LORAMAC_REGION_IN865,
+    /*!
+     * North american band on 915MHz
+     */
+    LORAMAC_REGION_US915,
+    /*!
+     * Russia band on 864MHz
+     */
+    LORAMAC_REGION_RU864,
+}LoRaMacRegion_t;
+
+typedef struct sLoRaMacNvmDataGroup1
+{
+    /*!
+     * Counts the number of missed ADR acknowledgements
+     */
+    uint32_t AdrAckCounter;
+    /*!
+     * Last transmission time.
+     */
+    TimerTime_t LastTxDoneTime;
+    /*!
+     * Aggregated time off.
+     */
+    TimerTime_t AggregatedTimeOff;
+    /*!
+     * Last received Message integrity Code (MIC)
+     */
+    uint32_t LastRxMic;
+    /*!
+     * Channels TX power
+     */
+    int8_t ChannelsTxPower;
+    /*!
+     * Channels data rate
+     */
+    int8_t ChannelsDatarate;
+    /*!
+     * If the server has sent a FRAME_TYPE_DATA_CONFIRMED_DOWN this variable indicates
+     * if the ACK bit must be set for the next transmission
+     */
+    bool SrvAckRequested;
+    /*!
+     * CRC32 value of the MacGroup1 data structure.
+     */
+    uint32_t Crc32;
+}LoRaMacNvmDataGroup1_t;
+
+typedef struct sLoRaMacNvmDataGroup2
+{
+    /*
+     * LoRaMac region.
+     */
+    LoRaMacRegion_t Region;
+    /*
+     * LoRaMac parameters
+     */
+    LoRaMacParams_t MacParams;
+    /*
+     * LoRaMac default parameters
+     */
+    LoRaMacParams_t MacParamsDefaults;
+    /*!
+     * Channels TX power
+     */
+    int8_t ChannelsTxPowerDefault;
+    /*!
+     * Channels data rate
+     */
+    int8_t ChannelsDatarateDefault;
+    /*
+     * Network ID ( 3 bytes )
+     */
+    uint32_t NetID;
+    /*
+     * Mote Address
+     */
+    uint32_t DevAddr;
+    /*!
+    * Multicast channel list
+    */
+    MulticastCtx_t MulticastChannelList[LORAMAC_MAX_MC_CTX];
+    /*
+     * Actual device class
+     */
+    DeviceClass_t DeviceClass;
+    /*
+     * Indicates if the node is connected to
+     * a private or public network
+     */
+    bool PublicNetwork;
+    /*
+     * LoRaMac ADR control status
+     */
+    bool AdrCtrlOn;
+    /*
+     * Maximum duty cycle
+     * \remark Possibility to shutdown the device.
+     */
+    uint8_t MaxDCycle;
+    /*
+    * Enables/Disables duty cycle management (Test only)
+    */
+    bool DutyCycleOn;
+    /*
+     * Set to true, if the datarate was increased
+     * with a link adr request.
+     */
+    bool ChannelsDatarateChangedLinkAdrReq;
+    /*
+     * The stack will set this variable to true, if a downlink has been received.
+     */
+    bool DownlinkReceived;
+    /*
+     * Enables/disable FPort 224 processing (certification port)
+     */
+    bool IsCertPortOn;
+    /*
+     * Aggregated duty cycle management
+     */
+    uint16_t AggregatedDCycle;
+    /*
+    * Stores the time at LoRaMac initialization.
+    *
+    * \remark Used for the BACKOFF_DC computation.
+    */
+    SysTime_t InitializationTime;
+    /*
+     * Current LoRaWAN Version
+     */
+    Version_t Version;
+    /*
+     * End-Device network activation
+     */
+    ActivationType_t NetworkActivation;
+    /*!
+     * CRC32 value of the MacGroup2 data structure.
+     */
+    uint32_t Crc32;
+}LoRaMacNvmDataGroup2_t;
+
+/*!
+ * LoRaMAC data structure for non-volatile memory (NVM).
+ * This structure contains data which must be stored in NVM.
+ */
+typedef struct sLoRaMacNvmData
+{
+    /*!
+     * Parameters related to the crypto layer. Change with every TX/RX
+     * procedure.
+     */
+    LoRaMacCryptoNvmData_t Crypto;
+    /*!
+     * Parameters related to the MAC which change with high probability after
+     * every TX/RX procedure.
+     */
+    LoRaMacNvmDataGroup1_t MacGroup1;
+    /*!
+     * Parameters related to the MAC which do not change very likely with every
+     * TX/RX procedure.
+     */
+    LoRaMacNvmDataGroup2_t MacGroup2;
+    /*!
+     * Parameters related to the secure-element.
+     */
+    SecureElementNvmData_t SecureElement;
+    /*!
+     * Parameters related to the regional implementation which change with high
+     * probability after every TX/RX procedure.
+     */
+    RegionNvmDataGroup1_t RegionGroup1;
+    /*!
+     * Parameters related to the regional implementation which do not change
+     * very likely with every TX/RX procedure.
+     */
+    RegionNvmDataGroup2_t RegionGroup2;
+    /*!
+     * Parameters related to class b.
+     */
+    LoRaMacClassBNvmData_t ClassB;
+}LoRaMacNvmData_t;
 
 /*!
  *
@@ -727,27 +827,6 @@ typedef struct sMcpsReqConfirmed
      * Uplink datarate, if ADR is off
      */
     int8_t Datarate;
-    /*!
-     * Number of trials to transmit the frame, if the LoRaMAC layer did not
-     * receive an acknowledgment. The MAC performs a datarate adaptation,
-     * according to the LoRaWAN Specification V1.0.2, chapter 18.4, according
-     * to the following table:
-     *
-     * Transmission nb | Data Rate
-     * ----------------|-----------
-     * 1 (first)       | DR
-     * 2               | DR
-     * 3               | max(DR-1,0)
-     * 4               | max(DR-1,0)
-     * 5               | max(DR-2,0)
-     * 6               | max(DR-2,0)
-     * 7               | max(DR-3,0)
-     * 8               | max(DR-3,0)
-     *
-     * Note, that if NbTrials is set to 1 or 2, the MAC will not decrease
-     * the datarate, in case the LoRaMAC layer did not receive an acknowledgment
-     */
-    uint8_t NbTrials;
 }McpsReqConfirmed_t;
 
 /*!
@@ -832,7 +911,7 @@ typedef struct sMcpsConfirm
     /*!
      * Provides the number of retransmissions
      */
-    uint8_t NbRetries;
+    uint8_t NbTrans;
     /*!
      * The transmission time on air of the frame
      */
@@ -916,6 +995,12 @@ typedef struct sMcpsIndication
      * Set if a DeviceTimeAns MAC command was received.
      */
     bool DeviceTimeAnsReceived;
+    /*!
+     * Response timeout for a class b or c device when a
+     * confirmed downlink has been received. In all other
+     * cases this variable is 0.
+     */
+    TimerTime_t ResponseTimeout;
 }McpsIndication_t;
 
 /*!
@@ -979,12 +1064,6 @@ typedef enum eMlme
      */
     MLME_TXCW,
     /*!
-     * Sets Tx continuous wave mode (new LoRa-Alliance CC definition)
-     *
-     * LoRaWAN end-device certification
-     */
-    MLME_TXCW_1,
-    /*!
      * Indicates that the application shall perform an uplink as
      * soon as possible.
      */
@@ -1044,6 +1123,12 @@ typedef enum eMlme
  */
 typedef struct sMlmeReqJoin
 {
+    /*!
+     * LoRaWAN Network End-Device Activation ( ACTIVATION_TYPE_NONE, ACTIVATION_TYPE_ABP or OTTA )
+     *
+     * Related MIB type: \ref MIB_NETWORK_ACTIVATION
+     */
+    ActivationType_t NetworkActivation;
     /*!
      * Datarate used for join request.
      */
@@ -1262,6 +1347,7 @@ typedef struct sMlmeIndication
  * \ref MIB_JOIN_ACCEPT_DELAY_1                  | YES | YES
  * \ref MIB_JOIN_ACCEPT_DELAY_2                  | YES | YES
  * \ref MIB_CHANNELS_DATARATE                    | YES | YES
+ * \ref MIB_CHANNELS_MIN_TX_DATARATE             | YES | NO
  * \ref MIB_CHANNELS_DEFAULT_DATARATE            | YES | YES
  * \ref MIB_CHANNELS_TX_POWER                    | YES | YES
  * \ref MIB_CHANNELS_DEFAULT_TX_POWER            | YES | YES
@@ -1284,6 +1370,7 @@ typedef struct sMlmeIndication
  * \ref MIB_NVM_CTXS                             | YES | YES
  * \ref MIB_ABP_LORAWAN_VERSION                  | NO  | YES
  * \ref MIB_LORAWAN_VERSION                      | YES | NO
+ * \ref MIB_IS_CERT_FPORT_ON                     | YES | YES
  *
  * The following table provides links to the function implementations of the
  * related MIB primitives:
@@ -1558,6 +1645,14 @@ typedef enum eMib
      */
     MIB_JOIN_ACCEPT_DELAY_2,
     /*!
+     * Minimum Data rate of a channel
+     *
+     * LoRaWAN Regional Parameters V1.0.2rB
+     *
+     * The possible values are region specific. Please refer to \ref DR_0 to \ref DR_15 for details.
+     */
+    MIB_CHANNELS_MIN_TX_DATARATE,
+    /*!
      * Default Data rate of a channel
      *
      * LoRaWAN Regional Parameters V1.0.2rB
@@ -1692,6 +1787,10 @@ typedef enum eMib
      * The allowed ranges are region specific. Please refer to \ref DR_0 to \ref DR_15 for details.
      */
      MIB_PING_SLOT_DATARATE,
+     /*!
+      * LoRaWAN certification FPort handling state (ON/OFF)
+      */
+     MIB_IS_CERT_FPORT_ON,
 }Mib_t;
 
 /*!
@@ -1958,6 +2057,12 @@ typedef union uMibParam
      */
     uint32_t JoinAcceptDelay2;
     /*!
+     * Channels minimum tx data rate
+     *
+     * Related MIB type: \ref MIB_CHANNELS_MIN_TX_DATARATE
+     */
+    int8_t ChannelsMinTxDatarate;
+    /*!
      * Channels data rate
      *
      * Related MIB type: \ref MIB_CHANNELS_DEFAULT_DATARATE
@@ -2012,11 +2117,12 @@ typedef union uMibParam
      */
     float DefaultAntennaGain;
     /*!
-     * Structure holding pointers to internal non-volatile contexts and its lengths.
+     * Returns a pointer to the structure holding all data which shall be stored
+     * in the NVM.
      *
      * Related MIB type: \ref MIB_NVM_CTXS
      */
-    LoRaMacCtxs_t* Contexts;
+    LoRaMacNvmData_t* Contexts;
     /*
      * LoRaWAN MAC layer operating version when activated by ABP.
      *
@@ -2113,6 +2219,12 @@ typedef union uMibParam
      * Related MIB type: \ref MIB_PING_SLOT_DATARATE
      */
     int8_t PingSlotDatarate;
+    /*!
+     * LoRaWAN certification FPort handling state (ON/OFF)
+     *
+     * Related MIB type: \ref MIB_IS_CERT_FPORT_ON
+     */
+    bool IsCertPortOn;
 }MibParam_t;
 
 /*!
@@ -2263,89 +2375,6 @@ typedef enum eLoRaMacStatus
 }LoRaMacStatus_t;
 
 /*!
- * LoRaMAC region enumeration
- */
-typedef enum eLoRaMacRegion_t
-{
-    /*!
-     * AS band on 923MHz
-     */
-    LORAMAC_REGION_AS923,
-    /*!
-     * Australian band on 915MHz
-     */
-    LORAMAC_REGION_AU915,
-    /*!
-     * Chinese band on 470MHz
-     */
-    LORAMAC_REGION_CN470,
-    /*!
-     * Chinese band on 779MHz
-     */
-    LORAMAC_REGION_CN779,
-    /*!
-     * European band on 433MHz
-     */
-    LORAMAC_REGION_EU433,
-    /*!
-     * European band on 868MHz
-     */
-    LORAMAC_REGION_EU868,
-    /*!
-     * South korean band on 920MHz
-     */
-    LORAMAC_REGION_KR920,
-    /*!
-     * India band on 865MHz
-     */
-    LORAMAC_REGION_IN865,
-    /*!
-     * North american band on 915MHz
-     */
-    LORAMAC_REGION_US915,
-    /*!
-     * Russia band on 864MHz
-     */
-    LORAMAC_REGION_RU864,
-}LoRaMacRegion_t;
-
-/*!
- * Enumeration of modules which have a context
- */
-typedef enum LoRaMacNvmCtxModule_e
-{
-    /*!
-     * Context for the MAC
-     */
-    LORAMAC_NVMCTXMODULE_MAC,
-    /*!
-     * Context for the regions
-     */
-    LORAMAC_NVMCTXMODULE_REGION,
-    /*!
-     * Context for the crypto module
-     */
-    LORAMAC_NVMCTXMODULE_CRYPTO,
-    /*!
-     * Context for the secure element
-     */
-    LORAMAC_NVMCTXMODULE_SECURE_ELEMENT,
-    /*!
-     * Context for the command queue
-     */
-    LORAMAC_NVMCTXMODULE_COMMANDS,
-    /*!
-     * Context for class b
-     */
-    LORAMAC_NVMCTXMODULE_CLASS_B,
-    /*!
-     * Context for the confirm queue
-     */
-    LORAMAC_NVMCTXMODULE_CONFIRM_QUEUE,
-}LoRaMacNvmCtxModule_t;
-
-
-/*!
  * LoRaMAC events structure
  * Used to notify upper layers of MAC events
  */
@@ -2400,9 +2429,10 @@ typedef struct sLoRaMacCallback
     /*!
      * \brief   Will be called when an attribute has changed in one of the context.
      *
-     * \param   Context that changed
+     * \param   notifyFlags Bitmap that contains the modules which changed.
+     *                      Refer to \ref LoRaMacNvmData_t.
      */
-    void ( *NvmContextChange )( LoRaMacNvmCtxModule_t module );
+    void ( *NvmDataChange )( uint16_t notifyFlags );
     /*!
      *\brief    Will be called each time a Radio IRQ is handled by the MAC
      *          layer.
@@ -2726,12 +2756,6 @@ LoRaMacStatus_t LoRaMacMcpsRequest( McpsReq_t* mcpsRequest );
  *          \ref LORAMAC_STATUS_BUSY
  */
 LoRaMacStatus_t LoRaMacDeInitialization( void );
-
-/*!
- * Automatically add the Region.h file at the end of LoRaMac.h file.
- * This is required because Region.h uses definitions from LoRaMac.h
- */
-#include "region/Region.h"
 
 /*! \} defgroup LORAMAC */
 

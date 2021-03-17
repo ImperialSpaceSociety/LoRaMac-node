@@ -43,7 +43,7 @@ bool PAM7QGetGpsData( uint8_t *nmeaString, uint8_t *nmeaStringSize, uint16_t nme
 
     status = PAM7QReadBuffer( MESSAGE_SIZE_1, nmeaString, 2 );
 
-    if( status == SUCCESS )
+    if( status == LMN_STATUS_OK )
     {
         // build a 16bit number
         pendingBytes = ( uint16_t )( ( nmeaString[0] << 8 ) | nmeaString[1] );
@@ -63,7 +63,7 @@ bool PAM7QGetGpsData( uint8_t *nmeaString, uint8_t *nmeaStringSize, uint16_t nme
         status = PAM7QReadBuffer( PAYLOAD, nmeaString, pendingBytes );
 
         // make sure the string is terminated
-        if( status == SUCCESS )
+        if( status == LMN_STATUS_OK )
         {
             nmeaString[pendingBytes] = 0x00;
 
@@ -97,7 +97,7 @@ uint8_t PAM7QWrite( uint8_t addr, uint8_t data )
 
 uint8_t PAM7QWriteBuffer( uint8_t addr, uint8_t *data, uint8_t size )
 {
-    return I2cWriteBuffer( &I2c, I2cDeviceAddr << 1, addr, data, size );
+    return I2cWriteMemBuffer( &I2c, I2cDeviceAddr << 1, addr, data, size );
 }
 
 uint8_t PAM7QRead( uint8_t addr, uint8_t *data )
@@ -107,5 +107,5 @@ uint8_t PAM7QRead( uint8_t addr, uint8_t *data )
 
 uint8_t PAM7QReadBuffer( uint8_t addr, uint8_t *data, uint8_t size )
 {
-    return I2cReadBuffer( &I2c, I2cDeviceAddr << 1, addr, data, size );
+    return I2cReadMemBuffer( &I2c, I2cDeviceAddr << 1, addr, data, size );
 }

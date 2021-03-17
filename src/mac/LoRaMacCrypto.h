@@ -48,6 +48,7 @@ extern "C"
 #include "utilities.h"
 #include "LoRaMacTypes.h"
 #include "LoRaMacMessageTypes.h"
+#include "LoRaMacCryptoNvm.h"
 
 /*!
  * Indicates if LoRaWAN 1.1.x crypto scheme is enabled
@@ -57,7 +58,7 @@ extern "C"
 /*!
  * Indicates if a random devnonce must be used or not
  */
-#define USE_RANDOM_DEV_NONCE                        1
+#define USE_RANDOM_DEV_NONCE                        0
 
 /*!
  * Indicates if JoinNonce is counter based and requires to be checked
@@ -106,10 +107,6 @@ typedef enum eLoRaMacCryptoStatus
      * FCntUp/Down check failed (duplicated)
      */
     LORAMAC_CRYPTO_FAIL_FCNT_DUPLICATED,
-    /*!
-     * MAX_GAP_FCNT check failed
-     */
-    LORAMAC_CRYPTO_FAIL_MAX_GAP_FCNT,
     /*!
      * Not allowed parameter value
      */
@@ -168,11 +165,11 @@ typedef void ( *LoRaMacCryptoNvmEvent )( void );
  * Initialization of LoRaMac Crypto module
  * It sets initial values of volatile variables and assigns the non-volatile context.
  *
- * \param[IN]     cryptoNvmCtxChanged - Callback function which will be called  when the
- *                                      non-volatile context have to be stored.
+ * \param[IN]     nvm                 - Pointer to the non-volatile memory data
+ *                                      structure.
  * \retval                            - Status of the operation
  */
-LoRaMacCryptoStatus_t LoRaMacCryptoInit( LoRaMacCryptoNvmEvent cryptoNvmCtxChanged );
+LoRaMacCryptoStatus_t LoRaMacCryptoInit( LoRaMacCryptoNvmData_t* nvm );
 
 /*!
  * Sets the LoRaWAN specification version to be used.
@@ -186,31 +183,14 @@ LoRaMacCryptoStatus_t LoRaMacCryptoInit( LoRaMacCryptoNvmEvent cryptoNvmCtxChang
 LoRaMacCryptoStatus_t LoRaMacCryptoSetLrWanVersion( Version_t version );
 
 /*!
- * Restores the internal nvm context from passed pointer.
- *
- * \param[IN]     cryptoNmvCtx     - Pointer to non-volatile crypto module context to be restored.
- * \retval                         - Status of the operation
- */
-LoRaMacCryptoStatus_t LoRaMacCryptoRestoreNvmCtx( void* cryptoNvmCtx );
-
-/*!
- * Returns a pointer to the internal non-volatile context.
- *
- * \param[IN]     cryptoNvmCtxSize - Size of the module non-volatile context
- * \retval                         - Points to a structure where the module store its non-volatile context
- */
-void* LoRaMacCryptoGetNvmCtx( size_t* cryptoNvmCtxSize );
-
-/*!
  * Returns updated fCntID downlink counter value.
  *
  * \param[IN]     fCntID         - Frame counter identifier
- * \param[IN]     maxFcntGap     - Maximum allowed frame counter difference (only necessary for L2 LW1.0.x)
  * \param[IN]     frameFcnt      - Received frame counter (used to update current counter value)
  * \param[OUT]    currentDown    - Current downlink counter value
  * \retval                       - Status of the operation
  */
-LoRaMacCryptoStatus_t LoRaMacCryptoGetFCntDown( FCntIdentifier_t fCntID, uint16_t maxFCntGap, uint32_t frameFcnt, uint32_t* currentDown );
+LoRaMacCryptoStatus_t LoRaMacCryptoGetFCntDown( FCntIdentifier_t fCntID, uint32_t frameFcnt, uint32_t* currentDown );
 
 /*!
  * Returns updated fCntUp uplink counter value.

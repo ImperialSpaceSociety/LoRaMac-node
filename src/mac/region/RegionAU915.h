@@ -57,7 +57,7 @@ extern "C"
 /*!
  * Maximal datarate that can be used by the node
  */
-#define AU915_TX_MAX_DATARATE                       DR_6
+#define AU915_TX_MAX_DATARATE                       DR_13
 
 /*!
  * Minimal datarate that can be used by the node
@@ -88,7 +88,7 @@ extern "C"
 /*!
  * Maximal Rx1 receive datarate offset
  */
-#define AU915_MAX_RX1_DR_OFFSET                     6
+#define AU915_MAX_RX1_DR_OFFSET                     5
 
 /*!
  * Minimal Tx output power that can be used by the node
@@ -171,7 +171,7 @@ extern "C"
 /*!
  * Size of RFU 1 field
  */
-#define AU915_RFU1_SIZE                             5
+#define AU915_RFU1_SIZE                             4
 
 /*!
  * Size of RFU 2 field
@@ -279,15 +279,6 @@ void RegionAU915SetBandTxDone( SetBandTxDoneParams_t* txDone );
 void RegionAU915InitDefaults( InitDefaultsParams_t* params );
 
 /*!
- * \brief Returns a pointer to the internal context and its size.
- *
- * \param [OUT] params Pointer to the function parameters.
- *
- * \retval      Points to a structure where the module store its non-volatile context.
- */
-void* RegionAU915GetNvmCtx( GetNvmCtxParams_t* params );
-
-/*!
  * \brief Verifies a parameter.
  *
  * \param [IN] verify Pointer to the function parameters.
@@ -379,7 +370,7 @@ uint8_t RegionAU915RxParamSetupReq( RxParamSetupReqParams_t* rxParamSetupReq );
  *
  * \retval Returns the status of the operation, according to the LoRaMAC specification.
  */
-uint8_t RegionAU915NewChannelReq( NewChannelReqParams_t* newChannelReq );
+int8_t RegionAU915NewChannelReq( NewChannelReqParams_t* newChannelReq );
 
 /*!
  * \brief The function processes a TX ParamSetup Request.
@@ -399,7 +390,7 @@ int8_t RegionAU915TxParamSetupReq( TxParamSetupReqParams_t* txParamSetupReq );
  *
  * \retval Returns the status of the operation, according to the LoRaMAC specification.
  */
-uint8_t RegionAU915DlChannelReq( DlChannelReqParams_t* dlChannelReq );
+int8_t RegionAU915DlChannelReq( DlChannelReqParams_t* dlChannelReq );
 
 /*!
  * \brief Alternates the datarate of the channel for the join request.
@@ -441,13 +432,6 @@ LoRaMacStatus_t RegionAU915ChannelAdd( ChannelAddParams_t* channelAdd );
  * \retval Returns true, if the channel was removed successfully.
  */
 bool RegionAU915ChannelsRemove( ChannelRemoveParams_t* channelRemove  );
-
-/*!
- * \brief Sets the radio into continuous wave mode.
- *
- * \param [IN] continuousWave Pointer to the function parameters.
- */
-void RegionAU915SetContinuousWave( ContinuousWaveParams_t* continuousWave );
 
 /*!
  * \brief Computes new datarate according to the given offset

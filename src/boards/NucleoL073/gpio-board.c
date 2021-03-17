@@ -22,6 +22,7 @@
  */
 #include "stm32l0xx.h"
 #include "utilities.h"
+#include "sysIrqHandlers.h"
 #include "board-config.h"
 #include "rtc-board.h"
 #include "gpio-board.h"
@@ -68,7 +69,7 @@ void GpioMcuInit( Gpio_t *obj, PinNames pin, PinModes mode, PinConfigs config, P
         }
         else
         {
-            assert_param( FAIL );
+            assert_param( LMN_STATUS_ERROR );
         }
 
         GPIO_InitStructure.Pin =  obj->pinIndex ;
@@ -253,7 +254,7 @@ void GpioMcuWrite( Gpio_t *obj, uint32_t value )
     {
         if( obj == NULL )
         {
-            assert_param( FAIL );
+            assert_param( LMN_STATUS_ERROR );
         }
         // Check if pin is not connected
         if( obj->pin == NC )
@@ -277,7 +278,7 @@ void GpioMcuToggle( Gpio_t *obj )
     {
         if( obj == NULL )
         {
-            assert_param( FAIL );
+            assert_param( LMN_STATUS_ERROR );
         }
 
         // Check if pin is not connected
@@ -302,7 +303,7 @@ uint32_t GpioMcuRead( Gpio_t *obj )
     {
         if( obj == NULL )
         {
-            assert_param( FAIL );
+            assert_param( LMN_STATUS_ERROR );
         }
         // Check if pin is not connected
         if( obj->pin == NC )

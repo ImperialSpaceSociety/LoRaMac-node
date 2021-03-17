@@ -30,8 +30,10 @@
  *
  * \param [IN] state Indicates if we are storing (true) or
  *                    restoring (false) the NVM context
+ *
+ * \param [IN] size Number of data bytes which were stored or restored.
  */
-void DisplayNvmContextChange( LmHandlerNvmContextStates_t state );
+void DisplayNvmDataChange( LmHandlerNvmContextStates_t state, uint16_t size );
 
 /*!
  * \brief Displays updated network parameters
@@ -85,7 +87,7 @@ void DisplayRxUpdate( LmHandlerAppData_t* appData, LmHandlerRxParams_t* params )
  *
  * \param [IN] params Beacon parameters
  */
-void DisplayBeaconUpdate( LoRaMAcHandlerBeaconParams_t* params );
+void DisplayBeaconUpdate( LoRaMacHandlerBeaconParams_t* params );
 
 /*!
  * \brief Displays end-device class update

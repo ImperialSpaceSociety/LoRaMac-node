@@ -31,8 +31,6 @@ extern "C"
 #endif
 
 #include "LmHandlerTypes.h"
-#include "LmhpCompliance.h"
-
 
 typedef struct LmHandlerJoinParams_s
 {
@@ -67,12 +65,12 @@ typedef struct LmHandlerRxParams_s
     int8_t RxSlot;
 }LmHandlerRxParams_t;
 
-typedef struct LoRaMAcHandlerBeaconParams_s
+typedef struct LoRaMacHandlerBeaconParams_s
 {
     LoRaMacEventInfoStatus_t Status;
     LmHandlerBeaconState_t State;
     BeaconInfo_t Info;
-}LoRaMAcHandlerBeaconParams_t;
+}LoRaMacHandlerBeaconParams_t;
 
 typedef struct LmHandlerParams_s
 {
@@ -85,6 +83,10 @@ typedef struct LmHandlerParams_s
      */
     bool AdrEnable;
     /*!
+     * Uplink frame type
+     */
+    LmHandlerMsgTypes_t IsTxConfirmed;
+    /*!
      * Uplink datarate, when \ref AdrEnable is OFF
      */
     int8_t TxDatarate;
@@ -93,10 +95,10 @@ typedef struct LmHandlerParams_s
      */
     bool PublicNetworkEnable;
     /*!
-    * LoRaWAN ETSI duty cycle control enable/disable
-    *
-    * \remark Please note that ETSI mandates duty cycled transmissions. Use only for test purposes
-    */
+     * LoRaWAN ETSI duty cycle control enable/disable
+     *
+     * \remark Please note that ETSI mandates duty cycled transmissions. Use only for test purposes
+     */
     bool DutyCycleEnabled;
     /*!
      * Application data buffer maximum size
@@ -106,6 +108,10 @@ typedef struct LmHandlerParams_s
      * Application data buffer pointer
      */
     uint8_t *DataBuffer;
+    /*!
+     * Class B ping-slot periodicity.
+     */
+    bool PingSlotPeriodicity;
 }LmHandlerParams_t;
 
 typedef struct LmHandlerCallbacks_s
@@ -131,17 +137,19 @@ typedef struct LmHandlerCallbacks_s
     /*!
      *\brief    Will be called each time a Radio IRQ is handled by the MAC
      *          layer.
-     * 
+     *
      *\warning  Runs in a IRQ context. Should only change variables state.
      */
     void ( *OnMacProcess )( void );
     /*!
      * Notifies the upper layer that the NVM context has changed
      *
-     * \param [IN] stored Indicates if we are storing (true) or
-     *                    restoring (false) the NVM context
+     * \param [IN] state Indicates if we are storing (true) or
+     *                   restoring (false) the NVM context
+     *
+     * \param [IN] size Number of data bytes which were stored or restored.
      */
-    void ( *OnNvmContextChange )( LmHandlerNvmContextStates_t state );
+    void ( *OnNvmDataChange )( LmHandlerNvmContextStates_t state, uint16_t size );
     /*!
      * Notifies the upper layer that a network parameters have been set
      *
@@ -194,7 +202,7 @@ typedef struct LmHandlerCallbacks_s
      *
      * \param [IN] params notification parameters
      */
-    void ( *OnBeaconStatusChange )( LoRaMAcHandlerBeaconParams_t *params );
+    void ( *OnBeaconStatusChange )( LoRaMacHandlerBeaconParams_t *params );
 #if( LMH_SYS_TIME_UPDATE_NEW_API == 1 )
     /*!
      * Notifies the upper layer that the system time has been updated.
@@ -236,6 +244,13 @@ bool LmHandlerIsBusy( void );
  * \remark This function must be called in the main loop.
  */
 void LmHandlerProcess( void );
+
+/*!
+ * Gets current duty-cycle wait time
+ *
+ * \retval time to wait in ms
+ */
+TimerTime_t LmHandlerGetDutyCycleWaitTime( void );
 
 /*!
  * Instructs the MAC layer to send a ClassA uplink
@@ -326,7 +341,6 @@ LmHandlerErrorStatus_t LmHandlerSetSystemMaxRxError( uint32_t maxErrorInMs );
  */
 LmHandlerErrorStatus_t LmHandlerPackageRegister( uint8_t id, void *params );
 bool LmHandlerPackageIsInitialized( uint8_t id );
-bool LmHandlerPackageIsRunning( uint8_t id );
 
 #ifdef __cplusplus
 }

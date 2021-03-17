@@ -172,7 +172,7 @@ extern "C"
 /*!
  * Size of RFU 1 field
  */
-#define CN779_RFU1_SIZE                             2
+#define CN779_RFU1_SIZE                             1
 
 /*!
  * Size of RFU 2 field
@@ -266,15 +266,6 @@ void RegionCN779SetBandTxDone( SetBandTxDoneParams_t* txDone );
 void RegionCN779InitDefaults( InitDefaultsParams_t* params );
 
 /*!
- * \brief Returns a pointer to the internal context and its size.
- *
- * \param [OUT] params Pointer to the function parameters.
- *
- * \retval      Points to a structure where the module store its non-volatile context.
- */
-void* RegionCN779GetNvmCtx( GetNvmCtxParams_t* params );
-
-/*!
  * \brief Verifies a parameter.
  *
  * \param [IN] verify Pointer to the function parameters.
@@ -366,7 +357,7 @@ uint8_t RegionCN779RxParamSetupReq( RxParamSetupReqParams_t* rxParamSetupReq );
  *
  * \retval Returns the status of the operation, according to the LoRaMAC specification.
  */
-uint8_t RegionCN779NewChannelReq( NewChannelReqParams_t* newChannelReq );
+int8_t RegionCN779NewChannelReq( NewChannelReqParams_t* newChannelReq );
 
 /*!
  * \brief The function processes a TX ParamSetup Request.
@@ -386,7 +377,7 @@ int8_t RegionCN779TxParamSetupReq( TxParamSetupReqParams_t* txParamSetupReq );
  *
  * \retval Returns the status of the operation, according to the LoRaMAC specification.
  */
-uint8_t RegionCN779DlChannelReq( DlChannelReqParams_t* dlChannelReq );
+int8_t RegionCN779DlChannelReq( DlChannelReqParams_t* dlChannelReq );
 
 /*!
  * \brief Alternates the datarate of the channel for the join request.
@@ -428,13 +419,6 @@ LoRaMacStatus_t RegionCN779ChannelAdd( ChannelAddParams_t* channelAdd );
  * \retval Returns true, if the channel was removed successfully.
  */
 bool RegionCN779ChannelsRemove( ChannelRemoveParams_t* channelRemove  );
-
-/*!
- * \brief Sets the radio into continuous wave mode.
- *
- * \param [IN] continuousWave Pointer to the function parameters.
- */
-void RegionCN779SetContinuousWave( ContinuousWaveParams_t* continuousWave );
 
 /*!
  * \brief Computes new datarate according to the given offset

@@ -337,7 +337,7 @@ TimerTime_t RegionCommonUpdateBandTimeOff( bool joined, Band_t* bands,
         // when the duty cycle is off, or the TimeCredits of the band
         // is higher than the credit costs for the transmission.
         if( ( bands[i].TimeCredits > creditCosts ) ||
-            ( dutyCycleEnabled == false ) )
+            ( ( dutyCycleEnabled == false ) && ( joined == true ) ) )
         {
             bands[i].ReadyForTransmission = true;
             // This band is a potential candidate for an
@@ -350,24 +350,22 @@ TimerTime_t RegionCommonUpdateBandTimeOff( bool joined, Band_t* bands,
             // for the next transmission.
             bands[i].ReadyForTransmission = false;
 
-            // Differentiate the calculation if the device is joined or not.
-            if( joined == true )
+            if( bands[i].MaxTimeCredits > creditCosts )
             {
-                if( bands[i].MaxTimeCredits > creditCosts )
-                {
-                    // The band can only be taken into account, if the maximum credits
-                    // of the band are higher than the credit costs.
-                    // We calculate the minTimeToWait among the bands which are not
-                    // ready for transmission and which are potentially available
-                    // for a transmission in the future.
-                    minTimeToWait = MIN( minTimeToWait, ( creditCosts - bands[i].TimeCredits ) );
-                    // This band is a potential candidate for an
-                    // upcoming transmission (even if its time credits are not enough
-                    // at the moment), so increase the counter.
-                    validBands++;
-                }
+                // The band can only be taken into account, if the maximum credits
+                // of the band are higher than the credit costs.
+                // We calculate the minTimeToWait among the bands which are not
+                // ready for transmission and which are potentially available
+                // for a transmission in the future.
+                minTimeToWait = MIN( minTimeToWait, ( creditCosts - bands[i].TimeCredits ) );
+                // This band is a potential candidate for an
+                // upcoming transmission (even if its time credits are not enough
+                // at the moment), so increase the counter.
+                validBands++;
             }
-            else
+
+            // Apply a special calculation if the device is not joined.
+            if( joined == false )
             {
                 SysTime_t backoffTimeRange = {
                     .Seconds    = 0,
@@ -451,14 +449,22 @@ uint8_t RegionCommonLinkAdrReqVerifyParams( RegionCommonLinkAdrReqVerifyParams_t
     if( status != 0 )
     {
         // Verify datarate. The variable phyParam. Value contains the minimum allowed datarate.
-        if( RegionCommonChanVerifyDr( verifyParams->NbChannels, verifyParams->ChannelsMask, datarate,
+        if( datarate == 0x0F )
+        { // 0xF means that the device MUST ignore that field, and keep the current parameter value.
+            datarate =  verifyParams->CurrentDatarate;
+        }
+        else if( RegionCommonChanVerifyDr( verifyParams->NbChannels, verifyParams->ChannelsMask, datarate,
                                       verifyParams->MinDatarate, verifyParams->MaxDatarate, verifyParams->Channels  ) == false )
         {
             status &= 0xFD; // Datarate KO
         }
 
         // Verify tx power
-        if( RegionCommonValueInRange( txPower, verifyParams->MaxTxPower, verifyParams->MinTxPower ) == 0 )
+        if( txPower == 0x0F )
+        { // 0xF means that the device MUST ignore that field, and keep the current parameter value.
+            txPower =  verifyParams->CurrentTxPower;
+        }
+        else if( RegionCommonValueInRange( txPower, verifyParams->MaxTxPower, verifyParams->MinTxPower ) == 0 )
         {
             // Verify if the maximum TX power is exceeded
             if( verifyParams->MaxTxPower > txPower )
@@ -476,7 +482,7 @@ uint8_t RegionCommonLinkAdrReqVerifyParams( RegionCommonLinkAdrReqVerifyParams_t
     if( status == 0x07 )
     {
         if( nbRepetitions == 0 )
-        { // Restore the default value according to the LoRaWAN specification
+        { // Set nbRep to the default value of 1.
             nbRepetitions = 1;
         }
     }
@@ -631,15 +637,23 @@ LoRaMacStatus_t RegionCommonIdentifyChannels( RegionCommonIdentifyChannelsParam_
     }
 }
 
-int8_t RegionCommonGetNextLowerTxDr( int8_t dr, int8_t minDr )
+int8_t RegionCommonGetNextLowerTxDr( RegionCommonGetNextLowerTxDrParams_t *params )
 {
-    if( dr == minDr )
+    int8_t drLocal = params->CurrentDr;
+
+    if( params->CurrentDr == params->MinDr )
     {
-        return minDr;
+        return params->MinDr;
     }
     else
     {
-        return( dr - 1 );
+        do
+        {
+            drLocal = ( drLocal - 1 );
+        } while( ( drLocal != params->MinDr ) &&
+                 ( RegionCommonChanVerifyDr( params->NbChannels, params->ChannelsMask, drLocal, params->MinDr, params->MaxDr, params->Channels  ) == false ) );
+
+        return drLocal;
     }
 }
 
