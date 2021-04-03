@@ -71,6 +71,8 @@ extern "C"
 #define LED_2                                       PA_5
 #define LED_3                                       PB_6
 #define LED_4                                       PB_7
+#define GPS_INT                                     PB_13
+#define LOAD_ENABLE                                 PA_11
 
 #define LED_GREEN                                   LED_1
 #define LED_RED1                                    LED_2
@@ -91,8 +93,8 @@ extern "C"
 #define I2C_SCL                                     PB_8
 #define I2C_SDA                                     PB_9
 
-#define UART_TX                                     PA_2
-#define UART_RX                                     PA_3
+#define UART_TX                                     PA_9
+#define UART_RX                                     PA_10
 
 // Debug pins definition.
 #define RADIO_DBG_PIN_TX                            PB_13

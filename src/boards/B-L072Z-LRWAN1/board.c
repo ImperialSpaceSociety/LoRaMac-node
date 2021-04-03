@@ -34,6 +34,8 @@
 #include "rtc-board.h"
 #include "sx1276-board.h"
 #include "board.h"
+#include "ublox.h"
+#include "config.h"
 
 /*!
  * Unique Devices IDs register set ( STM32L0xxx )
@@ -50,10 +52,14 @@ Gpio_t Led2;
 Gpio_t Led3;
 Gpio_t Led4;
 
+Gpio_t Gps_int;
+Gpio_t Load_enable;
+
 /*
  * MCU objects
  */
-Uart_t Uart2;
+Uart_t Uart1;
+I2c_t I2c;
 
 /*!
  * Initializes the unused GPIO to a know status
@@ -81,13 +87,13 @@ static bool McuInitialized = false;
 static bool UsbIsConnected = false;
 
 /*!
- * UART2 FIFO buffers size
+ * UART1 FIFO buffers size
  */
-#define UART2_FIFO_TX_SIZE                                1024
-#define UART2_FIFO_RX_SIZE                                1024
+#define UART1_FIFO_TX_SIZE                                1024
+#define UART1_FIFO_RX_SIZE                                1024
 
-uint8_t Uart2TxBuffer[UART2_FIFO_TX_SIZE];
-uint8_t Uart2RxBuffer[UART2_FIFO_RX_SIZE];
+uint8_t Uart1TxBuffer[UART1_FIFO_TX_SIZE];
+uint8_t Uart1RxBuffer[UART1_FIFO_RX_SIZE];
 
 void BoardCriticalSectionBegin( uint32_t *mask )
 {
@@ -103,6 +109,11 @@ void BoardCriticalSectionEnd( uint32_t *mask )
 void BoardInitPeriph( void )
 {
 
+		/* GPS SETUP */
+		#if GPS_ENABLED
+		printf("SELFTEST: Initialising GPS\n\r");
+		setup_GPS();
+		#endif
 }
 
 void BoardInitMcu( void )
@@ -116,23 +127,29 @@ void BoardInitMcu( void )
         GpioInit( &Led2, LED_2, PIN_OUTPUT, PIN_PUSH_PULL, PIN_NO_PULL, 1 );
         GpioInit( &Led3, LED_3, PIN_OUTPUT, PIN_PUSH_PULL, PIN_NO_PULL, 1 );
         GpioInit( &Led4, LED_4, PIN_OUTPUT, PIN_PUSH_PULL, PIN_NO_PULL, 1 );
+        GpioInit( &Gps_int, GPS_INT, PIN_OUTPUT, PIN_PUSH_PULL, PIN_NO_PULL, 1 );
 
+        // Load enable for sensors, GPS
+        GpioInit( &Load_enable, LOAD_ENABLE, PIN_OUTPUT, PIN_PUSH_PULL, PIN_NO_PULL, 1 );
         SystemClockConfig( );
 
         UsbIsConnected = true;
 
-        FifoInit( &Uart2.FifoTx, Uart2TxBuffer, UART2_FIFO_TX_SIZE );
-        FifoInit( &Uart2.FifoRx, Uart2RxBuffer, UART2_FIFO_RX_SIZE );
+        FifoInit( &Uart1.FifoTx, Uart1TxBuffer, UART1_FIFO_TX_SIZE );
+        FifoInit( &Uart1.FifoRx, Uart1RxBuffer, UART1_FIFO_RX_SIZE );
         // Configure your terminal for 8 Bits data (7 data bit + 1 parity bit), no parity and no flow ctrl
-        UartInit( &Uart2, UART_2, UART_TX, UART_RX );
-        UartConfig( &Uart2, RX_TX, 921600, UART_8_BIT, UART_1_STOP_BIT, NO_PARITY, NO_FLOW_CTRL );
+        UartInit( &Uart1, UART_1, UART_TX, UART_RX );
+        UartConfig( &Uart1, RX_TX, 2000000, UART_8_BIT, UART_1_STOP_BIT, NO_PARITY, NO_FLOW_CTRL );
 
+        I2cInit( &I2c, I2C_1, I2C_SCL, I2C_SDA );
+			
         RtcInit( );
 
         GpioWrite( &Led1, 0 );
         GpioWrite( &Led2, 0 );
         GpioWrite( &Led3, 0 );
         GpioWrite( &Led4, 0 );
+        GpioWrite( &Load_enable, 0 );
 
         BoardUnusedIoInit( );
         if( GetBoardPowerSource( ) == BATTERY_POWER )
@@ -380,7 +397,7 @@ void BoardLowPowerHandler( void )
  */
 int _write( int fd, const void *buf, size_t count )
 {
-    while( UartPutBuffer( &Uart2, ( uint8_t* )buf, ( uint16_t )count ) != 0 ){ };
+    while( UartPutBuffer( &Uart1, ( uint8_t* )buf, ( uint16_t )count ) != 0 ){ };
     return count;
 }
 
@@ -390,9 +407,9 @@ int _write( int fd, const void *buf, size_t count )
 int _read( int fd, const void *buf, size_t count )
 {
     size_t bytesRead = 0;
-    while( UartGetBuffer( &Uart2, ( uint8_t* )buf, count, ( uint16_t* )&bytesRead ) != 0 ){ };
+    while( UartGetBuffer( &Uart1, ( uint8_t* )buf, count, ( uint16_t* )&bytesRead ) != 0 ){ };
     // Echo back the character
-    while( UartPutBuffer( &Uart2, ( uint8_t* )buf, ( uint16_t )bytesRead ) != 0 ){ };
+    while( UartPutBuffer( &Uart1, ( uint8_t* )buf, ( uint16_t )bytesRead ) != 0 ){ };
     return bytesRead;
 }
 
@@ -403,16 +420,16 @@ int _read( int fd, const void *buf, size_t count )
 // Keil compiler
 int fputc( int c, FILE *stream )
 {
-    while( UartPutChar( &Uart2, ( uint8_t )c ) != 0 );
+    while( UartPutChar( &Uart1, ( uint8_t )c ) != 0 );
     return c;
 }
 
 int fgetc( FILE *stream )
 {
     uint8_t c = 0;
-    while( UartGetChar( &Uart2, &c ) != 0 );
+    while( UartGetChar( &Uart1, &c ) != 0 );
     // Echo back the character
-    while( UartPutChar( &Uart2, c ) != 0 );
+    while( UartPutChar( &Uart1, c ) != 0 );
     return ( int )c;
 }
 
