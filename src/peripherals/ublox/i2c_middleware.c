@@ -20,7 +20,7 @@
 #include "i2c_middleware.h"
 #include "main.h"
 #include "stm32l0xx_hal_i2c.h"
-#include "stm32l0xx_hal_gpio.h"
+// #include "stm32l0xx_hal_gpio.h"
 #include "stm32l0xx.h"
 #include "gpio-board.h"
 #include "iwdg.h"
