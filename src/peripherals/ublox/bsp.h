@@ -128,12 +128,6 @@ void BSP_sensor_Read( void );
 
 
 
-/**
-  * @brief It measures the battery voltage by returning the value in mV
-  * @param none
-  * @retval uint16_t The battery voltage value in mV
-  */
-uint16_t BSP_GetSolarLevel16( void );
 
 
 

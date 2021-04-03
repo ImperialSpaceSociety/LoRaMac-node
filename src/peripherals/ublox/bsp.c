@@ -25,7 +25,7 @@
 #include "nvmm.h"
 #include "stm32l0xx_hal_adc.h"
 #include "iwdg.h"
-
+#include "board.h"
 
 
 /* Private typedef -----------------------------------------------------------*/
@@ -104,7 +104,7 @@ void BSP_sensor_Read(void)
 #endif
 
 	/* read solar voltage under gps and no load */
-	uint16_t no_load_solar_voltage = BSP_GetSolarLevel16();
+	uint16_t no_load_solar_voltage = BoardGetBatteryVoltage();
 	uint16_t load_solar_voltage = get_load_solar_voltage();
 
 	/* pretty print sensor values for debugging */
@@ -511,31 +511,6 @@ uint32_t unix_time_to_minutes_since_epoch(uint32_t unix_time)
 	return (unix_time - 1577840461) / 60;
 }
 
-/**
-  * @brief It measures the solar voltage by returning the value in mV
-  * @param none
-  * @retval uint16_t The solar voltage value in mV
-  */
-uint16_t BSP_GetSolarLevel16(void)
-{
-
-	uint16_t batteryLevel = 0;
-	uint16_t measuredLevel = 0;
-	uint16_t nVrefIntLevel = 0;
-	float batteryVoltage = 0;
-	float nVddValue = 0;
-
-	measuredLevel = HW_AdcReadChannel(BATTERY_ADC_CHANNEL);
-	nVrefIntLevel = HW_AdcReadChannel(ADC_CHANNEL_VREFINT);
-
-	nVddValue = (((uint32_t)VDDA_VREFINT_CAL * (*VREFINT_CAL)) / nVrefIntLevel);
-
-	batteryVoltage = ((((float)(measuredLevel)*nVddValue /*3300*/) / 4096) * RESITOR_DIVIDER);
-
-	batteryLevel = (uint16_t)(batteryVoltage / 1.0);
-
-	return batteryLevel;
-}
 
 
 
