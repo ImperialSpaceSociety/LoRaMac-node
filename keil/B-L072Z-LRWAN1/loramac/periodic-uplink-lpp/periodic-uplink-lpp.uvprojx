@@ -404,9 +404,14 @@
               <FilePath>..\..\..\..\src\apps\LoRaMac\common\LmHandlerMsgDisplay.c</FilePath>
             </File>
             <File>
-              <FileName>NvmCtxMgmt.c</FileName>
+              <FileName>cli.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\..\..\src\apps\LoRaMac\common\NvmCtxMgmt.c</FilePath>
+              <FilePath>..\..\..\..\src\apps\LoRaMac\common\cli.c</FilePath>
+            </File>
+            <File>
+              <FileName>NvmDataMgmt.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\src\apps\LoRaMac\common\NvmDataMgmt.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -599,11 +604,6 @@
           <GroupName>boards\mcu\stm32</GroupName>
           <Files>
             <File>
-              <FileName>sysIrqHandlers.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\src\boards\mcu\stm32\sysIrqHandlers.c</FilePath>
-            </File>
-            <File>
               <FileName>utilities.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\..\..\src\boards\mcu\utilities.c</FilePath>
@@ -770,11 +770,6 @@
               <FileName>delay.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\..\..\src\system\delay.c</FilePath>
-            </File>
-            <File>
-              <FileName>eeprom.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\src\system\eeprom.c</FilePath>
             </File>
             <File>
               <FileName>fifo.c</FileName>
@@ -1208,9 +1203,14 @@
               <FilePath>..\..\..\..\src\apps\LoRaMac\common\LmHandlerMsgDisplay.c</FilePath>
             </File>
             <File>
-              <FileName>NvmCtxMgmt.c</FileName>
+              <FileName>cli.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\..\..\src\apps\LoRaMac\common\NvmCtxMgmt.c</FilePath>
+              <FilePath>..\..\..\..\src\apps\LoRaMac\common\cli.c</FilePath>
+            </File>
+            <File>
+              <FileName>NvmDataMgmt.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\src\apps\LoRaMac\common\NvmDataMgmt.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -1403,11 +1403,6 @@
           <GroupName>boards\mcu\stm32</GroupName>
           <Files>
             <File>
-              <FileName>sysIrqHandlers.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\src\boards\mcu\stm32\sysIrqHandlers.c</FilePath>
-            </File>
-            <File>
               <FileName>utilities.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\..\..\src\boards\mcu\utilities.c</FilePath>
@@ -1574,11 +1569,6 @@
               <FileName>delay.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\..\..\src\system\delay.c</FilePath>
-            </File>
-            <File>
-              <FileName>eeprom.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\src\system\eeprom.c</FilePath>
             </File>
             <File>
               <FileName>fifo.c</FileName>
@@ -2012,9 +2002,14 @@
               <FilePath>..\..\..\..\src\apps\LoRaMac\common\LmHandlerMsgDisplay.c</FilePath>
             </File>
             <File>
-              <FileName>NvmCtxMgmt.c</FileName>
+              <FileName>cli.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\..\..\src\apps\LoRaMac\common\NvmCtxMgmt.c</FilePath>
+              <FilePath>..\..\..\..\src\apps\LoRaMac\common\cli.c</FilePath>
+            </File>
+            <File>
+              <FileName>NvmDataMgmt.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\src\apps\LoRaMac\common\NvmDataMgmt.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -2207,11 +2202,6 @@
           <GroupName>boards\mcu\stm32</GroupName>
           <Files>
             <File>
-              <FileName>sysIrqHandlers.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\src\boards\mcu\stm32\sysIrqHandlers.c</FilePath>
-            </File>
-            <File>
               <FileName>utilities.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\..\..\src\boards\mcu\utilities.c</FilePath>
@@ -2378,11 +2368,6 @@
               <FileName>delay.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\..\..\src\system\delay.c</FilePath>
-            </File>
-            <File>
-              <FileName>eeprom.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\src\system\eeprom.c</FilePath>
             </File>
             <File>
               <FileName>fifo.c</FileName>
@@ -2816,9 +2801,14 @@
               <FilePath>..\..\..\..\src\apps\LoRaMac\common\LmHandlerMsgDisplay.c</FilePath>
             </File>
             <File>
-              <FileName>NvmCtxMgmt.c</FileName>
+              <FileName>cli.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\..\..\src\apps\LoRaMac\common\NvmCtxMgmt.c</FilePath>
+              <FilePath>..\..\..\..\src\apps\LoRaMac\common\cli.c</FilePath>
+            </File>
+            <File>
+              <FileName>NvmDataMgmt.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\src\apps\LoRaMac\common\NvmDataMgmt.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -3011,11 +3001,6 @@
           <GroupName>boards\mcu\stm32</GroupName>
           <Files>
             <File>
-              <FileName>sysIrqHandlers.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\src\boards\mcu\stm32\sysIrqHandlers.c</FilePath>
-            </File>
-            <File>
               <FileName>utilities.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\..\..\src\boards\mcu\utilities.c</FilePath>
@@ -3182,11 +3167,6 @@
               <FileName>delay.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\..\..\src\system\delay.c</FilePath>
-            </File>
-            <File>
-              <FileName>eeprom.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\src\system\eeprom.c</FilePath>
             </File>
             <File>
               <FileName>fifo.c</FileName>
@@ -3620,9 +3600,14 @@
               <FilePath>..\..\..\..\src\apps\LoRaMac\common\LmHandlerMsgDisplay.c</FilePath>
             </File>
             <File>
-              <FileName>NvmCtxMgmt.c</FileName>
+              <FileName>cli.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\..\..\src\apps\LoRaMac\common\NvmCtxMgmt.c</FilePath>
+              <FilePath>..\..\..\..\src\apps\LoRaMac\common\cli.c</FilePath>
+            </File>
+            <File>
+              <FileName>NvmDataMgmt.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\src\apps\LoRaMac\common\NvmDataMgmt.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -3815,11 +3800,6 @@
           <GroupName>boards\mcu\stm32</GroupName>
           <Files>
             <File>
-              <FileName>sysIrqHandlers.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\src\boards\mcu\stm32\sysIrqHandlers.c</FilePath>
-            </File>
-            <File>
               <FileName>utilities.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\..\..\src\boards\mcu\utilities.c</FilePath>
@@ -3986,11 +3966,6 @@
               <FileName>delay.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\..\..\src\system\delay.c</FilePath>
-            </File>
-            <File>
-              <FileName>eeprom.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\src\system\eeprom.c</FilePath>
             </File>
             <File>
               <FileName>fifo.c</FileName>
@@ -4357,7 +4332,7 @@
             <v6Rtti>0</v6Rtti>
             <VariousControls>
               <MiscControls></MiscControls>
-              <Define>USE_HAL_DRIVER STM32L072xx REGION_EU868 ACTIVE_REGION=LORAMAC_REGION_EU868 LORAMAC_CLASSB_ENABLED USE_RADIO_DEBUG</Define>
+              <Define>USE_HAL_DRIVER STM32L072xx REGION_EU868 ACTIVE_REGION=LORAMAC_REGION_EU868 LORAMAC_CLASSB_ENABLED USE_RADIO_DEBUG REGION_US915 REGION_CN779 REGION_EU433 REGION_AU915 REGION_AS923 REGION_CN470 REGION_KR920 REGION_IN865 REGION_RU864 SOFT_SE</Define>
               <Undefine></Undefine>
               <IncludePath>..\..\..\..\src;..\..\..\..\src\apps\LoRaMac\periodic-uplink-lpp\B-L072Z-LRWAN1;..\..\..\..\src\apps\LoRaMac\common;..\..\..\..\src\apps\LoRaMac\common\LmHandler;..\..\..\..\src\apps\LoRaMac\common\LmHandler\packages;..\..\..\..\src\boards;..\..\..\..\src\boards\B-L072Z-LRWAN1;..\..\..\..\src\boards\B-L072Z-LRWAN1\cmsis;..\..\..\..\src\boards\mcu\stm32;..\..\..\..\src\boards\mcu\stm32\cmsis;..\..\..\..\src\boards\mcu\stm32\STM32L0xx_HAL_Driver\inc;..\..\..\..\src\apps\LoRaMac\common;..\..\..\..\src\mac;..\..\..\..\src\mac\region;..\..\..\..\src\peripherals;..\..\..\..\src\peripherals\soft-se;..\..\..\..\src\radio;..\..\..\..\src\system;..\..\..\..\src\system\crypto</IncludePath>
             </VariousControls>
@@ -4424,9 +4399,14 @@
               <FilePath>..\..\..\..\src\apps\LoRaMac\common\LmHandlerMsgDisplay.c</FilePath>
             </File>
             <File>
-              <FileName>NvmCtxMgmt.c</FileName>
+              <FileName>cli.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\..\..\src\apps\LoRaMac\common\NvmCtxMgmt.c</FilePath>
+              <FilePath>..\..\..\..\src\apps\LoRaMac\common\cli.c</FilePath>
+            </File>
+            <File>
+              <FileName>NvmDataMgmt.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\src\apps\LoRaMac\common\NvmDataMgmt.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -4619,11 +4599,6 @@
           <GroupName>boards\mcu\stm32</GroupName>
           <Files>
             <File>
-              <FileName>sysIrqHandlers.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\src\boards\mcu\stm32\sysIrqHandlers.c</FilePath>
-            </File>
-            <File>
               <FileName>utilities.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\..\..\src\boards\mcu\utilities.c</FilePath>
@@ -4790,11 +4765,6 @@
               <FileName>delay.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\..\..\src\system\delay.c</FilePath>
-            </File>
-            <File>
-              <FileName>eeprom.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\src\system\eeprom.c</FilePath>
             </File>
             <File>
               <FileName>fifo.c</FileName>
@@ -5228,9 +5198,14 @@
               <FilePath>..\..\..\..\src\apps\LoRaMac\common\LmHandlerMsgDisplay.c</FilePath>
             </File>
             <File>
-              <FileName>NvmCtxMgmt.c</FileName>
+              <FileName>cli.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\..\..\src\apps\LoRaMac\common\NvmCtxMgmt.c</FilePath>
+              <FilePath>..\..\..\..\src\apps\LoRaMac\common\cli.c</FilePath>
+            </File>
+            <File>
+              <FileName>NvmDataMgmt.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\src\apps\LoRaMac\common\NvmDataMgmt.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -5423,11 +5398,6 @@
           <GroupName>boards\mcu\stm32</GroupName>
           <Files>
             <File>
-              <FileName>sysIrqHandlers.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\src\boards\mcu\stm32\sysIrqHandlers.c</FilePath>
-            </File>
-            <File>
               <FileName>utilities.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\..\..\src\boards\mcu\utilities.c</FilePath>
@@ -5594,11 +5564,6 @@
               <FileName>delay.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\..\..\src\system\delay.c</FilePath>
-            </File>
-            <File>
-              <FileName>eeprom.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\src\system\eeprom.c</FilePath>
             </File>
             <File>
               <FileName>fifo.c</FileName>
@@ -6032,9 +5997,14 @@
               <FilePath>..\..\..\..\src\apps\LoRaMac\common\LmHandlerMsgDisplay.c</FilePath>
             </File>
             <File>
-              <FileName>NvmCtxMgmt.c</FileName>
+              <FileName>cli.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\..\..\src\apps\LoRaMac\common\NvmCtxMgmt.c</FilePath>
+              <FilePath>..\..\..\..\src\apps\LoRaMac\common\cli.c</FilePath>
+            </File>
+            <File>
+              <FileName>NvmDataMgmt.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\src\apps\LoRaMac\common\NvmDataMgmt.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -6227,11 +6197,6 @@
           <GroupName>boards\mcu\stm32</GroupName>
           <Files>
             <File>
-              <FileName>sysIrqHandlers.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\src\boards\mcu\stm32\sysIrqHandlers.c</FilePath>
-            </File>
-            <File>
               <FileName>utilities.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\..\..\src\boards\mcu\utilities.c</FilePath>
@@ -6398,11 +6363,6 @@
               <FileName>delay.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\..\..\src\system\delay.c</FilePath>
-            </File>
-            <File>
-              <FileName>eeprom.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\src\system\eeprom.c</FilePath>
             </File>
             <File>
               <FileName>fifo.c</FileName>
@@ -6836,9 +6796,14 @@
               <FilePath>..\..\..\..\src\apps\LoRaMac\common\LmHandlerMsgDisplay.c</FilePath>
             </File>
             <File>
-              <FileName>NvmCtxMgmt.c</FileName>
+              <FileName>cli.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\..\..\src\apps\LoRaMac\common\NvmCtxMgmt.c</FilePath>
+              <FilePath>..\..\..\..\src\apps\LoRaMac\common\cli.c</FilePath>
+            </File>
+            <File>
+              <FileName>NvmDataMgmt.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\src\apps\LoRaMac\common\NvmDataMgmt.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -7031,11 +6996,6 @@
           <GroupName>boards\mcu\stm32</GroupName>
           <Files>
             <File>
-              <FileName>sysIrqHandlers.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\src\boards\mcu\stm32\sysIrqHandlers.c</FilePath>
-            </File>
-            <File>
               <FileName>utilities.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\..\..\src\boards\mcu\utilities.c</FilePath>
@@ -7202,11 +7162,6 @@
               <FileName>delay.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\..\..\src\system\delay.c</FilePath>
-            </File>
-            <File>
-              <FileName>eeprom.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\src\system\eeprom.c</FilePath>
             </File>
             <File>
               <FileName>fifo.c</FileName>
@@ -7640,9 +7595,14 @@
               <FilePath>..\..\..\..\src\apps\LoRaMac\common\LmHandlerMsgDisplay.c</FilePath>
             </File>
             <File>
-              <FileName>NvmCtxMgmt.c</FileName>
+              <FileName>cli.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\..\..\src\apps\LoRaMac\common\NvmCtxMgmt.c</FilePath>
+              <FilePath>..\..\..\..\src\apps\LoRaMac\common\cli.c</FilePath>
+            </File>
+            <File>
+              <FileName>NvmDataMgmt.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\src\apps\LoRaMac\common\NvmDataMgmt.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -7835,11 +7795,6 @@
           <GroupName>boards\mcu\stm32</GroupName>
           <Files>
             <File>
-              <FileName>sysIrqHandlers.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\src\boards\mcu\stm32\sysIrqHandlers.c</FilePath>
-            </File>
-            <File>
               <FileName>utilities.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\..\..\src\boards\mcu\utilities.c</FilePath>
@@ -8006,11 +7961,6 @@
               <FileName>delay.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\..\..\src\system\delay.c</FilePath>
-            </File>
-            <File>
-              <FileName>eeprom.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\src\system\eeprom.c</FilePath>
             </File>
             <File>
               <FileName>fifo.c</FileName>
