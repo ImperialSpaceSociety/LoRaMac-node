@@ -664,64 +664,14 @@
               <FilePath>..\..\..\..\src\mac\region\Region.c</FilePath>
             </File>
             <File>
-              <FileName>RegionAS923.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\src\mac\region\RegionAS923.c</FilePath>
-            </File>
-            <File>
-              <FileName>RegionAU915.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\src\mac\region\RegionAU915.c</FilePath>
-            </File>
-            <File>
-              <FileName>RegionBaseUS.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\src\mac\region\RegionBaseUS.c</FilePath>
-            </File>
-            <File>
-              <FileName>RegionCN470.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\src\mac\region\RegionCN470.c</FilePath>
-            </File>
-            <File>
-              <FileName>RegionCN779.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\src\mac\region\RegionCN779.c</FilePath>
-            </File>
-            <File>
               <FileName>RegionCommon.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\..\..\src\mac\region\RegionCommon.c</FilePath>
             </File>
             <File>
-              <FileName>RegionEU433.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\src\mac\region\RegionEU433.c</FilePath>
-            </File>
-            <File>
               <FileName>RegionEU868.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\..\..\src\mac\region\RegionEU868.c</FilePath>
-            </File>
-            <File>
-              <FileName>RegionIN865.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\src\mac\region\RegionIN865.c</FilePath>
-            </File>
-            <File>
-              <FileName>RegionKR920.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\src\mac\region\RegionKR920.c</FilePath>
-            </File>
-            <File>
-              <FileName>RegionRU864.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\src\mac\region\RegionRU864.c</FilePath>
-            </File>
-            <File>
-              <FileName>RegionUS915.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\src\mac\region\RegionUS915.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -1463,64 +1413,14 @@
               <FilePath>..\..\..\..\src\mac\region\Region.c</FilePath>
             </File>
             <File>
-              <FileName>RegionAS923.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\src\mac\region\RegionAS923.c</FilePath>
-            </File>
-            <File>
-              <FileName>RegionAU915.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\src\mac\region\RegionAU915.c</FilePath>
-            </File>
-            <File>
-              <FileName>RegionBaseUS.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\src\mac\region\RegionBaseUS.c</FilePath>
-            </File>
-            <File>
-              <FileName>RegionCN470.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\src\mac\region\RegionCN470.c</FilePath>
-            </File>
-            <File>
-              <FileName>RegionCN779.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\src\mac\region\RegionCN779.c</FilePath>
-            </File>
-            <File>
               <FileName>RegionCommon.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\..\..\src\mac\region\RegionCommon.c</FilePath>
             </File>
             <File>
-              <FileName>RegionEU433.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\src\mac\region\RegionEU433.c</FilePath>
-            </File>
-            <File>
               <FileName>RegionEU868.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\..\..\src\mac\region\RegionEU868.c</FilePath>
-            </File>
-            <File>
-              <FileName>RegionIN865.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\src\mac\region\RegionIN865.c</FilePath>
-            </File>
-            <File>
-              <FileName>RegionKR920.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\src\mac\region\RegionKR920.c</FilePath>
-            </File>
-            <File>
-              <FileName>RegionRU864.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\src\mac\region\RegionRU864.c</FilePath>
-            </File>
-            <File>
-              <FileName>RegionUS915.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\src\mac\region\RegionUS915.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -2262,64 +2162,14 @@
               <FilePath>..\..\..\..\src\mac\region\Region.c</FilePath>
             </File>
             <File>
-              <FileName>RegionAS923.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\src\mac\region\RegionAS923.c</FilePath>
-            </File>
-            <File>
-              <FileName>RegionAU915.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\src\mac\region\RegionAU915.c</FilePath>
-            </File>
-            <File>
-              <FileName>RegionBaseUS.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\src\mac\region\RegionBaseUS.c</FilePath>
-            </File>
-            <File>
-              <FileName>RegionCN470.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\src\mac\region\RegionCN470.c</FilePath>
-            </File>
-            <File>
-              <FileName>RegionCN779.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\src\mac\region\RegionCN779.c</FilePath>
-            </File>
-            <File>
               <FileName>RegionCommon.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\..\..\src\mac\region\RegionCommon.c</FilePath>
             </File>
             <File>
-              <FileName>RegionEU433.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\src\mac\region\RegionEU433.c</FilePath>
-            </File>
-            <File>
               <FileName>RegionEU868.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\..\..\src\mac\region\RegionEU868.c</FilePath>
-            </File>
-            <File>
-              <FileName>RegionIN865.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\src\mac\region\RegionIN865.c</FilePath>
-            </File>
-            <File>
-              <FileName>RegionKR920.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\src\mac\region\RegionKR920.c</FilePath>
-            </File>
-            <File>
-              <FileName>RegionRU864.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\src\mac\region\RegionRU864.c</FilePath>
-            </File>
-            <File>
-              <FileName>RegionUS915.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\src\mac\region\RegionUS915.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -3061,64 +2911,14 @@
               <FilePath>..\..\..\..\src\mac\region\Region.c</FilePath>
             </File>
             <File>
-              <FileName>RegionAS923.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\src\mac\region\RegionAS923.c</FilePath>
-            </File>
-            <File>
-              <FileName>RegionAU915.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\src\mac\region\RegionAU915.c</FilePath>
-            </File>
-            <File>
-              <FileName>RegionBaseUS.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\src\mac\region\RegionBaseUS.c</FilePath>
-            </File>
-            <File>
-              <FileName>RegionCN470.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\src\mac\region\RegionCN470.c</FilePath>
-            </File>
-            <File>
-              <FileName>RegionCN779.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\src\mac\region\RegionCN779.c</FilePath>
-            </File>
-            <File>
               <FileName>RegionCommon.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\..\..\src\mac\region\RegionCommon.c</FilePath>
             </File>
             <File>
-              <FileName>RegionEU433.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\src\mac\region\RegionEU433.c</FilePath>
-            </File>
-            <File>
               <FileName>RegionEU868.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\..\..\src\mac\region\RegionEU868.c</FilePath>
-            </File>
-            <File>
-              <FileName>RegionIN865.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\src\mac\region\RegionIN865.c</FilePath>
-            </File>
-            <File>
-              <FileName>RegionKR920.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\src\mac\region\RegionKR920.c</FilePath>
-            </File>
-            <File>
-              <FileName>RegionRU864.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\src\mac\region\RegionRU864.c</FilePath>
-            </File>
-            <File>
-              <FileName>RegionUS915.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\src\mac\region\RegionUS915.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -3860,64 +3660,14 @@
               <FilePath>..\..\..\..\src\mac\region\Region.c</FilePath>
             </File>
             <File>
-              <FileName>RegionAS923.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\src\mac\region\RegionAS923.c</FilePath>
-            </File>
-            <File>
-              <FileName>RegionAU915.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\src\mac\region\RegionAU915.c</FilePath>
-            </File>
-            <File>
-              <FileName>RegionBaseUS.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\src\mac\region\RegionBaseUS.c</FilePath>
-            </File>
-            <File>
-              <FileName>RegionCN470.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\src\mac\region\RegionCN470.c</FilePath>
-            </File>
-            <File>
-              <FileName>RegionCN779.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\src\mac\region\RegionCN779.c</FilePath>
-            </File>
-            <File>
               <FileName>RegionCommon.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\..\..\src\mac\region\RegionCommon.c</FilePath>
             </File>
             <File>
-              <FileName>RegionEU433.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\src\mac\region\RegionEU433.c</FilePath>
-            </File>
-            <File>
               <FileName>RegionEU868.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\..\..\src\mac\region\RegionEU868.c</FilePath>
-            </File>
-            <File>
-              <FileName>RegionIN865.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\src\mac\region\RegionIN865.c</FilePath>
-            </File>
-            <File>
-              <FileName>RegionKR920.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\src\mac\region\RegionKR920.c</FilePath>
-            </File>
-            <File>
-              <FileName>RegionRU864.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\src\mac\region\RegionRU864.c</FilePath>
-            </File>
-            <File>
-              <FileName>RegionUS915.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\src\mac\region\RegionUS915.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -4332,7 +4082,7 @@
             <v6Rtti>0</v6Rtti>
             <VariousControls>
               <MiscControls></MiscControls>
-              <Define>USE_HAL_DRIVER STM32L072xx REGION_EU868 ACTIVE_REGION=LORAMAC_REGION_EU868 LORAMAC_CLASSB_ENABLED USE_RADIO_DEBUG REGION_US915 REGION_CN779 REGION_EU433 REGION_AU915 REGION_AS923 REGION_CN470 REGION_KR920 REGION_IN865 REGION_RU864 SOFT_SE</Define>
+              <Define>USE_HAL_DRIVER STM32L072xx REGION_EU868 ACTIVE_REGION=LORAMAC_REGION_EU868 LORAMAC_CLASSB_ENABLED USE_RADIO_DEBUG SOFT_SE</Define>
               <Undefine></Undefine>
               <IncludePath>..\..\..\..\src;..\..\..\..\src\apps\LoRaMac\periodic-uplink-lpp\B-L072Z-LRWAN1;..\..\..\..\src\apps\LoRaMac\common;..\..\..\..\src\apps\LoRaMac\common\LmHandler;..\..\..\..\src\apps\LoRaMac\common\LmHandler\packages;..\..\..\..\src\boards;..\..\..\..\src\boards\B-L072Z-LRWAN1;..\..\..\..\src\boards\B-L072Z-LRWAN1\cmsis;..\..\..\..\src\boards\mcu\stm32;..\..\..\..\src\boards\mcu\stm32\cmsis;..\..\..\..\src\boards\mcu\stm32\STM32L0xx_HAL_Driver\inc;..\..\..\..\src\apps\LoRaMac\common;..\..\..\..\src\mac;..\..\..\..\src\mac\region;..\..\..\..\src\peripherals;..\..\..\..\src\peripherals\soft-se;..\..\..\..\src\radio;..\..\..\..\src\system;..\..\..\..\src\system\crypto</IncludePath>
             </VariousControls>
@@ -4659,64 +4409,14 @@
               <FilePath>..\..\..\..\src\mac\region\Region.c</FilePath>
             </File>
             <File>
-              <FileName>RegionAS923.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\src\mac\region\RegionAS923.c</FilePath>
-            </File>
-            <File>
-              <FileName>RegionAU915.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\src\mac\region\RegionAU915.c</FilePath>
-            </File>
-            <File>
-              <FileName>RegionBaseUS.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\src\mac\region\RegionBaseUS.c</FilePath>
-            </File>
-            <File>
-              <FileName>RegionCN470.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\src\mac\region\RegionCN470.c</FilePath>
-            </File>
-            <File>
-              <FileName>RegionCN779.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\src\mac\region\RegionCN779.c</FilePath>
-            </File>
-            <File>
               <FileName>RegionCommon.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\..\..\src\mac\region\RegionCommon.c</FilePath>
             </File>
             <File>
-              <FileName>RegionEU433.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\src\mac\region\RegionEU433.c</FilePath>
-            </File>
-            <File>
               <FileName>RegionEU868.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\..\..\src\mac\region\RegionEU868.c</FilePath>
-            </File>
-            <File>
-              <FileName>RegionIN865.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\src\mac\region\RegionIN865.c</FilePath>
-            </File>
-            <File>
-              <FileName>RegionKR920.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\src\mac\region\RegionKR920.c</FilePath>
-            </File>
-            <File>
-              <FileName>RegionRU864.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\src\mac\region\RegionRU864.c</FilePath>
-            </File>
-            <File>
-              <FileName>RegionUS915.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\src\mac\region\RegionUS915.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -5458,64 +5158,14 @@
               <FilePath>..\..\..\..\src\mac\region\Region.c</FilePath>
             </File>
             <File>
-              <FileName>RegionAS923.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\src\mac\region\RegionAS923.c</FilePath>
-            </File>
-            <File>
-              <FileName>RegionAU915.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\src\mac\region\RegionAU915.c</FilePath>
-            </File>
-            <File>
-              <FileName>RegionBaseUS.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\src\mac\region\RegionBaseUS.c</FilePath>
-            </File>
-            <File>
-              <FileName>RegionCN470.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\src\mac\region\RegionCN470.c</FilePath>
-            </File>
-            <File>
-              <FileName>RegionCN779.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\src\mac\region\RegionCN779.c</FilePath>
-            </File>
-            <File>
               <FileName>RegionCommon.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\..\..\src\mac\region\RegionCommon.c</FilePath>
             </File>
             <File>
-              <FileName>RegionEU433.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\src\mac\region\RegionEU433.c</FilePath>
-            </File>
-            <File>
               <FileName>RegionEU868.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\..\..\src\mac\region\RegionEU868.c</FilePath>
-            </File>
-            <File>
-              <FileName>RegionIN865.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\src\mac\region\RegionIN865.c</FilePath>
-            </File>
-            <File>
-              <FileName>RegionKR920.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\src\mac\region\RegionKR920.c</FilePath>
-            </File>
-            <File>
-              <FileName>RegionRU864.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\src\mac\region\RegionRU864.c</FilePath>
-            </File>
-            <File>
-              <FileName>RegionUS915.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\src\mac\region\RegionUS915.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -6257,64 +5907,14 @@
               <FilePath>..\..\..\..\src\mac\region\Region.c</FilePath>
             </File>
             <File>
-              <FileName>RegionAS923.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\src\mac\region\RegionAS923.c</FilePath>
-            </File>
-            <File>
-              <FileName>RegionAU915.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\src\mac\region\RegionAU915.c</FilePath>
-            </File>
-            <File>
-              <FileName>RegionBaseUS.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\src\mac\region\RegionBaseUS.c</FilePath>
-            </File>
-            <File>
-              <FileName>RegionCN470.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\src\mac\region\RegionCN470.c</FilePath>
-            </File>
-            <File>
-              <FileName>RegionCN779.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\src\mac\region\RegionCN779.c</FilePath>
-            </File>
-            <File>
               <FileName>RegionCommon.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\..\..\src\mac\region\RegionCommon.c</FilePath>
             </File>
             <File>
-              <FileName>RegionEU433.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\src\mac\region\RegionEU433.c</FilePath>
-            </File>
-            <File>
               <FileName>RegionEU868.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\..\..\src\mac\region\RegionEU868.c</FilePath>
-            </File>
-            <File>
-              <FileName>RegionIN865.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\src\mac\region\RegionIN865.c</FilePath>
-            </File>
-            <File>
-              <FileName>RegionKR920.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\src\mac\region\RegionKR920.c</FilePath>
-            </File>
-            <File>
-              <FileName>RegionRU864.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\src\mac\region\RegionRU864.c</FilePath>
-            </File>
-            <File>
-              <FileName>RegionUS915.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\src\mac\region\RegionUS915.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -7056,64 +6656,14 @@
               <FilePath>..\..\..\..\src\mac\region\Region.c</FilePath>
             </File>
             <File>
-              <FileName>RegionAS923.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\src\mac\region\RegionAS923.c</FilePath>
-            </File>
-            <File>
-              <FileName>RegionAU915.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\src\mac\region\RegionAU915.c</FilePath>
-            </File>
-            <File>
-              <FileName>RegionBaseUS.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\src\mac\region\RegionBaseUS.c</FilePath>
-            </File>
-            <File>
-              <FileName>RegionCN470.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\src\mac\region\RegionCN470.c</FilePath>
-            </File>
-            <File>
-              <FileName>RegionCN779.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\src\mac\region\RegionCN779.c</FilePath>
-            </File>
-            <File>
               <FileName>RegionCommon.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\..\..\src\mac\region\RegionCommon.c</FilePath>
             </File>
             <File>
-              <FileName>RegionEU433.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\src\mac\region\RegionEU433.c</FilePath>
-            </File>
-            <File>
               <FileName>RegionEU868.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\..\..\src\mac\region\RegionEU868.c</FilePath>
-            </File>
-            <File>
-              <FileName>RegionIN865.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\src\mac\region\RegionIN865.c</FilePath>
-            </File>
-            <File>
-              <FileName>RegionKR920.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\src\mac\region\RegionKR920.c</FilePath>
-            </File>
-            <File>
-              <FileName>RegionRU864.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\src\mac\region\RegionRU864.c</FilePath>
-            </File>
-            <File>
-              <FileName>RegionUS915.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\src\mac\region\RegionUS915.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -7855,64 +7405,14 @@
               <FilePath>..\..\..\..\src\mac\region\Region.c</FilePath>
             </File>
             <File>
-              <FileName>RegionAS923.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\src\mac\region\RegionAS923.c</FilePath>
-            </File>
-            <File>
-              <FileName>RegionAU915.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\src\mac\region\RegionAU915.c</FilePath>
-            </File>
-            <File>
-              <FileName>RegionBaseUS.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\src\mac\region\RegionBaseUS.c</FilePath>
-            </File>
-            <File>
-              <FileName>RegionCN470.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\src\mac\region\RegionCN470.c</FilePath>
-            </File>
-            <File>
-              <FileName>RegionCN779.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\src\mac\region\RegionCN779.c</FilePath>
-            </File>
-            <File>
               <FileName>RegionCommon.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\..\..\src\mac\region\RegionCommon.c</FilePath>
             </File>
             <File>
-              <FileName>RegionEU433.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\src\mac\region\RegionEU433.c</FilePath>
-            </File>
-            <File>
               <FileName>RegionEU868.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\..\..\src\mac\region\RegionEU868.c</FilePath>
-            </File>
-            <File>
-              <FileName>RegionIN865.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\src\mac\region\RegionIN865.c</FilePath>
-            </File>
-            <File>
-              <FileName>RegionKR920.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\src\mac\region\RegionKR920.c</FilePath>
-            </File>
-            <File>
-              <FileName>RegionRU864.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\src\mac\region\RegionRU864.c</FilePath>
-            </File>
-            <File>
-              <FileName>RegionUS915.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\..\src\mac\region\RegionUS915.c</FilePath>
             </File>
           </Files>
         </Group>
