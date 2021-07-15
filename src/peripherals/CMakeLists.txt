@@ -46,6 +46,9 @@ else()
     endif()
 endif()
 
+# target_include_directories( ${PROJECT_NAME} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/ublox)
+file(GLOB ${PROJECT_NAME}_SOURCES "ublox/*.c")
+
 add_library(${PROJECT_NAME} OBJECT EXCLUDE_FROM_ALL ${${PROJECT_NAME}_SOURCES})
 
 if(${SECURE_ELEMENT_PRE_PROVISIONED} MATCHES ON)

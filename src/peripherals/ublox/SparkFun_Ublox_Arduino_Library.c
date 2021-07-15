@@ -41,7 +41,7 @@
 
 #include "SparkFun_Ublox_Arduino_Library.h"
 
-#include <i2c_middleware.h>
+#include "i2c_middleware.h"
 
 
 
