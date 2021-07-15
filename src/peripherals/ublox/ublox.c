@@ -134,11 +134,11 @@ gps_status_t Backup_GPS()
 {
 	if (put_in_power_save_mode(defaultMaxWait) == false)
 	{
-		PRINTF("***!!! Warning: put_in_power_save_mode failed !!!***\n");
+		printf("***!!! Warning: put_in_power_save_mode failed !!!***\n");
 	}
 	else
 	{
-		PRINTF("put_in_power_save_mode carried out successfully!\n");
+		printf("put_in_power_save_mode carried out successfully!\n");
 	}
 	//HAL_GPIO_WritePin(GPS_INT_GPIO_Port, GPS_INT_Pin, GPIO_PIN_RESET);    // force GPS backup mode by pulling GPS extint pin low
 	return GPS_SUCCESS;
@@ -159,63 +159,63 @@ gps_status_t setup_GPS()
 	/* Set the I2C port to output UBX only (turn off NMEA noise) */
 	if (setI2COutput(COM_TYPE_UBX, defaultMaxWait) == false) //Set the I2C port to output UBX only (turn off NMEA noise)
 	{
-		PRINTF("***!!! Warning: setI2COutput failed !!!***\n");
+		printf("***!!! Warning: setI2COutput failed !!!***\n");
 		reinit_i2c(&hi2c1);
 	}
 	else
 	{
-		PRINTF("set setI2COutput carried out successfully!\n");
+		printf("set setI2COutput carried out successfully!\n");
 	}
 
 	/* For running the self test part of the program */
 	if (isConnected(defaultMaxWait) == false) //Connect to the Ublox module using Wire port
 	{
-		PRINTF("SELFTEST: GPS did not respond. GPS error...\r\n");
+		printf("SELFTEST: GPS did not respond. GPS error...\r\n");
 		reinit_i2c(&hi2c1);
 	}
 	else
 	{
-		PRINTF("SELFTEST: GPS responds. GPS OK...\r\n");
+		printf("SELFTEST: GPS responds. GPS OK...\r\n");
 	}
 
 	if (setGPS_constellation_only(defaultMaxWait) == false) // Set the constellation to use only GPS
 	{
-		PRINTF("***!!! Warning: setGPS_constellation_only failed !!!***\n");
+		printf("***!!! Warning: setGPS_constellation_only failed !!!***\n");
 		reinit_i2c(&hi2c1);
 	}
 	else
 	{
-		PRINTF("set GPS constellation only carried out successfully!\n");
+		printf("set GPS constellation only carried out successfully!\n");
 	}
 
 	if (setDynamicModel(DYN_MODEL_AIRBORNE1g, defaultMaxWait) == false) // set to airbourne mode
 	{
-		PRINTF("***!!! Warning: setDynamicModel failed !!!***\n");
+		printf("***!!! Warning: setDynamicModel failed !!!***\n");
 		reinit_i2c(&hi2c1);
 	}
 	else
 	{
-		PRINTF("Dynamic platform model changed successfully!\n");
+		printf("Dynamic platform model changed successfully!\n");
 	}
 
 	if (set_powersave_config(defaultMaxWait) == false) // Save powersave config to ram. can be activated later.
 	{
-		PRINTF("***!!! Warning: set_powersave_config failed !!!***\n");
+		printf("***!!! Warning: set_powersave_config failed !!!***\n");
 		reinit_i2c(&hi2c1);
 	}
 	else
 	{
-		PRINTF("set_powersave_config carried out successfully!\n");
+		printf("set_powersave_config carried out successfully!\n");
 	}
 
 	if (saveConfiguration(defaultMaxWait) == false) // saveConfiguration config to BBR ram.
 	{
-		PRINTF("***!!! Warning: saveConfiguration failed !!!***\n");
+		printf("***!!! Warning: saveConfiguration failed !!!***\n");
 		reinit_i2c(&hi2c1);
 	}
 	else
 	{
-		PRINTF("saveConfiguration carried out successfully!\n");
+		printf("saveConfiguration carried out successfully!\n");
 	}
 
 	return GPS_SUCCESS;
@@ -259,22 +259,22 @@ gps_status_t get_location_fix(uint32_t timeout)
 		uint32_t current_time = HAL_GetTick() - startTime;
 		float current_time_F = (float)current_time / 1000;
 
-		PRINTF("Fixtype: ");
+		printf("Fixtype: ");
 		if (temp_GPSfix_type == 0)
-			PRINTF("No fix ");
+			printf("No fix ");
 		else if (temp_GPSfix_type == 1)
-			PRINTF("Dead reckoning ");
+			printf("Dead reckoning ");
 		else if (temp_GPSfix_type == 2)
-			PRINTF("2D ");
+			printf("2D ");
 		else if (temp_GPSfix_type == 3)
-			PRINTF("3D ");
+			printf("3D ");
 		else if (temp_GPSfix_type == 4)
-			PRINTF("GNSS+Dead reckoning ");
+			printf("GNSS+Dead reckoning ");
 
-		PRINTF(" Sats:%d ", temp_GPSsats);
-		PRINTF(" GPSfix_OK:%d ", temp_GPSfix_OK);
-		PRINTF(" GPS time: %02d/%02d/%04d, %02d:%02d:%02d.%04d ", temp_GPSday, temp_GPSmonth, temp_GPSyear, temp_GPShour, temp_GPSminute, temp_GPSsecond, temp_GPSmillisecond);
-		PRINTF(" GPS Search time: %.3f seconds \r\n", current_time_F);
+		printf(" Sats:%d ", temp_GPSsats);
+		printf(" GPSfix_OK:%d ", temp_GPSfix_OK);
+		printf(" GPS time: %02d/%02d/%04d, %02d:%02d:%02d.%04d ", temp_GPSday, temp_GPSmonth, temp_GPSyear, temp_GPShour, temp_GPSminute, temp_GPSsecond, temp_GPSmillisecond);
+		printf(" GPS Search time: %.3f seconds \r\n", current_time_F);
 
 		struct tm t;
 		time_t t_of_day;
@@ -288,7 +288,7 @@ gps_status_t get_location_fix(uint32_t timeout)
 		t.tm_isdst = 0; // Is DST on? 1 = yes, 0 = no, -1 = unknown
 		t_of_day = mktime(&t);
 
-		PRINTF("seconds since the Epoch: %ld\n", (uint32_t)t_of_day);
+		printf("seconds since the Epoch: %ld\n", (uint32_t)t_of_day);
 
 		load_solar_voltage = BSP_GetSolarLevel16();
 
@@ -344,12 +344,12 @@ static gps_status_t init_for_fix()
 
 	if (put_in_continueous_mode(defaultMaxWait) == false) // Set the constellation to use only GPS
 	{
-		PRINTF("***!!! Warning: put_in_continueous_mode failed !!!***\n");
+		printf("***!!! Warning: put_in_continueous_mode failed !!!***\n");
 		reinit_i2c(&hi2c1);
 	}
 	else
 	{
-		PRINTF("put_in_continueous_mode carried out successfully!\n");
+		printf("put_in_continueous_mode carried out successfully!\n");
 	}
 
 	HAL_IWDG_Refresh(&hiwdg);
@@ -357,12 +357,12 @@ static gps_status_t init_for_fix()
 	/* Set the I2C port to output UBX only (turn off NMEA noise) */
 	if (setI2COutput(COM_TYPE_UBX, defaultMaxWait) == false) //Set the I2C port to output UBX only (turn off NMEA noise)
 	{
-		PRINTF("***!!! Warning: setI2COutput failed !!!***\n");
+		printf("***!!! Warning: setI2COutput failed !!!***\n");
 		reinit_i2c(&hi2c1);
 	}
 	else
 	{
-		PRINTF("set setI2COutput carried out successfully!\n");
+		printf("set setI2COutput carried out successfully!\n");
 	}
 
 	HAL_IWDG_Refresh(&hiwdg);
@@ -371,30 +371,30 @@ static gps_status_t init_for_fix()
 	uint8_t newDynamicModel = getDynamicModel(defaultMaxWait);
 	if (newDynamicModel == 255)
 	{
-		PRINTF("***!!! Warning: getDynamicModel failed !!!***\n");
+		printf("***!!! Warning: getDynamicModel failed !!!***\n");
 		reinit_i2c(&hi2c1);
 	}
 	else if (newDynamicModel != DYN_MODEL_AIRBORNE1g)
 	{
-		PRINTF("The current dynamic model is INCORRECT. The current dynamic model is: %d\n", newDynamicModel);
+		printf("The current dynamic model is INCORRECT. The current dynamic model is: %d\n", newDynamicModel);
 
 		if (setDynamicModel(DYN_MODEL_AIRBORNE1g, defaultMaxWait) == false) // Set the dynamic model to PORTABLE
 		{
-			PRINTF("***!!! Warning: setDynamicModel failed !!!***\n");
+			printf("***!!! Warning: setDynamicModel failed !!!***\n");
 			reinit_i2c(&hi2c1);
 		}
 		else
 		{
-			PRINTF("Dynamic platform model changed successfully!\n");
+			printf("Dynamic platform model changed successfully!\n");
 		}
 	}
 	else if (newDynamicModel == DYN_MODEL_AIRBORNE1g)
 	{
-		PRINTF("The current dynamic model correct and is: %d\n", newDynamicModel);
+		printf("The current dynamic model correct and is: %d\n", newDynamicModel);
 	}
 	else
 	{
-		PRINTF("dynamic model setting error\n");
+		printf("dynamic model setting error\n");
 	}
 
 	HAL_IWDG_Refresh(&hiwdg);
@@ -414,60 +414,60 @@ static gps_status_t reinit_gps()
 
 	if (setI2COutput(COM_TYPE_UBX, defaultMaxWait) == false) //Set the I2C port to output UBX only (turn off NMEA noise)
 	{
-		PRINTF("***!!! Warning: setI2COutput failed !!!***\n");
+		printf("***!!! Warning: setI2COutput failed !!!***\n");
 		reinit_i2c(&hi2c1);
 	}
 	else
 	{
-		PRINTF("set setI2COutput carried out successfully!\n");
+		printf("set setI2COutput carried out successfully!\n");
 	}
 
 	HAL_IWDG_Refresh(&hiwdg);
 
 	if (setI2COutput(COM_TYPE_UBX, defaultMaxWait) == false) //Set the I2C port to output UBX only (turn off NMEA noise)
 	{
-		PRINTF("***!!! Warning: setI2COutput failed !!!***\n");
+		printf("***!!! Warning: setI2COutput failed !!!***\n");
 		reinit_i2c(&hi2c1);
 	}
 	else
 	{
-		PRINTF("set setI2COutput carried out successfully!\n");
+		printf("set setI2COutput carried out successfully!\n");
 	}
 
 	HAL_IWDG_Refresh(&hiwdg);
 
 	if (setGPS_constellation_only(defaultMaxWait) == false) // Set the constellation to use only GPS
 	{
-		PRINTF("***!!! Warning: setGPS_constellation_only failed !!!***\n");
+		printf("***!!! Warning: setGPS_constellation_only failed !!!***\n");
 		reinit_i2c(&hi2c1);
 	}
 	else
 	{
-		PRINTF("set GPS constellation only carried out successfully!\n");
+		printf("set GPS constellation only carried out successfully!\n");
 	}
 
 	HAL_IWDG_Refresh(&hiwdg);
 
 	if (setDynamicModel(DYN_MODEL_AIRBORNE1g, defaultMaxWait) == false) // set to airbourne mode
 	{
-		PRINTF("***!!! Warning: setDynamicModel failed !!!***\n");
+		printf("***!!! Warning: setDynamicModel failed !!!***\n");
 		reinit_i2c(&hi2c1);
 	}
 	else
 	{
-		PRINTF("Dynamic platform model changed successfully!\n");
+		printf("Dynamic platform model changed successfully!\n");
 	}
 
 	HAL_IWDG_Refresh(&hiwdg);
 
 	if (set_powersave_config(defaultMaxWait) == false) // Save powersave config to ram. can be activated later.
 	{
-		PRINTF("***!!! Warning: set_powersave_config failed !!!***\n");
+		printf("***!!! Warning: set_powersave_config failed !!!***\n");
 		reinit_i2c(&hi2c1);
 	}
 	else
 	{
-		PRINTF("set_powersave_config carried out successfully!\n");
+		printf("set_powersave_config carried out successfully!\n");
 	}
 
 	HAL_IWDG_Refresh(&hiwdg);
