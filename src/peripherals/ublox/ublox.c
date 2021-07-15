@@ -20,14 +20,12 @@
 #include <stdio.h>
 #include "stm32l0xx_hal.h"
 #include "main.h"
-#include "hw.h"
 #include "bsp.h"
 #include <time.h>
 
 #include "SparkFun_Ublox_Arduino_Library.h"
 
 #include "i2c_middleware.h"
-#include <hw_i2c.h>
 
 /* ==================================================================== */
 /* ============================ constants ============================= */

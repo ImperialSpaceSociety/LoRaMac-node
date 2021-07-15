@@ -26,8 +26,7 @@ extern "C"
 	/* Inclusion of system and local header files goes here */
 
 #include <stdlib.h>
-#include "stm32l0xx_hal.h"
-#include "debug.h"
+#include <stdint.h>
 
 	/* ==================================================================== */
 	/* ============================ constants ============================= */
