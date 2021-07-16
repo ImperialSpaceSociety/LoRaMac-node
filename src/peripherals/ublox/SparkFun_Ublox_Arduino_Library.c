@@ -39,6 +39,11 @@
 */
 #if 1
 
+
+#include <stdbool.h>
+#include <stdio.h>
+#include "utilities.h"
+#include "i2c.h"
 #include "SparkFun_Ublox_Arduino_Library.h"
 
 #include "i2c_middleware.h"
@@ -171,15 +176,15 @@ bool checkUbloxI2C(ubxPacket *incomingUBX, uint8_t requestedClass, uint8_t reque
 //      return (false);                          //Sensor did not ACK
 
 		
-		if (HAL_I2C_IsDeviceReady(&hi2c1,(uint16_t) _gpsI2Caddress << 1,5,defaultMaxWait) != HAL_OK)
-		{
-			return (false);                          //Sensor did not ACK
-		}
+		// if (HAL_I2C_IsDeviceReady(&hi2c1,(uint16_t) _gpsI2Caddress << 1,5,defaultMaxWait) != HAL_OK)
+		// {
+		// 	return (false);                          //Sensor did not ACK
+		// }
 		
 		uint8_t buff_rx[2] = {0};
 		
 		//uint16_t return_value = 0;
-		if (I2C_receive_mem(&hi2c1,(uint16_t) _gpsI2Caddress << 1,(uint16_t)0xFD,buff_rx,2,defaultMaxWait ) != I2C_SUCCSS)
+		if (I2cReadMemBuffer(&I2c,(uint16_t) _gpsI2Caddress << 1,(uint16_t)0xFD,buff_rx,2 ) != LMN_STATUS_OK)
 		{
 			return (false);                          //Sensor did not ACK
 		}
@@ -249,7 +254,7 @@ bool checkUbloxI2C(ubxPacket *incomingUBX, uint8_t requestedClass, uint8_t reque
 		
 
 
-		if (I2C_receive_mem(&hi2c1,(uint16_t) _gpsI2Caddress << 1,(uint16_t)0xFF,ubx_packet_buff,bytesAvailable,defaultMaxWait ) != I2C_SUCCSS)
+		if (I2cReadMemBuffer(&I2c,(uint16_t) _gpsI2Caddress << 1,(uint16_t)0xFF,ubx_packet_buff,bytesAvailable ) != LMN_STATUS_OK)
 		{
 			return (false);  //Sensor did not ACK
 		}
@@ -901,7 +906,7 @@ sfe_ublox_status_e sendI2cCommand(ubxPacket *outgoingUBX, uint16_t maxWait)
 	GPS_buffer[cnt++] = outgoingUBX->checksumB;
 	
 	
-	return ((I2C_transmit(&hi2c1, _gpsI2Caddress << 1, GPS_buffer, cnt, defaultMaxWait) == I2C_SUCCSS)
+	return ((I2cWriteMemBuffer(&I2c, _gpsI2Caddress << 1,(uint16_t)0xFF, GPS_buffer, cnt) == LMN_STATUS_OK)
 		       ? SFE_UBLOX_STATUS_SUCCESS : SFE_UBLOX_STATUS_I2C_COMM_FAILURE);
 }
 
