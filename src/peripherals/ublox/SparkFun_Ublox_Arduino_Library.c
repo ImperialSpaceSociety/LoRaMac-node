@@ -1180,8 +1180,7 @@ sfe_ublox_status_e waitForACKResponse(ubxPacket *outgoingUBX, uint8_t requestedC
 
     } //checkUbloxInternal == true
 		
-		HAL_Delay(1);
-    //delayMicroseconds(500);
+		DelayMs(1);
   }
 
   // We have timed out...
@@ -1289,7 +1288,7 @@ sfe_ublox_status_e waitForNoACKResponse(ubxPacket *outgoingUBX, uint8_t requeste
       }
     }
 
-    HAL_Delay(1);
+    DelayMs(1);
   }
 
   if (_printDebug == true)

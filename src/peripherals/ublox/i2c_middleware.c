@@ -98,7 +98,8 @@ I2C_MIDDLEWARE_STATUS_t reinit_i2c()
 
 	/* disable power to GPS */
 	HAL_GPIO_WritePin(GPS_EN_GPIO_Port, GPS_EN_PIN, GPIO_PIN_SET);
-	HAL_Delay(100);
+	DelayMs(100);
+
 
 	/* De-initialize the I2C comunication bus */
 	HAL_I2C_MspDeInit(hi2c);
@@ -108,19 +109,19 @@ I2C_MIDDLEWARE_STATUS_t reinit_i2c()
 
 	/* set i2c pins low to ensure it cannot power up the core of the GPS */
 	HAL_GPIO_WritePin(GPS_EN_GPIO_Port, GPIO_PIN_9 | GPIO_PIN_8, GPIO_PIN_RESET);
-	HAL_Delay(1000);
+	DelayMs(1000);
 
 	/* Enable power to GPS */
 	HAL_GPIO_WritePin(GPS_EN_GPIO_Port, GPS_EN_PIN, GPIO_PIN_RESET);
-	HAL_Delay(1000);
+	DelayMs(1000);
 
 	/* send 9 clock pulses to the GPS ref: https://www.microchip.com/forums/FindPost/175578 */
 	for (uint8_t i = 0; i < 9; i++)
 	{
 		HAL_GPIO_WritePin(GPS_EN_GPIO_Port, GPIO_PIN_8, GPIO_PIN_RESET);
-		HAL_Delay(1);
+		DelayMs(1);
 		HAL_GPIO_WritePin(GPS_EN_GPIO_Port, GPIO_PIN_8, GPIO_PIN_SET);
-		HAL_Delay(1);
+		DelayMs(1);
 	}
 
 	/* COMPLETELY USELESS TO HERE */
@@ -173,7 +174,7 @@ I2C_MIDDLEWARE_STATUS_t reinit_i2c()
 		PRINTF("unknown deinit i2c error\n");
 	}
 
-	HAL_Delay(20);
+	DelayMs(20);
 
 	status = HAL_I2C_Init(hi2c);
 
