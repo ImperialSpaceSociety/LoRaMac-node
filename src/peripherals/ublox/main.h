@@ -29,7 +29,7 @@ extern "C"
 #endif
 
   /* Includes ------------------------------------------------------------------*/
-  #include "gpio-board.h"
+  #include "utilities.h"
   /* Private includes ----------------------------------------------------------*/
   /* USER CODE BEGIN Includes */
 
@@ -66,9 +66,6 @@ extern "C"
 
 #define SENSOR_EN_PIN GPIO_PIN_7
 #define SENSOR_EN_GPIO_Port GPIOB
-
-#define GPS_EN_PIN GPIO_PIN_11
-#define GPS_EN_GPIO_Port GPIOA
 
 /* USER CODE BEGIN Private defines */
 

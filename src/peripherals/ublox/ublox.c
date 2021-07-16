@@ -16,17 +16,17 @@
 /* Inclusion of system and local header files goes here */
 
 #include "ublox.h"
+#include "main.h"
 #include <stdbool.h>
+#include "utilities.h"
 #include "i2c.h"
+#include <board.h>
 #include <systime.h>
 #include "delay.h"
 #include <stdlib.h>
 #include <stdio.h>
-#include "stm32l0xx_hal.h"
-#include "main.h"
-#include "bsp.h"
+#include <string.h>
 #include <time.h>
-#include "board.h"
 #include "iwdg.h"
 
 #include "SparkFun_Ublox_Arduino_Library.h"
