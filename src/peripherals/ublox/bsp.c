@@ -19,11 +19,11 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include <stdlib.h>
-#include "hw.h"
 #include "bsp.h"
-#include "ms5607.h"
 #include "ublox.h"
 #include "playback.h"
+#include "nvmm.h"
+
 
 /* Private typedef -----------------------------------------------------------*/
 /* Private define ------------------------------------------------------------*/
@@ -82,7 +82,7 @@ void BSP_sensor_Read(void)
 {
 	HAL_IWDG_Refresh(&hiwdg);
 
-	PRINTF("READING SENSOR AND GPS\n\r");
+	printf("READING SENSOR AND GPS\n\r");
 
 	/* USER CODE BEGIN 5 */
 #if SENSOR_ENABLED
@@ -193,40 +193,40 @@ void save_data_to_nvm()
  */
 void pretty_print_sensor_values(double *TEMPERATURE_Value, double *PRESSURE_Value, gps_info_t *gps_info, uint16_t *no_load_solar_voltage, uint16_t *load_solar_voltage)
 {
-	PRINTF("================================================================\r\n");
-	PRINTF("SENSOR AND GPS VALUES");
-	PRINTF("\r\n");
-	PRINTF("================================================================\r\n");
+	printf("================================================================\r\n");
+	printf("SENSOR AND GPS VALUES");
+	printf("\r\n");
+	printf("================================================================\r\n");
 
-	PRINTF("Temperature degrees C: ");
-	PRINTF("%lf", *TEMPERATURE_Value);
-	PRINTF("\r\n");
-	PRINTF("Pressure mBar: ");
-	PRINTF("%lf", *PRESSURE_Value);
-	PRINTF("\r\n");
-	PRINTF("Longitude: ");
-	PRINTF("%lf ", gps_info->GPS_UBX_longitude_Float);
-	PRINTF("Latitude: ");
-	PRINTF("%lf ", gps_info->GPS_UBX_latitude_Float);
-	PRINTF("altitude: ");
-	PRINTF("%ld", gps_info->GPSaltitude / 1000);
-	PRINTF("\r\n");
-	PRINTF("GPS time: ");
-	PRINTF("%ld", gps_info->unix_time);
-	PRINTF("\r\n");
-	PRINTF("Solar voltage no load: ");
-	PRINTF("%ld", *no_load_solar_voltage);
-	PRINTF("\r\n");
-	PRINTF("Solar voltage with GPS load: ");
-	PRINTF("%ld", *load_solar_voltage);
-	PRINTF("\r\n");
-	PRINTF("Reset Count: ");
-	PRINTF("%ld", sensor_data.reset_count);
-	PRINTF("\r\n");
-	PRINTF("Data received from ground: ");
-	PRINTF("%ld", sensor_data.data_received);
-	PRINTF("\r\n");
-	PRINTF("================================================================\r\n");
+	printf("Temperature degrees C: ");
+	printf("%lf", *TEMPERATURE_Value);
+	printf("\r\n");
+	printf("Pressure mBar: ");
+	printf("%lf", *PRESSURE_Value);
+	printf("\r\n");
+	printf("Longitude: ");
+	printf("%lf ", gps_info->GPS_UBX_longitude_Float);
+	printf("Latitude: ");
+	printf("%lf ", gps_info->GPS_UBX_latitude_Float);
+	printf("altitude: ");
+	printf("%ld", gps_info->GPSaltitude / 1000);
+	printf("\r\n");
+	printf("GPS time: ");
+	printf("%ld", gps_info->unix_time);
+	printf("\r\n");
+	printf("Solar voltage no load: ");
+	printf("%ld", *no_load_solar_voltage);
+	printf("\r\n");
+	printf("Solar voltage with GPS load: ");
+	printf("%ld", *load_solar_voltage);
+	printf("\r\n");
+	printf("Reset Count: ");
+	printf("%ld", sensor_data.reset_count);
+	printf("\r\n");
+	printf("Data received from ground: ");
+	printf("%ld", sensor_data.data_received);
+	printf("\r\n");
+	printf("================================================================\r\n");
 }
 
 void manage_incoming_instruction(uint8_t *instructions)
@@ -234,12 +234,12 @@ void manage_incoming_instruction(uint8_t *instructions)
 	uint32_t recent_time_min = extractLong_from_buff(0, instructions);
 	uint16_t recent_timepos_index = get_time_pos_index_older_than(recent_time_min);
 
-	PRINTF("Received instruction recent. time(min):%d timepos index: %d\n", recent_time_min, recent_timepos_index);
+	printf("Received instruction recent. time(min):%d timepos index: %d\n", recent_time_min, recent_timepos_index);
 
 	uint32_t older_time_min = extractLong_from_buff(4, instructions);
 	uint16_t older_timepos_index = get_time_pos_index_older_than(older_time_min);
 
-	PRINTF("Received instruction older. time(min):%d timepos index: %d\n", older_time_min, older_timepos_index);
+	printf("Received instruction older. time(min):%d timepos index: %d\n", older_time_min, older_timepos_index);
 
 	process_playback_instructions(recent_timepos_index, older_timepos_index);
 }
@@ -270,7 +270,7 @@ void BSP_sensor_Init(void)
 	GPS_EN_GPIO_Init();
 #endif
 
-	PRINTF("SELFTEST: Initialisng ms5607\n\r");
+	printf("SELFTEST: Initialisng ms5607\n\r");
 #if SENSOR_ENABLED
 	/* Initialize sensors */
 	ms5607_Init();
@@ -280,7 +280,7 @@ void BSP_sensor_Init(void)
 #endif
 
 #if GPS_ENABLED
-	PRINTF("SELFTEST: Initialising GPS\n\r");
+	printf("SELFTEST: Initialising GPS\n\r");
 
 	//GPS SETUP
 	setup_GPS();
@@ -301,9 +301,9 @@ void BSP_sensor_Init(void)
 void update_reset_counts_in_ram_nvm()
 {
 	/* record number of resets to EEPROM, and also to send down */
-	EepromMcuReadBuffer(RESET_COUNTER_ADDR, (void *)&sensor_data.reset_count, RESET_COUNTER_LEN);
+	NvmmRead(RESET_COUNTER_ADDR, (void *)&sensor_data.reset_count, RESET_COUNTER_LEN);
 	sensor_data.reset_count += 1;
-	EepromMcuWriteBuffer(RESET_COUNTER_ADDR, (void *)&sensor_data.reset_count, RESET_COUNTER_LEN);
+	NvmmWrite(RESET_COUNTER_ADDR, (void *)&sensor_data.reset_count, RESET_COUNTER_LEN);
 }
 
 /**
@@ -316,8 +316,8 @@ void playback_hw_init()
 {
 	HAL_IWDG_Refresh(&hiwdg);
 
-	EepromMcuReadBuffer(CURRENT_PLAYBACK_INDEX_IN_EEPROM_ADDR, (void *)&current_EEPROM_index, sizeof(current_EEPROM_index));
-	EepromMcuReadBuffer(N_PLAYBACK_POSITIONS_SAVED_IN_EEPROM_ADDR, (void *)&n_playback_positions_saved, sizeof(current_EEPROM_index));
+	NvmmRead(CURRENT_PLAYBACK_INDEX_IN_EEPROM_ADDR, (void *)&current_EEPROM_index, sizeof(current_EEPROM_index));
+	NvmmRead(N_PLAYBACK_POSITIONS_SAVED_IN_EEPROM_ADDR, (void *)&n_playback_positions_saved, sizeof(current_EEPROM_index));
 
 	/* We want to send positions from the last n days, defined by PLAYBACK_DAYS. Therefore, we need to calculate how 
 	 * many saved eeprom position/times we should select from. We take the most recent timepos, then calculate back n days
@@ -341,8 +341,8 @@ void playback_hw_init()
 		earliest_timepos_index = older_index;
 	}
 
-	PRINTF("earliest_timepos_index: %d\n", earliest_timepos_index);
-	PRINTF("older_index: %d\n", older_index);
+	printf("earliest_timepos_index: %d\n", earliest_timepos_index);
+	printf("older_index: %d\n", older_index);
 
 	/* Initialise playback */
 	init_playback(&sensor_data, &current_position, &retrieve_eeprom_time_pos, earliest_timepos_index);
@@ -366,11 +366,11 @@ void playback_hw_init()
 void print_stored_coordinates()
 {
 	/* test stored positoins */
-	PRINTF("Printing Stored coordinates:\n");
+	printf("Printing Stored coordinates:\n");
 	for (uint16_t i = 0; i < n_playback_positions_saved; i++)
 	{
 		time_pos_fix_t temp = retrieve_eeprom_time_pos(i);
-		PRINTF("index: %d, long: %d, lat: %d, alt: %d, ts: %d\n", i, temp.longitude, temp.latitude, temp.altitude, temp.minutes_since_epoch);
+		printf("index: %d, long: %d, lat: %d, alt: %d, ts: %d\n", i, temp.longitude, temp.latitude, temp.altitude, temp.minutes_since_epoch);
 	}
 }
 
@@ -383,7 +383,7 @@ void print_stored_coordinates()
 time_pos_fix_t get_oldest_pos_time()
 {
 	/* test stored positoins */
-	PRINTF("Getting oldest position:\n");
+	printf("Getting oldest position:\n");
 
 	/* The index starts from 0. If 1 position is saved, it will have an index of 0.
 	 * Generalising, if there are n positions, the nth position index will be n-1.
@@ -396,7 +396,7 @@ time_pos_fix_t get_oldest_pos_time()
 
 	time_pos_fix_t temp = retrieve_eeprom_time_pos(index);
 
-	PRINTF("oldest postime :: pos_time index: %d, long: %d, lat: %d, alt: %d, ts: %d\n", index, temp.longitude, temp.latitude, temp.altitude, temp.minutes_since_epoch);
+	printf("oldest postime :: pos_time index: %d, long: %d, lat: %d, alt: %d, ts: %d\n", index, temp.longitude, temp.latitude, temp.altitude, temp.minutes_since_epoch);
 
 	return temp;
 }
@@ -436,8 +436,8 @@ void increment_eeprom_index_counters()
 	n_playback_positions_saved = MIN(n_playback_positions_saved + 1, MAX_PLAYBACK_POSITIONS_SAVED_IN_EEPROM);
 	playback_key_info_ptr->n_positions_saved_since_boot += 1;
 
-	EepromMcuWriteBuffer(CURRENT_PLAYBACK_INDEX_IN_EEPROM_ADDR, (void *)&current_EEPROM_index, sizeof(current_EEPROM_index));
-	EepromMcuWriteBuffer(N_PLAYBACK_POSITIONS_SAVED_IN_EEPROM_ADDR, (void *)&n_playback_positions_saved, sizeof(current_EEPROM_index));
+	NvmmWrite(CURRENT_PLAYBACK_INDEX_IN_EEPROM_ADDR, (void *)&current_EEPROM_index, sizeof(current_EEPROM_index));
+	NvmmWrite(N_PLAYBACK_POSITIONS_SAVED_IN_EEPROM_ADDR, (void *)&n_playback_positions_saved, sizeof(current_EEPROM_index));
 }
 
 /**
@@ -449,10 +449,10 @@ void save_current_position_info_to_EEPROM(time_pos_fix_t *currrent_position)
 {
 	/* save Long, Lat, Altitude, minutes since epoch to EEPROM */
 	uint16_t location_to_write = PLAYBACK_EEPROM_ADDR_START + current_EEPROM_index;
-	EepromMcuWriteBuffer(location_to_write + 0, (void *)&current_position.altitude, ALTITUDE_BYTES_LEN);
-	EepromMcuWriteBuffer(location_to_write + 2, (void *)&current_position.latitude, LATITUDE_BYTES_LEN);
-	EepromMcuWriteBuffer(location_to_write + 4, (void *)&current_position.longitude, LONGITUDE_BYTES_LEN);
-	EepromMcuWriteBuffer(location_to_write + 6, (void *)&current_position.minutes_since_epoch, MINUTES_SINCE_EPOCH_BYTES_LEN);
+	NvmmWrite(location_to_write + 0, (void *)&current_position.altitude, ALTITUDE_BYTES_LEN);
+	NvmmWrite(location_to_write + 2, (void *)&current_position.latitude, LATITUDE_BYTES_LEN);
+	NvmmWrite(location_to_write + 4, (void *)&current_position.longitude, LONGITUDE_BYTES_LEN);
+	NvmmWrite(location_to_write + 6, (void *)&current_position.minutes_since_epoch, MINUTES_SINCE_EPOCH_BYTES_LEN);
 }
 
 /**
@@ -470,10 +470,10 @@ time_pos_fix_t retrieve_eeprom_time_pos(uint16_t time_pos_index)
 
 	/* read Long, Lat, Altitude, minutes since epoch from EEPROM */
 	uint16_t location_to_read = PLAYBACK_EEPROM_ADDR_START + mod(current_EEPROM_index - (time_pos_index + 1) * PLAYBACK_EEPROM_PACKET_SIZE, PLAYBACK_EEPROM_SIZE);
-	EepromMcuReadBuffer(location_to_read + 0, (void *)&time_pos_fix.altitude, ALTITUDE_BYTES_LEN);
-	EepromMcuReadBuffer(location_to_read + 2, (void *)&time_pos_fix.latitude, LATITUDE_BYTES_LEN);
-	EepromMcuReadBuffer(location_to_read + 4, (void *)&time_pos_fix.longitude, LONGITUDE_BYTES_LEN);
-	EepromMcuReadBuffer(location_to_read + 6, (void *)&time_pos_fix.minutes_since_epoch, MINUTES_SINCE_EPOCH_BYTES_LEN);
+	NvmmRead(location_to_read + 0, (void *)&time_pos_fix.altitude, ALTITUDE_BYTES_LEN);
+	NvmmRead(location_to_read + 2, (void *)&time_pos_fix.latitude, LATITUDE_BYTES_LEN);
+	NvmmRead(location_to_read + 4, (void *)&time_pos_fix.longitude, LONGITUDE_BYTES_LEN);
+	NvmmRead(location_to_read + 6, (void *)&time_pos_fix.minutes_since_epoch, MINUTES_SINCE_EPOCH_BYTES_LEN);
 
 	HAL_IWDG_Refresh(&hiwdg);
 
@@ -531,41 +531,6 @@ uint16_t BSP_GetSolarLevel16(void)
 	return batteryLevel;
 }
 
-uint8_t EepromMcuWriteBuffer(uint16_t addr, uint8_t *buffer, uint16_t size)
-{
-	uint8_t status = FAIL;
 
-	assert_param((DATA_EEPROM_BASE + addr) >= DATA_EEPROM_BASE);
-	assert_param(buffer != NULL);
-	assert_param(size < (DATA_EEPROM_BANK2_END - DATA_EEPROM_BASE));
-
-	if (HAL_FLASHEx_DATAEEPROM_Unlock() == HAL_OK)
-	{
-		for (uint16_t i = 0; i < size; i++)
-		{
-			if (HAL_FLASHEx_DATAEEPROM_Program(FLASH_TYPEPROGRAMDATA_BYTE,
-											   (DATA_EEPROM_BASE + addr + i),
-											   buffer[i]) != HAL_OK)
-			{
-				// Failed to write EEPROM
-				break;
-			}
-		}
-		status = SUCCESS;
-	}
-
-	HAL_FLASHEx_DATAEEPROM_Lock();
-	return status;
-}
-
-uint8_t EepromMcuReadBuffer(uint16_t addr, uint8_t *buffer, uint16_t size)
-{
-	assert_param((DATA_EEPROM_BASE + addr) >= DATA_EEPROM_BASE);
-	assert_param(buffer != NULL);
-	assert_param(size < (DATA_EEPROM_BANK2_END - DATA_EEPROM_BASE));
-
-	memcpy1(buffer, (uint8_t *)(DATA_EEPROM_BASE + addr), size);
-	return SUCCESS;
-}
 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
