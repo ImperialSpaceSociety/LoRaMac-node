@@ -28,6 +28,9 @@
 #include "SparkFun_Ublox_Arduino_Library.h"
 
 #include "i2c_middleware.h"
+extern I2c_t I2c;
+extern Gpio_t Led1;
+extern Gpio_t Gps_int;
 
 /* ==================================================================== */
 /* ============================ constants ============================= */
@@ -109,12 +112,18 @@ static gps_status_t display_still_searching(void);
 static gps_status_t display_fix_found(void);
 static gps_status_t reinit_gps(void);
 static gps_status_t init_for_fix(void);
+uint32_t systimeMS_get(void);
 
 /* ==================================================================== */
 /* ===================== All functions by section ===================== */
 /* ==================================================================== */
 
 /* Functions definitions go here, organised into sections */
+
+uint32_t systimeMS_get()
+{
+	return SysTimeToMs(SysTimeGet());
+}
 
 gps_status_t get_latest_gps_status(void)
 {
@@ -152,9 +161,10 @@ gps_status_t setup_GPS()
 {
 
 	// wake up gps in case it is in Lower Power mode
-	HAL_GPIO_WritePin(GPS_INT_GPIO_Port, GPS_INT_Pin, GPIO_PIN_SET); // pull GPS extint0 pin high to wake gps
+	GpioWrite(&Gps_int, 1); // pull GPS extint0 pin high to wake gps
+
 	factoryReset();
-	HAL_Delay(GPS_WAKEUP_TIMEOUT); // Wait for things to be setup
+	DelayMs(GPS_WAKEUP_TIMEOUT); // Wait for things to be setup
 
 	/* Set the I2C port to output UBX only (turn off NMEA noise) */
 	if (setI2COutput(COM_TYPE_UBX, defaultMaxWait) == false) //Set the I2C port to output UBX only (turn off NMEA noise)
@@ -235,8 +245,8 @@ gps_status_t get_location_fix(uint32_t timeout)
 	memset(&gps_info, 0, sizeof(gps_info_t));
 
 	/* poll UBX-NAV-PVT until the module has fix */
-	uint32_t startTime = HAL_GetTick();
-	while (HAL_GetTick() - startTime < timeout)
+	uint32_t startTime = systimeMS_get();
+	while (systimeMS_get() - startTime < timeout)
 	{
 		HAL_IWDG_Refresh(&hiwdg);
 
@@ -255,8 +265,10 @@ gps_status_t get_location_fix(uint32_t timeout)
 		uint8_t temp_GPSday = getDay(defaultMaxWait);
 		uint8_t temp_GPSfix_OK = getgnssFixOK(defaultMaxWait);
 
-		PRINTNOW();
-		uint32_t current_time = HAL_GetTick() - startTime;
+		SysTime_t stime = SysTimeGetMcuTime();
+		printf("%3ds%03dms: ", stime.Seconds, stime.SubSeconds);
+
+		uint32_t current_time = systimeMS_get() - startTime;
 		float current_time_F = (float)current_time / 1000;
 
 		printf("Fixtype: ");
@@ -290,7 +302,7 @@ gps_status_t get_location_fix(uint32_t timeout)
 
 		printf("seconds since the Epoch: %ld\n", (uint32_t)t_of_day);
 
-		load_solar_voltage = BSP_GetSolarLevel16();
+		load_solar_voltage = BoardGetBatteryVoltage();
 
 		if (temp_GPSfix_type == 3 && temp_GPSsats >= SATS && temp_GPSfix_OK == 1) // check if we have a good fix
 		{
@@ -316,7 +328,7 @@ gps_status_t get_location_fix(uint32_t timeout)
 			gps_info.latest_gps_status = GPS_SUCCESS;
 			return GPS_SUCCESS;
 		}
-		HAL_Delay(1000);
+		DelayMs(1000);
 	}
 
 	/* If fix taking too long, reset and re-initialize GPS module. 
@@ -337,8 +349,9 @@ static gps_status_t init_for_fix()
 	HAL_IWDG_Refresh(&hiwdg);
 
 	/* pull GPS extint0 pin high to wake gps */
-	HAL_GPIO_WritePin(GPS_INT_GPIO_Port, GPS_INT_Pin, GPIO_PIN_SET);
-	HAL_Delay(GPS_WAKEUP_TIMEOUT);
+	GpioWrite(&Gps_int, 1);
+
+	DelayMs(GPS_WAKEUP_TIMEOUT);
 
 	HAL_IWDG_Refresh(&hiwdg);
 
@@ -408,7 +421,7 @@ static gps_status_t reinit_gps()
 
 	// configure gps module again
 	factoryReset();
-	HAL_Delay(GPS_WAKEUP_TIMEOUT); // wait for GPS module to be ready
+	DelayMs(GPS_WAKEUP_TIMEOUT); // wait for GPS module to be ready
 
 	HAL_IWDG_Refresh(&hiwdg);
 
@@ -478,9 +491,9 @@ static gps_status_t reinit_gps()
 static gps_status_t display_still_searching()
 {
 	// Indicator led to indicate that still searching
-	BSP_LED_On(LED1);
-	HAL_Delay(100);
-	BSP_LED_Off(LED1);
+	GpioWrite(&Led1, 1);
+	DelayMs(100);
+	GpioWrite(&Led1, 0);
 
 	return GPS_SUCCESS;
 }
@@ -490,10 +503,10 @@ static gps_status_t display_fix_found()
 {
 	for (uint8_t i = 0; i < 20; i++)
 	{
-		BSP_LED_On(LED1);
-		HAL_Delay(50);
-		BSP_LED_Off(LED1);
-		HAL_Delay(50);
+		GpioWrite(&Led1, 1);
+		DelayMs(50);
+		GpioWrite(&Led1, 0);
+		DelayMs(50);
 	}
 
 	return GPS_SUCCESS;
