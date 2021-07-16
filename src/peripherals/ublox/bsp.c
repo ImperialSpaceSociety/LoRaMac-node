@@ -62,6 +62,9 @@ time_pos_fix_t current_position =
 sensor_t sensor_data;
 playback_key_info_t *playback_key_info_ptr;
 
+double TEMPERATURE_Value;
+double PRESSURE_Value;
+
 /* Private function prototypes -----------------------------------------------*/
 void save_current_position_info_to_EEPROM(time_pos_fix_t *currrent_position);
 void fill_positions_to_send_buffer(void);
