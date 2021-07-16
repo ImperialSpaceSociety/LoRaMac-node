@@ -47,7 +47,7 @@ Maintainer: Miguel Luis and Gregory Cristian
 
 typedef struct{
   uint16_t pressure;    /* in mbar */  
-  int8_t temperature; /* in °C   */
+  int8_t temperature; /* in ï¿½C   */
   int8_t humidity;    /* in %    */
   uint16_t latitude;
   uint16_t longitude ;
