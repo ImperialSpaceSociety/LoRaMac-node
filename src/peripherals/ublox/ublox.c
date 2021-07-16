@@ -16,6 +16,8 @@
 /* Inclusion of system and local header files goes here */
 
 #include "ublox.h"
+#include <systime.h>
+#include "delay.h"
 #include <stdlib.h>
 #include <stdio.h>
 #include "stm32l0xx_hal.h"
