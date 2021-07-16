@@ -55,25 +55,6 @@ extern "C"
 
 	/* Function prototypes for public (external) functions go here */
 
-	I2C_MIDDLEWARE_STATUS_t I2C_receive(I2C_HandleTypeDef *hi2c,
-										uint16_t DevAddress,
-										uint8_t *pData,
-										uint16_t Size,
-										uint32_t Timeout);
-
-	I2C_MIDDLEWARE_STATUS_t I2C_transmit(I2C_HandleTypeDef *hi2c,
-										 uint16_t DevAddress,
-										 uint8_t *pData,
-										 uint16_t Size,
-										 uint32_t Timeout);
-
-	I2C_MIDDLEWARE_STATUS_t I2C_receive_mem(I2C_HandleTypeDef *hi2c,
-											uint16_t DevAddress,
-											uint16_t MemAddress,
-											uint8_t *pData,
-											uint16_t Size,
-											uint32_t Timeout);
-
 	I2C_MIDDLEWARE_STATUS_t reinit_i2c(I2C_HandleTypeDef *hi2c);
 
 #endif // I2C_MIDDLEWARE_H

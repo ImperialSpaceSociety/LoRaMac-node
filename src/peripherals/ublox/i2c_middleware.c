@@ -59,56 +59,6 @@ void I2C_pins_GPIO_INPUT_init(void);
 
 /* Functions definitions go here, organised into sections */
 
-I2C_MIDDLEWARE_STATUS_t I2C_receive(I2C_HandleTypeDef *hi2c, uint16_t DevAddress, uint8_t *pData, uint16_t Size, uint32_t Timeout)
-{
-
-	if (HAL_I2C_Master_Receive(hi2c, DevAddress, pData, Size, Timeout) != HAL_OK)
-	{
-		/* Error_Handler() function is called when error occurs. */
-	}
-
-	if (HAL_I2C_GetError(hi2c) == HAL_I2C_ERROR_NONE)
-	{
-		return I2C_SUCCSS;
-	}
-
-	return I2C_FAIL;
-}
-
-/*
-    Transmits a desired UBX message across I2C1.
-*/
-I2C_MIDDLEWARE_STATUS_t I2C_transmit(I2C_HandleTypeDef *hi2c, uint16_t DevAddress, uint8_t *pData, uint16_t Size, uint32_t Timeout)
-{
-
-	if (HAL_I2C_Master_Transmit(hi2c, DevAddress, pData, Size, Timeout) != HAL_OK)
-	{
-		/* Error_Handler() function is called when error occurs. */
-	}
-
-	if (HAL_I2C_GetError(hi2c) == HAL_I2C_ERROR_NONE)
-	{
-		return I2C_SUCCSS;
-	}
-
-	return I2C_FAIL;
-}
-
-I2C_MIDDLEWARE_STATUS_t I2C_receive_mem(I2C_HandleTypeDef *hi2c, uint16_t DevAddress, uint16_t MemAddress, uint8_t *pData, uint16_t Size, uint32_t Timeout)
-{
-
-	if (HAL_I2C_Mem_Read(hi2c, DevAddress, MemAddress, I2C_MEMADD_SIZE_8BIT, pData, Size, Timeout) != HAL_OK)
-	{
-	}
-
-	if (HAL_I2C_GetError(hi2c) == HAL_I2C_ERROR_NONE)
-	{
-		return I2C_SUCCSS;
-	}
-
-	return I2C_FAIL;
-}
-
 void I2C_pins_GPIO_INPUT_init()
 {
 
