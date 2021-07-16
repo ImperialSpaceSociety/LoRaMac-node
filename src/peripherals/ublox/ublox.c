@@ -16,6 +16,7 @@
 /* Inclusion of system and local header files goes here */
 
 #include "ublox.h"
+#include <stdbool.h>
 #include "i2c.h"
 #include <systime.h>
 #include "delay.h"
