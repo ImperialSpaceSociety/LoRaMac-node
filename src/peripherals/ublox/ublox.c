@@ -174,7 +174,7 @@ gps_status_t setup_GPS()
 	if (setI2COutput(COM_TYPE_UBX, defaultMaxWait) == false) //Set the I2C port to output UBX only (turn off NMEA noise)
 	{
 		printf("***!!! Warning: setI2COutput failed !!!***\n");
-		reinit_i2c(&hi2c1);
+		reinit_i2c();
 	}
 	else
 	{
@@ -185,7 +185,7 @@ gps_status_t setup_GPS()
 	if (isConnected(defaultMaxWait) == false) //Connect to the Ublox module using Wire port
 	{
 		printf("SELFTEST: GPS did not respond. GPS error...\r\n");
-		reinit_i2c(&hi2c1);
+		reinit_i2c();
 	}
 	else
 	{
@@ -195,7 +195,7 @@ gps_status_t setup_GPS()
 	if (setGPS_constellation_only(defaultMaxWait) == false) // Set the constellation to use only GPS
 	{
 		printf("***!!! Warning: setGPS_constellation_only failed !!!***\n");
-		reinit_i2c(&hi2c1);
+		reinit_i2c();
 	}
 	else
 	{
@@ -205,7 +205,7 @@ gps_status_t setup_GPS()
 	if (setDynamicModel(DYN_MODEL_AIRBORNE1g, defaultMaxWait) == false) // set to airbourne mode
 	{
 		printf("***!!! Warning: setDynamicModel failed !!!***\n");
-		reinit_i2c(&hi2c1);
+		reinit_i2c();
 	}
 	else
 	{
@@ -215,7 +215,7 @@ gps_status_t setup_GPS()
 	if (set_powersave_config(defaultMaxWait) == false) // Save powersave config to ram. can be activated later.
 	{
 		printf("***!!! Warning: set_powersave_config failed !!!***\n");
-		reinit_i2c(&hi2c1);
+		reinit_i2c();
 	}
 	else
 	{
@@ -225,7 +225,7 @@ gps_status_t setup_GPS()
 	if (saveConfiguration(defaultMaxWait) == false) // saveConfiguration config to BBR ram.
 	{
 		printf("***!!! Warning: saveConfiguration failed !!!***\n");
-		reinit_i2c(&hi2c1);
+		reinit_i2c();
 	}
 	else
 	{
@@ -362,7 +362,7 @@ static gps_status_t init_for_fix()
 	if (put_in_continueous_mode(defaultMaxWait) == false) // Set the constellation to use only GPS
 	{
 		printf("***!!! Warning: put_in_continueous_mode failed !!!***\n");
-		reinit_i2c(&hi2c1);
+		reinit_i2c();
 	}
 	else
 	{
@@ -375,7 +375,7 @@ static gps_status_t init_for_fix()
 	if (setI2COutput(COM_TYPE_UBX, defaultMaxWait) == false) //Set the I2C port to output UBX only (turn off NMEA noise)
 	{
 		printf("***!!! Warning: setI2COutput failed !!!***\n");
-		reinit_i2c(&hi2c1);
+		reinit_i2c();
 	}
 	else
 	{
@@ -389,7 +389,7 @@ static gps_status_t init_for_fix()
 	if (newDynamicModel == 255)
 	{
 		printf("***!!! Warning: getDynamicModel failed !!!***\n");
-		reinit_i2c(&hi2c1);
+		reinit_i2c();
 	}
 	else if (newDynamicModel != DYN_MODEL_AIRBORNE1g)
 	{
@@ -398,7 +398,7 @@ static gps_status_t init_for_fix()
 		if (setDynamicModel(DYN_MODEL_AIRBORNE1g, defaultMaxWait) == false) // Set the dynamic model to PORTABLE
 		{
 			printf("***!!! Warning: setDynamicModel failed !!!***\n");
-			reinit_i2c(&hi2c1);
+			reinit_i2c();
 		}
 		else
 		{
@@ -432,7 +432,7 @@ static gps_status_t reinit_gps()
 	if (setI2COutput(COM_TYPE_UBX, defaultMaxWait) == false) //Set the I2C port to output UBX only (turn off NMEA noise)
 	{
 		printf("***!!! Warning: setI2COutput failed !!!***\n");
-		reinit_i2c(&hi2c1);
+		reinit_i2c();
 	}
 	else
 	{
@@ -444,7 +444,7 @@ static gps_status_t reinit_gps()
 	if (setI2COutput(COM_TYPE_UBX, defaultMaxWait) == false) //Set the I2C port to output UBX only (turn off NMEA noise)
 	{
 		printf("***!!! Warning: setI2COutput failed !!!***\n");
-		reinit_i2c(&hi2c1);
+		reinit_i2c();
 	}
 	else
 	{
@@ -456,7 +456,7 @@ static gps_status_t reinit_gps()
 	if (setGPS_constellation_only(defaultMaxWait) == false) // Set the constellation to use only GPS
 	{
 		printf("***!!! Warning: setGPS_constellation_only failed !!!***\n");
-		reinit_i2c(&hi2c1);
+		reinit_i2c();
 	}
 	else
 	{
@@ -468,7 +468,7 @@ static gps_status_t reinit_gps()
 	if (setDynamicModel(DYN_MODEL_AIRBORNE1g, defaultMaxWait) == false) // set to airbourne mode
 	{
 		printf("***!!! Warning: setDynamicModel failed !!!***\n");
-		reinit_i2c(&hi2c1);
+		reinit_i2c();
 	}
 	else
 	{
@@ -480,7 +480,7 @@ static gps_status_t reinit_gps()
 	if (set_powersave_config(defaultMaxWait) == false) // Save powersave config to ram. can be activated later.
 	{
 		printf("***!!! Warning: set_powersave_config failed !!!***\n");
-		reinit_i2c(&hi2c1);
+		reinit_i2c();
 	}
 	else
 	{

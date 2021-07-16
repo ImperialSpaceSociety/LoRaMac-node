@@ -89,7 +89,7 @@ void I2C_pins_GPIO_OUTPUT_init()
  * Workaround to solve this mysterious problem where the sda line
  * appears to get stuck low.
  */
-I2C_MIDDLEWARE_STATUS_t reinit_i2c(I2C_HandleTypeDef *hi2c)
+I2C_MIDDLEWARE_STATUS_t reinit_i2c()
 {
 	HAL_IWDG_Refresh(&hiwdg);
 
