@@ -35,7 +35,7 @@
 #include "sx1276-board.h"
 #include "board.h"
 #include "ublox.h"
-#include "config.h"
+#include "main.h"
 
 /*!
  * Unique Devices IDs register set ( STM32L0xxx )
