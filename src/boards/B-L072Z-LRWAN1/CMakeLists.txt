@@ -58,6 +58,8 @@ list(APPEND ${PROJECT_NAME}_SOURCES
     "${CMAKE_CURRENT_SOURCE_DIR}/../mcu/stm32/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_spi.c"
     "${CMAKE_CURRENT_SOURCE_DIR}/../mcu/stm32/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_uart.c"
     "${CMAKE_CURRENT_SOURCE_DIR}/../mcu/stm32/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_uart_ex.c"
+    "${CMAKE_CURRENT_SOURCE_DIR}/../mcu/stm32/STM32L0xx_HAL_Driver/Src/stm32l0xx_hal_iwdg.c"
+
 )
 
 add_library(${PROJECT_NAME} OBJECT EXCLUDE_FROM_ALL ${${PROJECT_NAME}_SOURCES})
