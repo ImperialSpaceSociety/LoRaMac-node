@@ -22,6 +22,7 @@
 #include "main.h"
 #include "bsp.h"
 #include <time.h>
+#include "board.h"
 #include "iwdg.h"
 
 #include "SparkFun_Ublox_Arduino_Library.h"

@@ -29,7 +29,7 @@ extern "C"
 #endif
 
   /* Includes ------------------------------------------------------------------*/
-
+  #include "gpio-board.h"
   /* Private includes ----------------------------------------------------------*/
   /* USER CODE BEGIN Includes */
 
