@@ -23,7 +23,6 @@
 #include "ublox.h"
 #include "playback.h"
 #include "nvmm.h"
-#include "stm32l0xx_hal_adc.h"
 #include "iwdg.h"
 #include "board.h"
 
