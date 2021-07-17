@@ -306,9 +306,9 @@ void BSP_sensor_Init(void)
 void update_reset_counts_in_ram_nvm()
 {
 	/* record number of resets to EEPROM, and also to send down */
-	NvmmRead(RESET_COUNTER_ADDR, (void *)&sensor_data.reset_count, RESET_COUNTER_LEN);
+	NvmmRead((void *)&sensor_data.reset_count, RESET_COUNTER_LEN, RESET_COUNTER_ADDR);
 	sensor_data.reset_count += 1;
-	NvmmWrite(RESET_COUNTER_ADDR, (void *)&sensor_data.reset_count, RESET_COUNTER_LEN);
+	NvmmWrite((void *)&sensor_data.reset_count, RESET_COUNTER_LEN,RESET_COUNTER_ADDR);
 }
 
 /**
@@ -321,8 +321,8 @@ void playback_hw_init()
 {
 	//HAL_IWDG_Refresh(&hiwdg);
 
-	NvmmRead(CURRENT_PLAYBACK_INDEX_IN_EEPROM_ADDR, (void *)&current_EEPROM_index, sizeof(current_EEPROM_index));
-	NvmmRead(N_PLAYBACK_POSITIONS_SAVED_IN_EEPROM_ADDR, (void *)&n_playback_positions_saved, sizeof(current_EEPROM_index));
+	NvmmRead((void *)&current_EEPROM_index, sizeof(current_EEPROM_index), CURRENT_PLAYBACK_INDEX_IN_EEPROM_ADDR);
+	NvmmRead((void *)&n_playback_positions_saved, sizeof(current_EEPROM_index), N_PLAYBACK_POSITIONS_SAVED_IN_EEPROM_ADDR);
 
 	/* We want to send positions from the last n days, defined by PLAYBACK_DAYS. Therefore, we need to calculate how 
 	 * many saved eeprom position/times we should select from. We take the most recent timepos, then calculate back n days
@@ -441,8 +441,8 @@ void increment_eeprom_index_counters()
 	n_playback_positions_saved = MIN(n_playback_positions_saved + 1, MAX_PLAYBACK_POSITIONS_SAVED_IN_EEPROM);
 	playback_key_info_ptr->n_positions_saved_since_boot += 1;
 
-	NvmmWrite(CURRENT_PLAYBACK_INDEX_IN_EEPROM_ADDR, (void *)&current_EEPROM_index, sizeof(current_EEPROM_index));
-	NvmmWrite(N_PLAYBACK_POSITIONS_SAVED_IN_EEPROM_ADDR, (void *)&n_playback_positions_saved, sizeof(current_EEPROM_index));
+	NvmmWrite((void *)&current_EEPROM_index, sizeof(current_EEPROM_index), CURRENT_PLAYBACK_INDEX_IN_EEPROM_ADDR);
+	NvmmWrite((void *)&n_playback_positions_saved, sizeof(current_EEPROM_index), N_PLAYBACK_POSITIONS_SAVED_IN_EEPROM_ADDR);
 }
 
 /**
@@ -454,10 +454,10 @@ void save_current_position_info_to_EEPROM(time_pos_fix_t *currrent_position)
 {
 	/* save Long, Lat, Altitude, minutes since epoch to EEPROM */
 	uint16_t location_to_write = PLAYBACK_EEPROM_ADDR_START + current_EEPROM_index;
-	NvmmWrite(location_to_write + 0, (void *)&current_position.altitude, ALTITUDE_BYTES_LEN);
-	NvmmWrite(location_to_write + 2, (void *)&current_position.latitude, LATITUDE_BYTES_LEN);
-	NvmmWrite(location_to_write + 4, (void *)&current_position.longitude, LONGITUDE_BYTES_LEN);
-	NvmmWrite(location_to_write + 6, (void *)&current_position.minutes_since_epoch, MINUTES_SINCE_EPOCH_BYTES_LEN);
+	NvmmWrite( (void *)&current_position.altitude, ALTITUDE_BYTES_LEN, location_to_write + 0);
+	NvmmWrite( (void *)&current_position.latitude, LATITUDE_BYTES_LEN, location_to_write + 2);
+	NvmmWrite( (void *)&current_position.longitude, LONGITUDE_BYTES_LEN, location_to_write + 4);
+	NvmmWrite( (void *)&current_position.minutes_since_epoch, MINUTES_SINCE_EPOCH_BYTES_LEN, location_to_write + 6);
 }
 
 /**
@@ -475,10 +475,10 @@ time_pos_fix_t retrieve_eeprom_time_pos(uint16_t time_pos_index)
 
 	/* read Long, Lat, Altitude, minutes since epoch from EEPROM */
 	uint16_t location_to_read = PLAYBACK_EEPROM_ADDR_START + mod(current_EEPROM_index - (time_pos_index + 1) * PLAYBACK_EEPROM_PACKET_SIZE, PLAYBACK_EEPROM_SIZE);
-	NvmmRead(location_to_read + 0, (void *)&time_pos_fix.altitude, ALTITUDE_BYTES_LEN);
-	NvmmRead(location_to_read + 2, (void *)&time_pos_fix.latitude, LATITUDE_BYTES_LEN);
-	NvmmRead(location_to_read + 4, (void *)&time_pos_fix.longitude, LONGITUDE_BYTES_LEN);
-	NvmmRead(location_to_read + 6, (void *)&time_pos_fix.minutes_since_epoch, MINUTES_SINCE_EPOCH_BYTES_LEN);
+	NvmmRead( (void *)&time_pos_fix.altitude, ALTITUDE_BYTES_LEN, location_to_read + 0);
+	NvmmRead( (void *)&time_pos_fix.latitude, LATITUDE_BYTES_LEN, location_to_read + 2);
+	NvmmRead( (void *)&time_pos_fix.longitude, LONGITUDE_BYTES_LEN, location_to_read + 4);
+	NvmmRead( (void *)&time_pos_fix.minutes_since_epoch, MINUTES_SINCE_EPOCH_BYTES_LEN, location_to_read + 6);
 
 	//HAL_IWDG_Refresh(&hiwdg);
 
