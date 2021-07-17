@@ -20,12 +20,15 @@
 #include "i2c_middleware.h"
 #include "config.h"
 #include "stdio.h"
-// #include "stm32l0xx_hal_i2c.h"
-// #include "stm32l0xx_hal_gpio.h"
-#include "stm32l0xx.h"
-#include "gpio-board.h"
-#include "iwdg.h"
+#include "delay.h"
+// #include "iwdg.h"
+#include "board.h"
+#include "i2c.h"
 
+extern I2c_t I2c;
+extern Gpio_t Load_enable;
+extern Gpio_t i2c_scl;
+extern Gpio_t i2c_sda;
 
 /* ==================================================================== */
 /* ============================ constants ============================= */
@@ -51,40 +54,11 @@
 
 /* Function prototypes for private (static) functions go here */
 
-void I2C_pins_GPIO_OUTPUT_init(void);
-void I2C_pins_GPIO_INPUT_init(void);
-
 /* ==================================================================== */
 /* ===================== All functions by section ===================== */
 /* ==================================================================== */
 
 /* Functions definitions go here, organised into sections */
-
-void I2C_pins_GPIO_INPUT_init()
-{
-
-	GPIO_InitTypeDef GPIO_InitStruct = {0};
-
-	/* Configure SDA,SCL pin as input */
-	GPIO_InitStruct.Pin = GPIO_PIN_9 | GPIO_PIN_8;
-	GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
-	GPIO_InitStruct.Pull = GPIO_PULLDOWN;
-	GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
-	HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
-}
-
-void I2C_pins_GPIO_OUTPUT_init()
-{
-
-	GPIO_InitTypeDef GPIO_InitStruct = {0};
-
-	/*Configure GPIO pin : PB9 | PB8 */
-	GPIO_InitStruct.Pin = GPIO_PIN_9 | GPIO_PIN_8;
-	GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
-	GPIO_InitStruct.Pull = GPIO_NOPULL;
-	GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-	HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
-}
 
 /* rapidly toggle the i2c lines to get it unstuck
  * Workaround to solve this mysterious problem where the sda line
@@ -92,110 +66,39 @@ void I2C_pins_GPIO_OUTPUT_init()
  */
 I2C_MIDDLEWARE_STATUS_t reinit_i2c()
 {
-	HAL_IWDG_Refresh(&hiwdg);
-
-	//////////////////////////////////////////////////////////////
-	/* COMPLETELY USELESS FROM HERE */
+	/* Deinit i2c bus */
+	I2cDeInit(&I2c);
 
 	/* disable power to GPS */
-	HAL_GPIO_WritePin(GPS_EN_GPIO_Port, GPS_EN_PIN, GPIO_PIN_SET);
+	GpioWrite(&Load_enable, 1);
 	DelayMs(100);
 
-
-	/* De-initialize the I2C comunication bus */
-	HAL_I2C_MspDeInit(hi2c);
-
 	/* Make I2C bus pins GPIO */
-	I2C_pins_GPIO_OUTPUT_init();
+	GpioInit(&i2c_scl, PB_8, PIN_INPUT, PIN_PUSH_PULL, PIN_PULL_DOWN, 1);
+	GpioInit(&i2c_sda, PB_9, PIN_INPUT, PIN_PUSH_PULL, PIN_PULL_DOWN, 1);
 
 	/* set i2c pins low to ensure it cannot power up the core of the GPS */
-	HAL_GPIO_WritePin(GPS_EN_GPIO_Port, GPIO_PIN_9 | GPIO_PIN_8, GPIO_PIN_RESET);
-	DelayMs(1000);
+	GpioWrite(&i2c_scl, 0);
+	GpioWrite(&i2c_sda, 0);
+
+	DelayMs(100);
 
 	/* Enable power to GPS */
-	HAL_GPIO_WritePin(GPS_EN_GPIO_Port, GPS_EN_PIN, GPIO_PIN_RESET);
+	GpioWrite(&Load_enable, 0);
 	DelayMs(1000);
 
 	/* send 9 clock pulses to the GPS ref: https://www.microchip.com/forums/FindPost/175578 */
 	for (uint8_t i = 0; i < 9; i++)
 	{
-		HAL_GPIO_WritePin(GPS_EN_GPIO_Port, GPIO_PIN_8, GPIO_PIN_RESET);
+		GpioWrite(&i2c_scl, 0);
 		DelayMs(1);
-		HAL_GPIO_WritePin(GPS_EN_GPIO_Port, GPIO_PIN_8, GPIO_PIN_SET);
+		GpioWrite(&i2c_scl, 1);
 		DelayMs(1);
 	}
 
-	/* COMPLETELY USELESS TO HERE */
-	/////////////////////////////////////////////////////////////////
+	DelayMs(100);
 
-	// check if sda is stuck low. if so, call error handler
-
-	I2C_pins_GPIO_INPUT_init();
-
-	/**I2C1 GPIO Configuration    
-	PB9     ------> I2C1_SDA
-	PB8     ------> I2C1_SCL 
-	*/
-
-	volatile GPIO_PinState pinstate_scl = HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_8);
-	volatile GPIO_PinState pinstate_sda = HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_9);
-
-	if ((pinstate_scl == GPIO_PIN_RESET) || (pinstate_sda == GPIO_PIN_RESET))
-	{
-		// only the error handler fixes it. carry out a software reset
-		printf("SCL OR SDA STUCK LOW. calling Error_Handler().\n");
-	}
-	else
-	{
-		printf("I2C not stuck low, carry on.\n");
-	}
-
-	/* Re-Initiaize the I2C comunication bus */
-	HAL_I2C_MspInit(hi2c);
-
-	printf("I2C not stuck low, carry on.\n");
-
-	printf("Deinit i2c\n");
-
-	HAL_StatusTypeDef status = HAL_I2C_DeInit(hi2c);
-
-	switch (status)
-	{
-
-	case HAL_ERROR:
-		printf("HAL_ERROR deinit i2c error\n");
-		break;
-
-	case HAL_OK:
-		printf("HAL_OK deinit\n");
-		break;
-
-	/* you can have any number of case statements */
-	default:
-		printf("unknown deinit i2c error\n");
-	}
-
-	DelayMs(20);
-
-	status = HAL_I2C_Init(hi2c);
-
-	switch (status)
-	{
-
-	case HAL_ERROR:
-		printf("HAL_ERROR init i2c error\n");
-		break;
-
-	case HAL_OK:
-		printf("HAL_OK init\n");
-		break;
-
-	/* you can have any number of case statements */
-	default:
-		printf("unknown init i2c error\n");
-	}
-
-	HAL_IWDG_Refresh(&hiwdg);
+	I2cInit(&I2c, I2C_1, PB_8, PB_9);
 
 	return I2C_SUCCSS;
 }

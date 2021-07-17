@@ -55,6 +55,9 @@ Gpio_t Led4;
 Gpio_t Gps_int;
 Gpio_t Load_enable;
 
+Gpio_t i2c_scl;
+Gpio_t i2c_sda;
+
 /*
  * MCU objects
  */
