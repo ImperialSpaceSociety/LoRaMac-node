@@ -16,7 +16,7 @@
 /* Inclusion of system and local header files goes here */
 
 #include "ublox.h"
-#include "main.h"
+#include "config.h"
 #include <stdbool.h>
 #include "utilities.h"
 #include "i2c.h"
