@@ -34,6 +34,9 @@
 #include "CayenneLpp.h"
 #include "LmHandlerMsgDisplay.h"
 
+#include "config.h"
+#include "ublox.h"
+
 #ifndef ACTIVE_REGION
 
 #warning "No active region defined, LORAMAC_REGION_EU868 will be used as default."
@@ -452,6 +455,8 @@ static void PrepareTxFrame( void )
     uint8_t channel = 0;
 
     AppData.Port = LORAWAN_APP_PORT;
+
+    BSP_sensor_Read();
 
     CayenneLppReset( );
     CayenneLppAddDigitalInput( channel++, AppLedStateOn );
