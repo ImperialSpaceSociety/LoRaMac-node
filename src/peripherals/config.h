@@ -29,7 +29,6 @@ extern "C"
 #endif
 
   /* Includes ------------------------------------------------------------------*/
-  #include "utilities.h"
   /* Private includes ----------------------------------------------------------*/
   /* USER CODE BEGIN Includes */
 
@@ -59,27 +58,16 @@ extern "C"
 
   /* Private defines -----------------------------------------------------------*/
 
-#define GPS_PPS_Pin GPIO_PIN_14
-#define GPS_PPS_GPIO_Port GPIOB
-#define GPS_INT_Pin GPIO_PIN_13
-#define GPS_INT_GPIO_Port GPIOB
-
-#define SENSOR_EN_PIN GPIO_PIN_7
-#define SENSOR_EN_GPIO_Port GPIOB
-
 /* USER CODE BEGIN Private defines */
 
 // PRELAUNCH IMPORTANT!
 // comment out these defines to disable sensor, Radio, GPS or LED
-#define SENSOR_ENABLED 0                    /* Enable ms5607 sensor. Init the sensor as well. Allowed values: 0 disabled , 1(default) enabled */
-#define GPS_ENABLED 1                       /* Enable Ublox GPS. Init the GPS as well. Allowed values: 0 disabled , 1(default) enabled */
-#define RADIO_ENABLED 1                     /* Enable Radio. WARNING: DISABLED OPTION NOT TESTED PROPERLY. Allowed values: 0 disabled , 1(default) enabled */
-#define USE_LED 1                           /* Enable LED blinky. Allowed values: 0 disabled , 1(default) enabled */
-#define USE_NVM_STORED_LORAWAN_REGION 1     /* Use LoRaWAN region stored in EEPROm. Allowed values: 0 disabled , 1(default) enabled. If not using EEPROM location, \
-                                             * use EU868                                                                                                           \
-                                             */
-#define SET_EU_RX1_DELAY_DEFAULT_5_SECOND 0 /* Set the EU868 RX1 delay to default of 5 seconds. Not LoRaWAN compliant, but default on TTN after it sends commands to \
-                                             switch at device setup. Allowed values: 0 disabled , 1(default) enabled */
+#define SENSOR_ENABLED 0                /* Enable ms5607 sensor. Init the sensor as well. Allowed values: 0 disabled , 1(default) enabled */
+#define GPS_ENABLED 1                   /* Enable Ublox GPS. Init the GPS as well. Allowed values: 0 disabled , 1(default) enabled */
+#define USE_LED 1                       /* Enable LED blinky. Allowed values: 0 disabled , 1(default) enabled */
+#define USE_NVM_STORED_LORAWAN_REGION 1 /* Use LoRaWAN region stored in EEPROm. Allowed values: 0 disabled , 1(default) enabled. If not using EEPROM location, \
+                                         * use EU868                                                                                                           \
+                                         */
 
   /* GPS RELATED DEFINES */
   /* ----------------------------------------------------------------------------------- */
@@ -111,28 +99,6 @@ extern "C"
 /* WATCHDOG RELATED DEFINES */
 /* ----------------------------------------------------------------------------------- */
 #define USE_WATCHDOG 1 /* Use watchdog. Allowed values: 0 disabled , 1(default) enabled */
-
-  /*!
- * Defines the application data transmission duty cycle. 2 minutes, value in [ms].
- */
-
-#define APP_TX_DUTYCYCLE 40000
-/*!
- * LoRaWAN Adaptive Data Rate
- * @note Please note that when ADR is enabled the end-device should be static
- */
-#define LORAWAN_ADR_STATE LORAWAN_ADR_OFF
-
-#define SAVE_FRAME_COUNTER_IN_INTERNAL_EEPROM 0 /* Storing frame counter in EEPROM. Allowed values: 0 disabled , 1 (default) enabled */
-
-/* CALL SIGN */
-
-//#define ICSPACE16
-//#define ICSPACE17
-//#define ICSPACE18
-//#define ICSPACE19
-//#define ICSPACE20
-#define ICSPACE21
 
   /* USER CODE END Private defines */
 
