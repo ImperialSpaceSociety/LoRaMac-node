@@ -78,31 +78,36 @@ typedef struct
 
 // EEPROM related defines
 
+#define NVM_PlAYBACK_EEPROM_ADDR_START             (1500)
 
-#define FRAME_COUNTER_EEPROM_ADDRESS               (0)
+#define FRAME_COUNTER_EEPROM_ADDRESS               (0 + NVM_PlAYBACK_EEPROM_ADDR_START)
 #define FRAME_COUNTER_EEPROM_LEN                   (4)
 
-#define LORAMAC_REGION_EEPROM_ADDR                 (4)
+#define LORAMAC_REGION_EEPROM_ADDR                 (4 + NVM_PlAYBACK_EEPROM_ADDR_START)
 #define LORAMAC_REGION_EEPROM_LEN                  (4)
 
 
-#define RESET_COUNTER_ADDR                         (8)
+#define RESET_COUNTER_ADDR                         (8 + NVM_PlAYBACK_EEPROM_ADDR_START)
 #define RESET_COUNTER_LEN                          (2)
 
 
-#define CURRENT_PLAYBACK_INDEX_IN_EEPROM_ADDR      (10)
+#define CURRENT_PLAYBACK_INDEX_IN_EEPROM_ADDR      (10 + NVM_PlAYBACK_EEPROM_ADDR_START)
 #define CURRENT_PLAYBACK_INDEX_IN_EEPROM_LEN       (2)
 
-#define N_PLAYBACK_POSITIONS_SAVED_IN_EEPROM_ADDR  (12)
+#define N_PLAYBACK_POSITIONS_SAVED_IN_EEPROM_ADDR  (12 + NVM_PlAYBACK_EEPROM_ADDR_START)
 #define N_PLAYBACK_POSITIONS_SAVED_IN_EEPROM_LEN   (2)
 
-#define PLAYBACK_EEPROM_ADDR_START                 (14)
+#define PLAYBACK_EEPROM_ADDR_START                 (14 + NVM_PlAYBACK_EEPROM_ADDR_START)
 #define PLAYBACK_EEPROM_PACKET_SIZE                (9)
-#define MAX_PLAYBACK_POSITIONS_SAVED_IN_EEPROM     (650)
+#define MAX_PLAYBACK_POSITIONS_SAVED_IN_EEPROM     (300)
 #define PLAYBACK_EEPROM_SIZE                       (MAX_PLAYBACK_POSITIONS_SAVED_IN_EEPROM * PLAYBACK_EEPROM_PACKET_SIZE)
 
 /* WARNING! Ensure this value is less than DATA_EEPROM_BANK2_END. Or else, it will overflow EEPROM */
-#define NVM_GPS_EEPROM_ADDR_END                    (NVM_GPS_EEPROM_ADDR_START - 1 + PLAYBACK_EEPROM_SIZE)
+#define NVM_PlAYBACK_EEPROM_ADDR_END                (PlAYBACK_EEPROM_ADDR_START - 1 + PLAYBACK_EEPROM_SIZE)
+
+#if ((DATA_EEPROM_BASE + NVM_PlAYBACK_EEPROM_ADDR_END) > DATA_EEPROM_BANK2_END)
+#error Space allocated to playback exceeds available EEPROM
+#endif
 																												
 
 
