@@ -18,7 +18,7 @@
 /* Inclusion of system and local header files goes here */
 
 #include "i2c_middleware.h"
-#include "main.h"
+#include "config.h"
 #include "stdio.h"
 // #include "stm32l0xx_hal_i2c.h"
 // #include "stm32l0xx_hal_gpio.h"
