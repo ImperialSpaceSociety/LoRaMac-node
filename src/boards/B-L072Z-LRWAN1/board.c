@@ -34,6 +34,8 @@
 #include "rtc-board.h"
 #include "sx1276-board.h"
 #include "board.h"
+#include "ublox.h"
+#include "config.h"
 
 /*!
  * Unique Devices IDs register set ( STM32L0xxx )
@@ -50,10 +52,17 @@ Gpio_t Led2;
 Gpio_t Led3;
 Gpio_t Led4;
 
+Gpio_t Gps_int;
+Gpio_t Load_enable;
+
+Gpio_t i2c_scl;
+Gpio_t i2c_sda;
+
 /*
  * MCU objects
  */
 Uart_t Uart1;
+I2c_t I2c;
 
 /*!
  * Initializes the unused GPIO to a know status
@@ -127,6 +136,11 @@ void BoardCriticalSectionEnd( uint32_t *mask )
 void BoardInitPeriph( void )
 {
 
+		/* GPS SETUP */
+		#if GPS_ENABLED
+		printf("SELFTEST: Initialising GPS\n\r");
+		setup_GPS();
+		#endif
 }
 
 void BoardInitMcu( void )
@@ -140,7 +154,10 @@ void BoardInitMcu( void )
         GpioInit( &Led2, LED_2, PIN_OUTPUT, PIN_PUSH_PULL, PIN_NO_PULL, 1 );
         GpioInit( &Led3, LED_3, PIN_OUTPUT, PIN_PUSH_PULL, PIN_NO_PULL, 1 );
         GpioInit( &Led4, LED_4, PIN_OUTPUT, PIN_PUSH_PULL, PIN_NO_PULL, 1 );
+        GpioInit( &Gps_int, GPS_INT, PIN_OUTPUT, PIN_PUSH_PULL, PIN_NO_PULL, 1 );
 
+        // Load enable for sensors, GPS
+        GpioInit( &Load_enable, LOAD_ENABLE, PIN_OUTPUT, PIN_PUSH_PULL, PIN_NO_PULL, 1 );
         SystemClockConfig( );
 
         UsbIsConnected = true;
@@ -151,12 +168,15 @@ void BoardInitMcu( void )
         UartInit( &Uart1, UART_1, UART_TX, UART_RX );
         UartConfig( &Uart1, RX_TX, 2000000, UART_8_BIT, UART_1_STOP_BIT, NO_PARITY, NO_FLOW_CTRL );
 
+        I2cInit( &I2c, I2C_1, I2C_SCL, I2C_SDA );
+			
         RtcInit( );
 
         GpioWrite( &Led1, 0 );
         GpioWrite( &Led2, 0 );
         GpioWrite( &Led3, 0 );
         GpioWrite( &Led4, 0 );
+        GpioWrite( &Load_enable, 0 );
 
         BoardUnusedIoInit( );
         if( GetBoardPowerSource( ) == BATTERY_POWER )
@@ -259,7 +279,7 @@ void SystemClockConfig( void )
     RCC_OscInitStruct.PLL.PLLDIV          = RCC_PLLDIV_3;
     if( HAL_RCC_OscConfig( &RCC_OscInitStruct ) != HAL_OK )
     {
-        assert_param( FAIL );
+        assert_param( LMN_STATUS_ERROR );
     }
 
     RCC_ClkInitStruct.ClockType = (RCC_CLOCKTYPE_SYSCLK | RCC_CLOCKTYPE_HCLK | RCC_CLOCKTYPE_PCLK1 | RCC_CLOCKTYPE_PCLK2);
@@ -269,14 +289,14 @@ void SystemClockConfig( void )
     RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
     if( HAL_RCC_ClockConfig( &RCC_ClkInitStruct, FLASH_LATENCY_1 ) != HAL_OK )
     {
-        assert_param( FAIL );
+        assert_param( LMN_STATUS_ERROR );
     }
 
     PeriphClkInit.PeriphClockSelection = RCC_PERIPHCLK_RTC;
     PeriphClkInit.RTCClockSelection = RCC_RTCCLKSOURCE_LSE;
     if( HAL_RCCEx_PeriphCLKConfig( &PeriphClkInit ) != HAL_OK )
     {
-        assert_param( FAIL );
+        assert_param( LMN_STATUS_ERROR );
     }
 
     HAL_SYSTICK_Config( HAL_RCC_GetHCLKFreq( ) / 1000 );

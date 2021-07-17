@@ -71,6 +71,8 @@ extern "C"
 #define LED_2                                       PA_5
 #define LED_3                                       PB_6
 #define LED_4                                       PB_7
+#define GPS_INT                                     PB_13
+#define LOAD_ENABLE                                 PA_11
 
 #define LED_GREEN                                   LED_1
 #define LED_RED1                                    LED_2

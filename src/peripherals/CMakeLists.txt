@@ -46,7 +46,11 @@ else()
     endif()
 endif()
 
+
+
 add_library(${PROJECT_NAME} OBJECT EXCLUDE_FROM_ALL ${${PROJECT_NAME}_SOURCES})
+
+
 
 if(${SECURE_ELEMENT_PRE_PROVISIONED} MATCHES ON)
     target_compile_definitions(${PROJECT_NAME} PRIVATE -DSECURE_ELEMENT_PRE_PROVISIONED)
