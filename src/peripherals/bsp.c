@@ -25,6 +25,7 @@
 #include "nvmm.h"
 // #include "iwdg.h"
 #include "board.h"
+#include "stdio.h"
 
 
 /* Private typedef -----------------------------------------------------------*/
@@ -220,16 +221,16 @@ void pretty_print_sensor_values(double *TEMPERATURE_Value, double *PRESSURE_Valu
 	printf("%ld", gps_info->unix_time);
 	printf("\r\n");
 	printf("Solar voltage no load: ");
-	printf("%ld", *no_load_solar_voltage);
+	printf("%d", *no_load_solar_voltage);
 	printf("\r\n");
 	printf("Solar voltage with GPS load: ");
-	printf("%ld", *load_solar_voltage);
+	printf("%d", *load_solar_voltage);
 	printf("\r\n");
 	printf("Reset Count: ");
-	printf("%ld", sensor_data.reset_count);
+	printf("%d", sensor_data.reset_count);
 	printf("\r\n");
 	printf("Data received from ground: ");
-	printf("%ld", sensor_data.data_received);
+	printf("%d", sensor_data.data_received);
 	printf("\r\n");
 	printf("================================================================\r\n");
 }
@@ -239,12 +240,12 @@ void manage_incoming_instruction(uint8_t *instructions)
 	uint32_t recent_time_min = extractLong_from_buff(0, instructions);
 	uint16_t recent_timepos_index = get_time_pos_index_older_than(recent_time_min);
 
-	printf("Received instruction recent. time(min):%d timepos index: %d\n", recent_time_min, recent_timepos_index);
+	printf("Received instruction recent. time(min):%lu timepos index: %d\n", recent_time_min, recent_timepos_index);
 
 	uint32_t older_time_min = extractLong_from_buff(4, instructions);
 	uint16_t older_timepos_index = get_time_pos_index_older_than(older_time_min);
 
-	printf("Received instruction older. time(min):%d timepos index: %d\n", older_time_min, older_timepos_index);
+	printf("Received instruction older. time(min):%lu timepos index: %d\n", older_time_min, older_timepos_index);
 
 	process_playback_instructions(recent_timepos_index, older_timepos_index);
 }
@@ -375,7 +376,7 @@ void print_stored_coordinates()
 	for (uint16_t i = 0; i < n_playback_positions_saved; i++)
 	{
 		time_pos_fix_t temp = retrieve_eeprom_time_pos(i);
-		printf("index: %d, long: %d, lat: %d, alt: %d, ts: %d\n", i, temp.longitude, temp.latitude, temp.altitude, temp.minutes_since_epoch);
+		printf("index: %d, long: %d, lat: %d, alt: %d, ts: %lu\n", i, temp.longitude, temp.latitude, temp.altitude, temp.minutes_since_epoch);
 	}
 }
 
@@ -401,7 +402,7 @@ time_pos_fix_t get_oldest_pos_time()
 
 	time_pos_fix_t temp = retrieve_eeprom_time_pos(index);
 
-	printf("oldest postime :: pos_time index: %d, long: %d, lat: %d, alt: %d, ts: %d\n", index, temp.longitude, temp.latitude, temp.altitude, temp.minutes_since_epoch);
+	printf("oldest postime :: pos_time index: %d, long: %d, lat: %d, alt: %d, ts: %lu\n", index, temp.longitude, temp.latitude, temp.altitude, temp.minutes_since_epoch);
 
 	return temp;
 }
